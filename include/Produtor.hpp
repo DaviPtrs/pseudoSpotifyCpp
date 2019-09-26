@@ -15,7 +15,7 @@ class Produtor: protected Usuario {
         Produtor(string _nome);
         void criaProduto();
         void imprimeProdutosDesenvolvidos();
-        //vector<Midia *> getProdutosDesenvolvidos();
+        vector<Midia *> getProdutosDesenvolvidos();
         void imprimeNoArquivo(ofstream &outfile); //Italico
         void carregaArquivo(ifstream &infline); //Italico
 };
