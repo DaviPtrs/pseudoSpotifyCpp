@@ -11,8 +11,8 @@ class Album {
         int duracao;
         int anoLancamento;
         int qtdMusicas;
-        std::vector<Musica *> faixas;
         Artista *artista;
+        std::vector<Musica *> faixas;
     public:
         Album();
         Album(std::string nome, int duracao, int ano, int qtd);
@@ -20,7 +20,7 @@ class Album {
         int addFaixa(Musica *faixa);
         Musica *delFaixa(Musica *faixa);
 
-        vector<Musica *> getFaixas();
+        std::vector<Musica *> getFaixas();
         Artista *getArtista();
         int getQtdMusicas();
         int getAnoLancamento();

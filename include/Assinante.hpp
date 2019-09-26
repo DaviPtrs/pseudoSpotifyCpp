@@ -16,4 +16,6 @@ class Assinante:protected Usuario {
         std::vector <Midia*> getFavoritos();
         void imprimeNoArquivo(std::ofstream &outfile);
         void carregaArquivo(std::ifstream &infline);
+
+        std::string getNome();
 };
