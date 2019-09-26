@@ -1,10 +1,10 @@
 #include "Produtor.hpp"
-// #include "Podcast.hpp"
+#include "Podcast.hpp"
 #pragma once
 
 class Podcaster: public Produtor{
     private:
-        // vector<Podcast *> podcasts
+        vector<Podcast *> podcasts;
     public:
         Podcaster();
         void imprimeNoArquivo(ofstream &outfile); //Italico

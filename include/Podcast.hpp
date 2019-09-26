@@ -1,8 +1,9 @@
 #include "Midia.hpp"
-// #include "Podcaster.hpp"
+
 #pragma once
 
 class Podcast:public Midia {
+    class Podcaster;
     private:
         int qtdTemporadas;
     public:

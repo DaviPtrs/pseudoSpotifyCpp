@@ -6,6 +6,7 @@
 using namespace std;
 
 class Assinante:protected Usuario {
+    class PlataformaDigital;
     private:
         PlataformaDigital *plataforma;
     public:
