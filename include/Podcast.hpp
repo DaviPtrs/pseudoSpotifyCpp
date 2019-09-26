@@ -1,6 +1,5 @@
-#include "Midia.hpp"
-
 #pragma once
+#include "Midia.hpp"
 
 class Podcast:public Midia {
     class Podcaster;
@@ -10,8 +9,10 @@ class Podcast:public Midia {
         Podcast();
         Podcast(std::string nome, bool explicito, std::string gen, int qtdTemp);
         void imprimeInfoProduto();
-        void imprimeNoArquivo(ofstream &outfile);
-        void carregaArquivo(ifstream &infile);  
+        void imprimeNoArquivo(std::ofstream &outfile);
+        void carregaArquivo(std::ifstream &infile);  
+        
         int getQtdTemportadas();
         Podcaster *getPodcaster();
+        void setQtdTemportadas(int);
 };

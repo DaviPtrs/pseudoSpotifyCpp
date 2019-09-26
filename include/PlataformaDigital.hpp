@@ -1,30 +1,30 @@
+#pragma once
 #include <string>
 #include "Assinante.hpp"
 #include "Midia.hpp"
 #include <vector>
-#pragma once
-
-using namespace std;
 
 class PlataformaDigital {
     private:
-        string nome;
-        vector<Assinante *> assinantes;
-        vector<Midia*> produtosCadastrados;
+        std::string nome;
+        std::vector<Assinante *> assinantes;
+        std::vector<Midia*> produtosCadastrados;
     public:
         PlataformaDigital();
-        PlataformaDigital(string _nome);
-        void imprimeProdutos(string genero);
+        PlataformaDigital(std::string _nome);
+        void imprimeProdutos(std::string genero);
         void imprimeAssinantes();
-        void inserirAssinante();
-        void removerAssinante();
-        int inserirProduto(Midia *novoProduto, string nomeProdutor);
+        void inserirAssinante(Assinante *);
+        Assinante *removerAssinante(std::string nome);
+        int inserirProduto(Midia *novoProduto, std::string nomeProdutor);
         int selecionaAssinante();
-        void inserirProdutoAssinante();
-        vector<Midia *> getProdutosCadastrados();
-        vector<Assinante *> getAssinantes();
-        void imprimeNoArquivo(ofstream &outfile);
-        void carregaArquivo(ifstream &infline);
+        void inserirProdutoAssinante(); //q parada eh essa veio
+        void imprimeNoArquivo(std::ofstream &outfile);
+        void carregaArquivo(std::ifstream &infline);
         void exportarBiblioteca();
         void gerarRelatorios();
+
+        std::string getNome();
+        std::vector<Midia *> getProdutosCadastrados();
+        std::vector<Assinante *> getAssinantes();
 };

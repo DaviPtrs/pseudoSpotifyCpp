@@ -1,15 +1,16 @@
-#include "Produtor.hpp"
 #pragma once
+#include "Produtor.hpp"
 
 class Artista:public Produtor {
     class Album;
     private:
-        vector<Album *> albums;
+        std::vector<Album *> albums;
+        //musicas tipo midia
     public:
         Artista();
-        void imprimeNoArquivo(ofstream &outfile); //Italico
-        void carregaArquivo(ifstream &infline); //Italico
+        void imprimeNoArquivo(std::ofstream &outfile); 
+        void carregaArquivo(std::ifstream &infline); 
         void addAlbum(Album * album);
         Album *retiraAlbum();
-        vector<Album *> getAlbums();
+        std::vector<Album *> getAlbums();
 };
