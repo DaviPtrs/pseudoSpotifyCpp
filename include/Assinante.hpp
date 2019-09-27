@@ -9,7 +9,6 @@ class Assinante:protected Usuario {
     public:
         Assinante();
         Assinante(std::string _nome);
-        ~Assinante();
         void imprimeFavoritos();
         void inserirFavorito(Midia* favorito);
         void removerFavorito();
@@ -18,4 +17,8 @@ class Assinante:protected Usuario {
         void carregaArquivo(std::ifstream &infline);
 
         std::string getNome();
+
+        bool operator < (const Assinante obj) const{
+            return (nome.compare(obj.nome) < 0);
+        }
 };

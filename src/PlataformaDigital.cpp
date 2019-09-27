@@ -1,4 +1,5 @@
 #include <iostream>
+#include "../lib/utils.hpp"
 #include "PlataformaDigital.hpp"
 
 using namespace std;
@@ -40,7 +41,7 @@ void PlataformaDigital::imprimeAssinantes(){
 }
 
 void PlataformaDigital::inserirAssinante(Assinante * assinante){
-    this->assinantes.push_back(assinante);
+    insert_sort(this->assinantes, assinante);
     cout << "Assinante \"" << assinante->getNome() << "\" inserido!\n";
 }
 
