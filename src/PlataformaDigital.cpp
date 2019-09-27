@@ -1,48 +1,69 @@
 #include <iostream>
 #include "PlataformaDigital.hpp"
 
+using namespace std;
+
+
+
 PlataformaDigital::PlataformaDigital() {
-    std::cout << "Objeto PlataformaDigital criado!\n";
+    cout << "Objeto PlataformaDigital criado!\n";
 }
 
-PlataformaDigital::PlataformaDigital(std::string _nome) {
+PlataformaDigital::PlataformaDigital(string _nome) {
     this->nome = _nome;
-    std::cout << "Objeto PlataformaDigital (" << _nome <<") criado!\n";
+    cout << "Objeto PlataformaDigital (" << _nome <<") criado!\n";
 }
 
-std::string PlataformaDigital::getNome(){
+string PlataformaDigital::getNome(){
     return this->nome;
 }
 
-std::vector<Midia *> PlataformaDigital::getProdutosCadastrados(){
+vector<Midia *> PlataformaDigital::getProdutosCadastrados(){
     return this->produtosCadastrados;
 }
 
-std::vector<Assinante *> PlataformaDigital::getAssinantes(){
+vector<Assinante *> PlataformaDigital::getAssinantes(){
     return this->assinantes;
 }
 
-void PlataformaDigital::imprimeProdutos(std::string genero){
+void PlataformaDigital::imprimeProdutos(string genero){
     
 }
 
 void PlataformaDigital::imprimeAssinantes(){
-
+    int tam = this->assinantes.size;
+    cout << "=-=-=-=ASSINANTES-=-=-=-=\n";
+    for(int i = 0; i<tam; i++){
+        cout << this->assinantes[i]->getNome() << endl;
+    }
+    cout << "=-=-=-=ASSINANTES-=-=-=-=\n";
 }
 
-void PlataformaDigital::inserirAssinante(Assinante *){
-
+void PlataformaDigital::inserirAssinante(Assinante * assinante){
+    this->assinantes.push_back(assinante);
+    cout << "Assinante \"" << assinante->getNome() << "\" inserido!\n";
 }
 
-Assinante * PlataformaDigital::removerAssinante(std::string nome){
+Assinante * PlataformaDigital::removerAssinante(string nome){
+    vector<Assinante *> vet = this->assinantes;
+    int tam = vet.size;
 
+    for(int i = 0; i<tam; i++){
+        Assinante *obj = vet[i]; //Nao sei se isso funciona
+        if(!obj->getNome().compare(nome)){
+            vet.erase(vet.begin() + i);
+            cout << "Assinante \"" << obj->getNome() << "\" removido!\n";
+            return obj;
+        }
+    }
+    return NULL;
 }
 
-int PlataformaDigital::inserirProduto(Midia *novoProduto, std::string nomeProdutor){
-
+int PlataformaDigital::inserirProduto(Midia *novoProduto, string nomeProdutor){
+    
 }
 
-int PlataformaDigital::selecionaAssinante(){
+int PlataformaDigital::selecionaAssinante(){ //int??
 
 }
 
@@ -50,11 +71,11 @@ void PlataformaDigital::inserirProdutoAssinante(){
 
 }
 
-void PlataformaDigital::imprimeNoArquivo(std::ofstream &outfile){
+void PlataformaDigital::imprimeNoArquivo(ofstream &outfile){
 
 }
 
-void PlataformaDigital::carregaArquivo(std::ifstream &infline){
+void PlataformaDigital::carregaArquivo(ifstream &infline){
 
 }
 
