@@ -20,7 +20,10 @@ class PlataformaDigital {
         int selecionaAssinante();
         void inserirProdutoAssinante(); //q parada eh essa veio
         void imprimeNoArquivo(std::ofstream &outfile);
-        void carregaArquivo(std::ifstream &infline);
+        void carregaArquivoUsuario(std::ifstream &infline);
+        void carregaArquivoMidia(std::ifstream &infline);
+        void carregaArquivoFavoritos(std::ifstream &infline);
+        void carregaArquivoGenero(std::ifstream &infline);
         void exportarBiblioteca();
         void gerarRelatorios();
 

@@ -11,8 +11,7 @@ class Produtor: protected Usuario {
     public:
         Produtor();
         Produtor(std::string _nome);
-        virtual void imprimeNoArquivo(std::ofstream &outfile) = 0;
-        virtual void carregaArquivo(std::ifstream &infline) = 0; 
+        void imprimeNoArquivo(std::ofstream &outfile);  
         void imprimeProdutosDesenvolvidos();
 
         std::string getBiografia();

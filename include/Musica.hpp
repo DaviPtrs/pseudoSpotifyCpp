@@ -12,7 +12,6 @@ class Musica:public Midia{
         Musica(std::string nome, std::string gen, int duracao, int ano);
         void imprimeInfoProduto();
         void imprimeNoArquivo(std::ofstream &outfile);
-        void carregaArquivo(std::ifstream &infile);
         int getAnoLancamento();    
         int getDuracao();
 };

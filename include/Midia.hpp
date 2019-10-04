@@ -25,7 +25,6 @@ class Midia {
         static void imprimeQtdProdutos(); 
         virtual void imprimeInfoProduto() = 0;
         virtual void imprimeNoArquivo(std::ofstream &outfile) = 0;
-        virtual void carregaArquivo(std::ifstream &infile) = 0;
 
         Genero* getGenero();
         std::string getNome();  

@@ -10,7 +10,6 @@ class Podcast:public Midia {
         Podcast(std::string nome, bool explicito, std::string gen, int qtdTemp);
         void imprimeInfoProduto();
         void imprimeNoArquivo(std::ofstream &outfile);
-        void carregaArquivo(std::ifstream &infile);  
         
         int getQtdTemportadas();
         Podcaster *getPodcaster();

@@ -9,7 +9,6 @@ class Artista:public Produtor {
     public:
         Artista();
         void imprimeNoArquivo(std::ofstream &outfile); 
-        void carregaArquivo(std::ifstream &infline); 
         void addAlbum(Album * album);
         Album *retiraAlbum();
         std::vector<Album *> getAlbums();
