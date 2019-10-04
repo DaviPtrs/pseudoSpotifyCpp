@@ -9,6 +9,8 @@ class PlataformaDigital {
         std::string nome;
         std::vector<Assinante *> assinantes;
         std::vector<Midia*> produtosCadastrados;
+        std::vector<Midia::Genero*> listaGeneros;
+        std::vector<Produtor*> listaGeneros;
     public:
         PlataformaDigital();
         PlataformaDigital(std::string _nome);
