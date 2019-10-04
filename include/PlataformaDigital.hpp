@@ -2,6 +2,7 @@
 #include <string>
 #include "Assinante.hpp"
 #include "Midia.hpp"
+#include "Produtor.hpp"
 #include <vector>
 
 class PlataformaDigital {
@@ -10,7 +11,7 @@ class PlataformaDigital {
         std::vector<Assinante *> assinantes;
         std::vector<Midia*> produtosCadastrados;
         std::vector<Midia::Genero*> listaGeneros;
-        std::vector<Produtor*> listaGeneros;
+        std::vector<Produtor*> listaProdutor;
     public:
         PlataformaDigital();
         PlataformaDigital(std::string _nome);
@@ -18,9 +19,9 @@ class PlataformaDigital {
         void imprimeAssinantes();
         void inserirAssinante(Assinante *);
         Assinante *removerAssinante(std::string nome);
-        int inserirProduto(Midia *novoProduto, std::string nomeProdutor);
+        int inserirProduto(Midia *novoProduto, std::vector<Produtor*> listaProdutor);
         int selecionaAssinante();
-        void inserirProdutoAssinante(); //q parada eh essa veio
+        void inserirAssinante(); //q parada eh essa veio
         void imprimeNoArquivo(std::ofstream &outfile);
         void carregaArquivoUsuario(std::ifstream &infline);
         void carregaArquivoMidia(std::ifstream &infline);
