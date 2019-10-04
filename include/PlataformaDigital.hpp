@@ -23,12 +23,13 @@ class PlataformaDigital {
         int selecionaAssinante();
         void inserirAssinante(); //q parada eh essa veio
         void imprimeNoArquivo(std::ofstream &outfile);
-        void carregaArquivoUsuario(std::ifstream &infline);
-        void carregaArquivoMidia(std::ifstream &infline);
-        void carregaArquivoFavoritos(std::ifstream &infline);
-        void carregaArquivoGenero(std::ifstream &infline);
+        void carregaArquivoUsuario(std::ifstream &infile);
+        void carregaArquivoMidia(std::ifstream &infile);
+        void carregaArquivoFavoritos(std::ifstream &infile);
+        void carregaArquivoGenero(std::ifstream &infile);
         void exportarBiblioteca();
         void gerarRelatorios();
+        void imprimeListaGenero();
 
         std::string getNome();
         std::vector<Midia *> getProdutosCadastrados();

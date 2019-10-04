@@ -15,6 +15,8 @@ class Midia {
                 Genero(std::string nome, std::string sigla);
                 std::string getNome();
                 std::string getSigla();
+                void setNome(std::string nome);
+                void setSigla(std::string sigla);
             static int qtdProdutos;
         };
         Midia();
