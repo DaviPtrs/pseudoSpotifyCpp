@@ -13,5 +13,5 @@ class Podcast:public Midia {
         
         int getQtdTemportadas();
         Podcaster *getPodcaster();
-        void setQtdTemportadas(int);
+        void setQtdTemportadas(int);ss
 };

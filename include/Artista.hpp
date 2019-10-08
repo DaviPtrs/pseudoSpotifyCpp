@@ -5,7 +5,6 @@ class Artista:public Produtor {
     class Album;
     private:
         std::vector<Album *> albums;
-        //musicas tipo midia
     public:
         Artista();
         void imprimeNoArquivo(std::ofstream &outfile); 

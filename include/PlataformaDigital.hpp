@@ -20,8 +20,6 @@ class PlataformaDigital {
         void inserirAssinante(Assinante *);
         Assinante *removerAssinante(std::string nome);
         int inserirProduto(Midia *novoProduto, std::vector<Produtor*> listaProdutor);
-        int selecionaAssinante();
-        void inserirAssinante(); //q parada eh essa veio
         void imprimeNoArquivo(std::ofstream &outfile);
         void carregaArquivoUsuario(std::ifstream &infile);
         void carregaArquivoMidia(std::ifstream &infile);

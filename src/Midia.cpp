@@ -1,12 +1,17 @@
 #include "Midia.hpp"
 
+int Midia::qtdProdutos = 0;
+
 Midia::Midia() {
-
+    this->qtdProdutos++;
 }
 
-Midia::~Midia() {
-
+Midia::Midia(std::string nome, bool explicito, std::string genero) {
+    this->qtdProdutos++;
 }
+
+Midia::Genero::Genero() {}
+
 
 Midia::Genero::Genero(std::string sigla, std::string nome)
 {
@@ -34,4 +39,20 @@ void Midia::Genero::setNome(std::string nome)
 void Midia::Genero::setSigla(std::string sigla)
 {
     this->sigla = sigla;
+}
+
+static void Midia::imprimeQtdProdutos(){
+
+}
+
+Genero* Midia::getGenero(){
+    
+}
+
+std::string Midia::getNome(){
+    
+}
+
+bool Midia::isExplicit(){
+    return this->explicito;
 }

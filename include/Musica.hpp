@@ -14,4 +14,4 @@ class Musica:public Midia{
         void imprimeNoArquivo(std::ofstream &outfile);
         int getAnoLancamento();    
         int getDuracao();
-};
+};s

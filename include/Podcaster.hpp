@@ -5,5 +5,6 @@
 class Podcaster: public Produtor{
     public:
         Podcaster();
+        Podcaster(std::string _nome, int codigo);
         void imprimeNoArquivo(std::ofstream &outfile); 
 };

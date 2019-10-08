@@ -16,17 +16,6 @@ PlataformaDigital::PlataformaDigital(string _nome) {
     cout << "Objeto PlataformaDigital (" << _nome <<") criado!\n";
 }
 
-string PlataformaDigital::getNome(){
-    return this->nome;
-}
-
-vector<Midia *> PlataformaDigital::getProdutosCadastrados(){
-    return this->produtosCadastrados;
-}
-
-vector<Assinante *> PlataformaDigital::getAssinantes(){
-    return this->assinantes;
-}
 
 void PlataformaDigital::imprimeProdutos(string genero){
     
@@ -65,27 +54,19 @@ int PlataformaDigital::inserirProduto(Midia *novoProduto, string nomeProdutor){
     
 }
 
-int PlataformaDigital::selecionaAssinante(){ //int??
-
-}
-
-void PlataformaDigital::inserirProdutoAssinante(){
-
-}
-
 void PlataformaDigital::imprimeNoArquivo(ofstream &outfile){
 
 }
 
-void PlataformaDigital::carregaArquivo(ifstream &infline){
+void PlataformaDigital::carregaArquivoUsuario(std::ifstream &infile){
 
 }
 
-void PlataformaDigital::exportarBiblioteca(){
+void PlataformaDigital::carregaArquivoMidia(std::ifstream &infile){
 
 }
 
-void PlataformaDigital::gerarRelatorios(){
+void PlataformaDigital::carregaArquivoFavoritos(std::ifstream &infile){
 
 }
 
@@ -102,9 +83,15 @@ void PlataformaDigital::carregaArquivoGenero(std::ifstream &infile)
     }
 
     this->listaGeneros.pop_back();  // gambiarra bonita, gambiarra formosa
+}
+
+void PlataformaDigital::exportarBiblioteca(){
 
 }
 
+void PlataformaDigital::gerarRelatorios(){
+
+}
 
 void PlataformaDigital::imprimeListaGenero()
 {
@@ -114,4 +101,16 @@ void PlataformaDigital::imprimeListaGenero()
         std::cout<<this->listaGeneros[i]->getNome()<<std::endl;
        // std::cout<<"to com fome"<< i <<std::endl;
     }
+}
+
+string PlataformaDigital::getNome(){
+    return this->nome;
+}
+
+vector<Midia *> PlataformaDigital::getProdutosCadastrados(){
+    return this->produtosCadastrados;
+}
+
+vector<Assinante *> PlataformaDigital::getAssinantes(){
+    return this->assinantes;
 }

@@ -2,7 +2,6 @@
 #include <string>
 
 class Midia {
-
     private:
         bool explicito;
     public:
@@ -17,8 +16,8 @@ class Midia {
                 std::string getSigla();
                 void setNome(std::string nome);
                 void setSigla(std::string sigla);
-            static int qtdProdutos;
         };
+        static int qtdProdutos;
         Midia();
         Midia(std::string nome, bool explicito, std::string genero);
         static void imprimeQtdProdutos(); 
@@ -28,7 +27,7 @@ class Midia {
         Genero* getGenero();
         std::string getNome();  
         bool isExplicit();
-        protected:
-            std::string nome;
-            Genero *genero;
+    protected:
+        std::string nome;
+        Genero *genero;
 };
