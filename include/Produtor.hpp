@@ -2,7 +2,7 @@
 #include "Usuario.hpp"
 #include "Midia.hpp"
 #include <vector>
-#include "string"
+// #include "string"
 
 class Produtor: protected Usuario {
     protected:
