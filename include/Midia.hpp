@@ -4,6 +4,7 @@
 class Midia {
     private:
         bool explicito;
+        void formataDuracao();
     public:
         class Genero{
             private:
@@ -21,7 +22,7 @@ class Midia {
         Midia();
         Midia(std::string nome, bool explicito, std::string genero);
         static void imprimeQtdProdutos(); 
-        virtual void imprimeInfoProduto() = 0; 
+        virtual void imprimeInfoMidia() = 0; 
         virtual void imprimeNoArquivo(std::ofstream &outfile) = 0;
 
         Genero* getGenero();
@@ -29,5 +30,8 @@ class Midia {
         bool isExplicit();
     protected:
         std::string nome;
+        int codigo;
+        float duracao;
+        int anoLancamento;
         Genero *genero;
 };

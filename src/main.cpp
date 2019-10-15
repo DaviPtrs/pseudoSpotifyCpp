@@ -10,7 +10,7 @@ int main()
 {
     PlataformaDigital *plataforma = new PlataformaDigital();
     std::ifstream file;
-    file.open("include/testes/generos.csv");
+    file.open("testes/generos.csv");
     if(!(file.is_open()))
     {
         return 0;
