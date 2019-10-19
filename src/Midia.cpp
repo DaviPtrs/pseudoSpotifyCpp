@@ -52,7 +52,3 @@ Midia::Genero* Midia::getGenero(){
 std::string Midia::getNome(){
     
 }
-
-bool Midia::isExplicit(){
-    return this->explicito;
-}
