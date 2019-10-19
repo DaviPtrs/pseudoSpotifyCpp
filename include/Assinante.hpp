@@ -10,14 +10,20 @@ class Assinante:protected Usuario {
     public:
         Assinante();
         Assinante(std::string _nome);
-        void imprimeFavoritos();
+
+        //Insert/Remove
         void inserirFavorito(Midia* favorito);
         void removerFavorito();
+
+        //Printers
+        void imprimeFavoritos();
+        virtual void imprimeNoArquivo(std::ofstream &outfile);
+
+        //Getters
         std::vector <Midia*> getFavoritos();
-        void imprimeNoArquivo(std::ofstream &outfile);
-
         std::string getNome();
-
+        
+        //Operators
         bool operator < (const Assinante obj) const{
             return (nome.compare(obj.nome) < 0);
         }

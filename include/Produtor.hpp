@@ -10,7 +10,11 @@ class Produtor: protected Usuario {
     public:
         Produtor();
         Produtor(std::string _nome);
-        void imprimeNoArquivo(std::ofstream &outfile);  
+
+        //Printers
+        virtual void imprimeNoArquivo(std::ofstream &outfile);  
         void imprimeProdutosDesenvolvidos();
+
+        //Getters
         std::vector<Midia *> getProdutosDesenvolvidos();
 };

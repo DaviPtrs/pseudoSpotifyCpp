@@ -6,8 +6,12 @@ class Musica:public Midia{
     public:
         Musica();
         Musica(std::string nome, std::string gen, int duracao, int ano);
+
+        //Printers
         void imprimeInfoProduto();
-        void imprimeNoArquivo(std::ofstream &outfile);
+        virtual void imprimeNoArquivo(std::ofstream &outfile);
+
+        //Getters
         int getAnoLancamento();    
         int getDuracao();
 };

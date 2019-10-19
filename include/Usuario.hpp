@@ -5,5 +5,8 @@ class Usuario {
     protected:
         std::string nome;
         int codigo;
-        void imprimeNoArquivo(std::ofstream &outfile);
+    public:
+        Usuario();
+        Usuario(std::string _nome, int codigo);
+        virtual void imprimeNoArquivo(std::ofstream &outfile);
 };

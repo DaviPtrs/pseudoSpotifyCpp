@@ -8,9 +8,9 @@
 
 // }
 
-void Artista::imprimeNoArquivo(std::ofstream &outfile){
+// void Artista::imprimeNoArquivo(std::ofstream &outfile){
 
-}
+// }
 
 void Artista::addAlbum(Album * album){
 
