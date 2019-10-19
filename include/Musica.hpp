@@ -1,6 +1,6 @@
 #pragma once
 #include "Midia.hpp"
-#include "string"
+#include <string>
 
 class Musica:public Midia{
     public:

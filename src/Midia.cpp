@@ -41,11 +41,11 @@ void Midia::Genero::setSigla(std::string sigla)
     this->sigla = sigla;
 }
 
-static void Midia::imprimeQtdProdutos(){
+// static void Midia::imprimeQtdProdutos(){
 
-}
+// }
 
-Genero* Midia::getGenero(){
+Midia::Genero* Midia::getGenero(){
     
 }
 

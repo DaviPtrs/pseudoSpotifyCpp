@@ -1,4 +1,5 @@
 #include "Podcast.hpp"
+#include "Podcaster.hpp"
 
 Podcast::Podcast() {
 
@@ -7,11 +8,6 @@ Podcast::Podcast() {
 Podcast::Podcast(std::string nome, bool explicito, std::string gen, int qtdTemp){
 
 }
-
-Podcast::~Podcast() {
-
-}
-
 void Podcast::imprimeInfoProduto(){
 
 }
@@ -24,7 +20,7 @@ int Podcast::getQtdTemportadas(){
 
 }
 
-Podcaster *Podcast::getPodcaster(){
+Podcast::Podcaster *Podcast::getPodcaster(){
 
 }
 

@@ -1,8 +1,6 @@
 #pragma once
-// #include <iostream>
-// #include <string>
-
-// using namespace std;
+#include <string>
+#include <iostream>
 
 class Midia {
     private:
@@ -11,28 +9,28 @@ class Midia {
     public:
         class Genero{
             private:
-                string nome;
-                string sigla;
+                std::string nome;
+                std::string sigla;
             public:
                 Genero();
-                Genero(string nome, string sigla);
-                string getNome();
-                string getSigla();
-                void setNome(string nome);
-                void setSigla(string sigla);
+                Genero(std::string nome, std::string sigla);
+                std::string getNome();
+                std::string getSigla();
+                void setNome(std::string nome);
+                void setSigla(std::string sigla);
         };
         static int qtdProdutos;
         Midia();
-        Midia(string nome, bool explicito, string genero);
+        Midia(std::string nome, bool explicito, std::string genero);
         static void imprimeQtdProdutos(); 
         virtual void imprimeInfoMidia() = 0; 
-        virtual void imprimeNoArquivo(ofstream &outfile) = 0;
+        virtual void imprimeNoArquivo(std::ofstream &outfile) = 0;
 
         Genero* getGenero();
-        string getNome();  
+        std::string getNome();  
         bool isExplicit();
     protected:
-        string nome;
+        std::string nome;
         int codigo;
         float duracao;
         int anoLancamento;

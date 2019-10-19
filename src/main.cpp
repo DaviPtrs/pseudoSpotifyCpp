@@ -6,13 +6,16 @@
 #include <vector>
 #include <fstream>
 #include <iostream>
+
+using namespace std;
 int main()
 {
     PlataformaDigital *plataforma = new PlataformaDigital();
-    std::ifstream file;
-    file.open("testes/generos.csv");
+    ifstream file;
+    file.open("tests/generos.csv");
     if(!(file.is_open()))
     {
+        cout << "Erro ao abrir arquivo\n" ;
         return 0;
     }
     plataforma->carregaArquivoGenero(file);

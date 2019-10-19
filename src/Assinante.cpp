@@ -27,9 +27,9 @@ void Assinante::imprimeNoArquivo(std::ofstream &outfile){
 
 }
 
-void Assinante::carregaArquivo(std::ifstream &infline){
+// void Assinante::carregaArquivo(std::ifstream &infline){
 
-}
+// }
 
 std::string Assinante::getNome(){
 

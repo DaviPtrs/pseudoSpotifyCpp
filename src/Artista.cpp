@@ -1,25 +1,25 @@
 #include "Artista.hpp"
 
-Artista::Artista() {
+// Artista::Artista() {
+
+// }
+
+// Artista::~Artista() {
+
+// }
+
+void Artista::imprimeNoArquivo(std::ofstream &outfile){
 
 }
 
-Artista::~Artista() {
+void Artista::addAlbum(Album * album){
 
 }
 
-void Album::imprimeNoArquivo(std::ofstream &outfile){
+Artista::Album *Artista::retiraAlbum(){
 
 }
 
-void Album::addAlbum(Album * album){
-s
-}
-
-Album *Album::retiraAlbum(){
-
-}
-
-std::vector<Album *> Album::getAlbums(){
+std::vector<Artista::Album *> Artista::getAlbums(){
 
 }

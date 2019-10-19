@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 #include "Usuario.hpp"
 #include "Midia.hpp"
 #include <vector>

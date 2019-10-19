@@ -8,13 +8,13 @@ Musica::Musica(std::string nome, std::string gen, int duracao, int ano){
 
 }
 
-Musica::~Musica() {
+// Musica::~Musica() {
 
-}
+// }
 
-void Musica::formataDuracao(){
+// void Musica::formataDuracao(){
 
-}
+// }
 
 void Musica::imprimeInfoProduto(){
 

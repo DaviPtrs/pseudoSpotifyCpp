@@ -22,7 +22,7 @@ void PlataformaDigital::imprimeProdutos(string genero){
 }
 
 void PlataformaDigital::imprimeAssinantes(){
-    int tam = this->assinantes.size;
+    int tam = this->assinantes.size();
     cout << "=-=-=-=ASSINANTES-=-=-=-=\n";
     for(int i = 0; i<tam; i++){
         cout << this->assinantes[i]->getNome() << endl;
@@ -37,7 +37,7 @@ void PlataformaDigital::inserirAssinante(Assinante * assinante){
 
 Assinante * PlataformaDigital::removerAssinante(string nome){
     vector<Assinante *> vet = this->assinantes;
-    int tam = vet.size;
+    int tam = vet.size();
 
     for(int i = 0; i<tam; i++){
         Assinante *obj = vet[i]; //Nao sei se isso funciona
@@ -50,9 +50,9 @@ Assinante * PlataformaDigital::removerAssinante(string nome){
     return NULL;
 }
 
-int PlataformaDigital::inserirProduto(Midia *novoProduto, string nomeProdutor){
+// int inserirProduto(Midia *novoProduto, std::vector<Produtor*> listaProdutor){
     
-}
+// }
 
 void PlataformaDigital::imprimeNoArquivo(ofstream &outfile){
 
@@ -95,7 +95,7 @@ void PlataformaDigital::gerarRelatorios(){
 
 void PlataformaDigital::imprimeListaGenero()
 {
-    for(int i = 0; i < this->listaGeneros.size(); i++)
+    for(unsigned int i = 0; i < this->listaGeneros.size(); i++)
     {
         std::cout<<this->listaGeneros[i]->getSigla()<<';';
         std::cout<<this->listaGeneros[i]->getNome()<<std::endl;
