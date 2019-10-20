@@ -12,17 +12,17 @@ Assinante::Assinante(string _nome, int codigo){
     cout << "Assinante " << codigo << "criado!" << endl;
 }
 
-void Assinante::imprimeFavoritos(){
+// void Assinante::imprimeFavoritos(){
 
-}
+// }
 
-void Assinante::inserirFavorito(Midia* favorito){
+// void Assinante::inserirFavorito(Midia* favorito){
 
-}
+// }
 
-void Assinante::removerFavorito(){
+// void Assinante::removerFavorito(){
 
-}
+// }
 
 // void Assinante::imprimeNoArquivo(std::ofstream &outfile){
 
@@ -38,4 +38,8 @@ string Assinante::getNome(){
 
 vector <Midia*> Assinante::getFavoritos(){
     return this->favoritos;
+}
+
+int Assinante::getId(){
+    return this->codigo;
 }

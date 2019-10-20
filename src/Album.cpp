@@ -13,17 +13,17 @@ Album::Album(std::string nome, int duracao, int ano, int qtd){
 }
 
 
-void Album::imprimeNoArquivo(std::ofstream &outfile){
+// void Album::imprimeNoArquivo(std::ofstream &outfile){
 
-}
+// }
 
-int Album::addFaixa(Musica *faixa){
+// int Album::addFaixa(Musica *faixa){
 
-}
+// }
 
-Musica *Album::delFaixa(Musica *faixa){
+// Musica *Album::delFaixa(Musica *faixa){
 
-}
+// }
 
 std::vector<Musica *> Album::getFaixas(){
     return this->faixas;

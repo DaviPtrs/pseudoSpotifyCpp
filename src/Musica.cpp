@@ -4,9 +4,9 @@ Musica::Musica() {
 
 }
 
-Musica::Musica(std::string nome, std::string gen, int duracao, int ano){
+// Musica::Musica(std::string nome, std::string gen, int duracao, int ano){
 
-}
+// }
 
 // Musica::~Musica() {
 
@@ -16,18 +16,18 @@ Musica::Musica(std::string nome, std::string gen, int duracao, int ano){
 
 // }
 
-void Musica::imprimeInfoProduto(){
+// void Musica::imprimeInfoProduto(){
 
-}
+// }
 
 // void Musica::imprimeNoArquivo(std::ofstream &outfile){
 
 // }
 
-int Musica::getAnoLancamento(){
+// int Musica::getAnoLancamento(){
 
-}    
+// }    
 
-int Musica::getDuracao(){
+// int Musica::getDuracao(){
 
-}
+// }

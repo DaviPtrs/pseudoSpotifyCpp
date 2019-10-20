@@ -1,8 +1,8 @@
 #include "Artista.hpp"
 
-// Artista::Artista() {
+Artista::Artista() {
 
-// }
+}
 
 // Artista::~Artista() {
 
@@ -12,14 +12,14 @@
 
 // }
 
-void Artista::addAlbum(Album * album){
+// void Artista::addAlbum(Album * album){
 
-}
+// }
 
-Artista::Album *Artista::retiraAlbum(){
+// Artista::Album *Artista::retiraAlbum(){
 
-}
+// }
 
-std::vector<Artista::Album *> Artista::getAlbums(){
+// std::vector<Artista::Album *> Artista::getAlbums(){
 
-}
+// }

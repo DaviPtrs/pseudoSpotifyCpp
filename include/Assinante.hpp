@@ -22,6 +22,7 @@ class Assinante:protected Usuario {
         //Getters
         std::vector <Midia*> getFavoritos();
         std::string getNome();
+        int getId();
         
         //Operators
         inline bool operator < (const Assinante &obj) const{

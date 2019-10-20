@@ -19,7 +19,7 @@ void PlataformaDigital::imprimeAssinantes(){
     int tam = this->assinantes.size();
     cout << "=-=-=-=ASSINANTES-=-=-=-=\n";
     for(int i = 0; i<tam; i++){
-        cout << this->assinantes[i]->getNome() << endl;
+        cout << this->assinantes[i]->getId()<< ", "<< this->assinantes[i]->getNome() << endl;
     }
     cout << "=-=-=-=ASSINANTES-=-=-=-=\n";
 }
@@ -68,9 +68,9 @@ void PlataformaDigital::inserirProdutor(Produtor *produtor){
     cout << "Produtor \"" << produtor->getNome() << "\" inserido!\n";
 }
 
-Produtor *PlataformaDigital::removerProdutor(int id){
+// Produtor *PlataformaDigital::removerProdutor(int id){
 
-}
+// }
 
 void PlataformaDigital::carregaArquivoUsuario(std::ifstream &infile){
     if(!infile.is_open()){

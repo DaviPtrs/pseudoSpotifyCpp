@@ -6,9 +6,9 @@ Midia::Midia() {
     this->qtdProdutos++;
 }
 
-Midia::Midia(std::string nome, bool explicito, std::string genero) {
-    this->qtdProdutos++;
-}
+// Midia::Midia(std::string nome, bool explicito, std::string genero) {
+//     this->qtdProdutos++;
+// }
 
 Midia::Genero::Genero() {}
 
@@ -45,10 +45,10 @@ void Midia::Genero::setSigla(std::string sigla)
 
 // }
 
-Midia::Genero* Midia::getGenero(){
+// Midia::Genero* Midia::getGenero(){
     
-}
+// }
 
-std::string Midia::getNome(){
+// std::string Midia::getNome(){
     
-}
+// }

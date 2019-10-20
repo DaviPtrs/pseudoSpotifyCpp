@@ -18,6 +18,6 @@ int main(){
 
     file.open("tests/usuarios.csv");
     soundcorno->carregaArquivoUsuario(file);
-
+    soundcorno->imprimeAssinantes();
     return 0;
 }
