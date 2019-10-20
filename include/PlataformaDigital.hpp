@@ -44,6 +44,8 @@ class PlataformaDigital {
         std::vector<Midia *> getProdutosCadastrados();
         std::vector<Assinante *> getAssinantes();
         Midia::Genero *searchGenero(std::string genero);
+        Produtor *searchProdutor(int id);
+        Podcaster *searchPodcaster(int id);
 
         //Output
         void exportarBiblioteca();

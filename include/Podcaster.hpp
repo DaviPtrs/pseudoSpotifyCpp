@@ -9,4 +9,6 @@ class Podcaster: public Produtor{
         Podcaster();
         Podcaster(std::string _nome, int codigo);
         // virtual void imprimeNoArquivo(std::ofstream &outfile); 
+
+        
 };

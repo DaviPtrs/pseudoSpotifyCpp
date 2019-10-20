@@ -1,4 +1,5 @@
 #pragma once
+#include <vector>
 #include <string>
 #include "Midia.hpp"
 
@@ -8,7 +9,7 @@ class Podcast:public Midia {
     class Podcaster;
     private:
         int qtdTemporadas;
-        Podcaster *podcaster;
+        vector<Podcaster *> podcasters;
     public:
         Podcast();
         Podcast(std::string nome, int codigo, std::string gen, int qtdTemp);
@@ -17,8 +18,11 @@ class Podcast:public Midia {
         void imprimeInfoProduto();
         // virtual void imprimeNoArquivo(std::ofstream &outfile);
         
+        void addPodcaster(Podcaster *p);
+
         // Getters
         int getQtdTemportadas();
-        Podcaster *getPodcaster();
+        vector<Podcaster *> getPodcasters();
         void setQtdTemportadas(int);
+
 };

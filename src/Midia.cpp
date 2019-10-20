@@ -45,6 +45,14 @@ void Midia::setGenero(Midia::Genero* gen){
     this->genero = gen;
 }
 
+void Midia::setDuracao(int n){
+    this->duracao = n;
+}
+
+void Midia::setAnoLancamento(int n){
+    this->anoLancamento = n;
+}
+
 // static void Midia::imprimeQtdProdutos(){
 
 // }

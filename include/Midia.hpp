@@ -37,6 +37,8 @@ class Midia {
 
         //Setters
         void setGenero(Midia::Genero*);
+        void setDuracao(int n);
+        void setAnoLancamento(int n);
 
         //Operators
         inline bool operator < (const Midia &obj) const{

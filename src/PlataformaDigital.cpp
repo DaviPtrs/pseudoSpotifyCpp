@@ -1,5 +1,7 @@
 #include <iostream>
 #include <fstream>
+#include <sstream>
+#include <bits/stdc++.h> 
 #include "../lib/utils.hpp"
 #include "PlataformaDigital.hpp"
 #include "Podcaster.hpp"
@@ -7,10 +9,8 @@
 
 using namespace std;
 
-
-
 PlataformaDigital::PlataformaDigital() {
-    cout << "Objeto PlataformaDigital criado!\n";
+    cout << "Plataforma Digital generica criada!\n";
 }
 
 PlataformaDigital::PlataformaDigital(string _nome) {
@@ -129,6 +129,40 @@ void PlataformaDigital::carregaArquivoGenero(ifstream &infile){
     infile.close();
 }
 
+int convertDuracao(string origin){ //Le o formato de texto e retorna segundos
+    char duracao[origin.length() + 1];
+    strcpy(duracao, origin.c_str());
+    int min, segs;
+    sscanf(duracao, "%d,%d", &min, &segs);
+
+    return (segs + (min * 60));
+}
+
+vector <int> extractIntsFromString(string origin){
+    stringstream ss;     
+    vector <int> result;
+  
+    /* Storing the whole string into string stream */
+    ss << origin; 
+  
+    /* Running loop till the end of the stream */
+    string temp; 
+    int found; 
+    while (!ss.eof()) { 
+  
+        /* extracting word by word from stream */
+        ss >> temp; 
+  
+        /* Checking the given word is integer or not */
+        if (stringstream(temp) >> found){
+            result.push_back(found);
+        }  
+        /* To save from space at the end of string */
+        temp = ""; 
+    } 
+    return result;
+}
+
 void PlataformaDigital::carregaArquivoMidia(ifstream &infile){
     if(!infile.is_open()){
         cerr << "Erro ao abrir arquivo de generos\n" ;
@@ -142,12 +176,27 @@ void PlataformaDigital::carregaArquivoMidia(ifstream &infile){
             getline(infile, data[i], ';');
         }
         getline(infile, data[9]);
+
         if(data[0].compare("") == 0){
             break;
         }
-        if(data[2].compare("M") == 0){ //Tipo // Musica
 
-        }else if(data[2].compare("P") == 0){ //Podcast
+        if(data[2].compare("P") == 0){ //Tipo // Podcast
+            Podcast *obj = new Podcast(data[1], stoi(data[0]), data[5], stoi(data[6]));
+            obj->setDuracao(convertDuracao(data[4])); //Seta a duracao em segundos
+            obj->setAnoLancamento(stoi(data[9]));
+
+            Midia::Genero *gen = this->searchGenero(data[5]);
+            obj->setGenero(gen);
+
+            vector <int> podcasterIds = extractIntsFromString(data[3]);
+
+            for(int i = 0; i<podcasterIds.size(); i++){
+                Podcaster *p = searchPodcaster(podcasterIds[i]);
+            // obj->addPodcaster((); //parei aqui
+            }
+
+        }else if(data[2].compare("M") == 0){ //Musica
 
         }else{
             cerr << "Tipo de midia " << data[2] << " invalido!" << endl;
@@ -157,13 +206,35 @@ void PlataformaDigital::carregaArquivoMidia(ifstream &infile){
     infile.close();
 }
 
-Midia::Genero *PlataformaDigital::searchGenero(std::string genero){
+Midia::Genero *PlataformaDigital::searchGenero(string genero){
     for(unsigned int i = 0; i < this->listaGeneros.size(); i++){
         if(this->listaGeneros[i]->getSigla().compare(genero) == 0){
             return this->listaGeneros[i];
         }
     }
     cerr << "Genero nao localizado! Sigla: " << genero << endl;
+    exit(1);
+    return NULL;
+}
+
+Podcaster *PlataformaDigital::searchPodcaster(int id){
+    for(unsigned int i = 0; i < this->listaProdutor.size(); i++){
+        if(this->listaProdutor[i]->getId() == id){
+            return (Podcaster *)this->listaProdutor[i];
+        }
+    }
+    cerr << "Produtor nao localizado! Id: " << id << endl;
+    exit(1);
+    return NULL;
+}
+
+Produtor *PlataformaDigital::searchProdutor(int id){
+    for(unsigned int i = 0; i < this->listaProdutor.size(); i++){
+        if(this->listaProdutor[i]->getId() == id){
+            return this->listaProdutor[i];
+        }
+    }
+    cerr << "Produtor nao localizado! Id: " << id << endl;
     exit(1);
     return NULL;
 }
