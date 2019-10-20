@@ -9,7 +9,7 @@ class Assinante:protected Usuario {
         std::vector<Midia *> favoritos;
     public:
         Assinante();
-        Assinante(std::string _nome);
+        Assinante(std::string _nome, int codigo);
 
         //Insert/Remove
         void inserirFavorito(Midia* favorito);
@@ -17,14 +17,20 @@ class Assinante:protected Usuario {
 
         //Printers
         void imprimeFavoritos();
-        virtual void imprimeNoArquivo(std::ofstream &outfile);
+        // virtual void imprimeNoArquivo(std::ofstream &outfile);
 
         //Getters
         std::vector <Midia*> getFavoritos();
         std::string getNome();
         
         //Operators
-        bool operator < (const Assinante obj) const{
-            return (nome.compare(obj.nome) < 0);
+        bool operator < (Assinante obj){
+            return ((int)codigo > (int)obj.codigo);
+        }
+        bool operator > (Assinante obj){
+            return ((int)codigo < (int)obj.codigo);
+        }
+        bool operator == (Assinante obj){
+            return (codigo == obj.codigo);
         }
 };

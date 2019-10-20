@@ -20,9 +20,9 @@ void Musica::imprimeInfoProduto(){
 
 }
 
-void Musica::imprimeNoArquivo(std::ofstream &outfile){
+// void Musica::imprimeNoArquivo(std::ofstream &outfile){
 
-}
+// }
 
 int Musica::getAnoLancamento(){
 

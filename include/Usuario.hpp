@@ -8,5 +8,5 @@ class Usuario {
     public:
         Usuario();
         Usuario(std::string _nome, int codigo);
-        virtual void imprimeNoArquivo(std::ofstream &outfile);
+        // virtual void imprimeNoArquivo(std::ofstream &outfile);
 };

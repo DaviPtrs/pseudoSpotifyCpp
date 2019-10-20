@@ -4,13 +4,13 @@
 
 using namespace std;
 
-// Assinante::Assinante() {
+Assinante::Assinante() {}
 
-// }
-
-// Assinante::Assinante(string _nome) {
-
-// }
+Assinante::Assinante(string _nome, int codigo){
+    this->codigo = codigo;
+    this->nome = _nome;
+    cout << "Assinante " << codigo << "criado!" << endl;
+}
 
 void Assinante::imprimeFavoritos(){
 
@@ -32,10 +32,10 @@ void Assinante::removerFavorito(){
 
 // }
 
-std::string Assinante::getNome(){
+string Assinante::getNome(){
     return this->nome;
 }
 
-std::vector <Midia*> Assinante::getFavoritos(){
+vector <Midia*> Assinante::getFavoritos(){
     return this->favoritos;
 }

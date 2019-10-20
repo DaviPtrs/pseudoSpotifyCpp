@@ -12,9 +12,13 @@ class Produtor: protected Usuario {
         Produtor(std::string _nome);
 
         //Printers
-        virtual void imprimeNoArquivo(std::ofstream &outfile);  
+        // virtual void imprimeNoArquivo(std::ofstream &outfile);  
         void imprimeProdutosDesenvolvidos();
 
         //Getters
         std::vector<Midia *> getProdutosDesenvolvidos();
+
+        bool operator < (const Produtor obj) const{
+            return (nome.compare(obj.nome) < 0);
+        }
 };

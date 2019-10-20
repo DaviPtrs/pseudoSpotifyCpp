@@ -10,7 +10,7 @@ class Artista: public Produtor {
         Artista(std::string _nome, int codigo);
 
         //Printers
-        virtual void imprimeNoArquivo(std::ofstream &outfile); 
+        // virtual void imprimeNoArquivo(std::ofstream &outfile); 
 
         //Add/remove
         void addAlbum(Album * album);

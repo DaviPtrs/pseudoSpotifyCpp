@@ -15,12 +15,6 @@ PlataformaDigital::PlataformaDigital(string _nome) {
     this->nome = _nome;
     cout << "Objeto PlataformaDigital (" << _nome <<") criado!\n";
 }
-
-
-void PlataformaDigital::imprimeProdutos(string genero){
-    
-}
-
 void PlataformaDigital::imprimeAssinantes(){
     int tam = this->assinantes.size();
     cout << "=-=-=-=ASSINANTES-=-=-=-=\n";
@@ -50,56 +44,67 @@ Assinante * PlataformaDigital::removerAssinante(string nome){
     return NULL;
 }
 
-// int inserirProduto(Midia *novoProduto, std::vector<Produtor*> listaProdutor){
-    
-// }
-
-void PlataformaDigital::imprimeNoArquivo(ofstream &outfile){
-
-}
-
 void PlataformaDigital::carregaArquivoUsuario(std::ifstream &infile){
-
-}
-
-void PlataformaDigital::carregaArquivoMidia(std::ifstream &infile){
-
-}
-
-void PlataformaDigital::carregaArquivoFavoritos(std::ifstream &infile){
-
-}
-
-void PlataformaDigital::carregaArquivoGenero(std::ifstream &infile)
-{
-    std::string sigla;
-    std::string nome;
-    while(!(infile.eof()))
-    {
-        getline(infile, sigla, ';');
-        getline(infile, nome);
-        this->listaGeneros.push_back(new Midia::Genero(sigla, nome));
-        
+    if(!infile.is_open()){
+        cerr << "Erro ao abrir arquivo de usuarios\n" ;
+        exit(1);
     }
 
-    this->listaGeneros.pop_back();  // gambiarra bonita, gambiarra formosa
+    std::string codigo;
+    std::string tipo;
+    std::string nome;
+
+    getline(infile, nome); //Ignorando a primeira linha
+    while(!infile.eof()){ 
+        getline(infile, codigo, ';');
+        getline(infile, tipo, ';');
+        
+        getline(infile, nome);
+        switch (tipo[0])
+        {
+        case 'U': //Usuario comum (Assinante)
+            this->inserirAssinante(new Assinante(nome, stoi(codigo)));
+            break;
+        case 'A': //Artista
+            break;
+        case 'P': //Podcaster
+            break;
+        default:
+            cerr << "Tipo de usuario \'" << tipo << "\' indefinido (id.:" << codigo << ")\n";
+            break;
+        }
+    }
+    // Midia::Genero *last = this->listaGeneros[this->listaGeneros.size() -1];
+    // this->listaGeneros.pop_back();
+    // delete last;
 }
 
-void PlataformaDigital::exportarBiblioteca(){
+void PlataformaDigital::carregaArquivoGenero(std::ifstream &infile){
+    if(!infile.is_open()){
+        cerr << "Erro ao abrir arquivo de generos\n" ;
+        exit(1);
+    }
 
-}
+    std::string sigla;
+    std::string nome;
 
-void PlataformaDigital::gerarRelatorios(){
-
+    getline(infile, sigla); //Ignorando a primeira linha
+    while(!infile.eof()){ 
+        getline(infile, sigla, ';');
+        getline(infile, nome, infile.widen('\n'));
+        this->listaGeneros.push_back(new Midia::Genero(sigla, nome));
+    }
+    Midia::Genero *last = this->listaGeneros[this->listaGeneros.size() -1];
+    this->listaGeneros.pop_back();
+    infile.close();
+    delete last;
 }
 
 void PlataformaDigital::imprimeListaGenero()
 {
-    for(unsigned int i = 0; i < this->listaGeneros.size(); i++)
-    {
+    for(unsigned int i = 0; i < this->listaGeneros.size(); i++){
         std::cout<<this->listaGeneros[i]->getSigla()<<';';
         std::cout<<this->listaGeneros[i]->getNome()<<std::endl;
-       // std::cout<<"to com fome"<< i <<std::endl;
     }
 }
 

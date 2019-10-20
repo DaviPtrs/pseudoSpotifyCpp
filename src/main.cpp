@@ -8,18 +8,16 @@
 #include <iostream>
 
 using namespace std;
-int main()
-{
-    PlataformaDigital *plataforma = new PlataformaDigital();
+int main(){
+    PlataformaDigital *soundcorno = new PlataformaDigital();
     ifstream file;
     file.open("tests/generos.csv");
-    if(!(file.is_open()))
-    {
-        cout << "Erro ao abrir arquivo\n" ;
-        return 0;
-    }
-    plataforma->carregaArquivoGenero(file);
-    plataforma->imprimeListaGenero();
-    return 0;
+    soundcorno->carregaArquivoGenero(file);
+    // file.clear();
+    // soundcorno->imprimeListaGenero();
 
+    file.open("tests/usuarios.csv");
+    soundcorno->carregaArquivoUsuario(file);
+
+    return 0;
 }

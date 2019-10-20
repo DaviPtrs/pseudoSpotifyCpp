@@ -12,9 +12,9 @@ void Podcast::imprimeInfoProduto(){
 
 }
 
-void Podcast::imprimeNoArquivo(std::ofstream &outfile){
+// void Podcast::imprimeNoArquivo(std::ofstream &outfile){
 
-}
+// }
 
 int Podcast::getQtdTemportadas(){
 

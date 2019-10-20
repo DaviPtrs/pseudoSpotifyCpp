@@ -15,7 +15,7 @@ class Podcast:public Midia {
 
         // Printers
         void imprimeInfoProduto();
-        virtual void imprimeNoArquivo(std::ofstream &outfile);
+        // virtual void imprimeNoArquivo(std::ofstream &outfile);
         
         // Getters
         int getQtdTemportadas();

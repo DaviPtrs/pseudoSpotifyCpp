@@ -26,8 +26,8 @@ class Midia {
         static int qtdProdutos;
 
         //Printers
-        virtual void imprimeInfoMidia() = 0; 
-        virtual void imprimeNoArquivo(std::ofstream &outfile) = 0;
+        // virtual void imprimeInfoMidia() = 0; 
+        // virtual void imprimeNoArquivo(std::ofstream &outfile) = 0;
         static void imprimeQtdProdutos(); 
         std::string formataDuracao();
 
