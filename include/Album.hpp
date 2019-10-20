@@ -9,15 +9,16 @@ class Album {
     private:
         std::string nome;
         int duracao;
+        int codigo;
         int anoLancamento;
         int qtdMusicas;
         Artista *artista;
         std::vector<Musica *> faixas;
     public:
         Album();
-        Album(std::string nome, int duracao, int ano, int qtd);
+        Album(std::string nome, int codigo, int duracao, int ano, int qtd);
         void imprimeNoArquivo(std::ofstream &outfile);
-        int addFaixa(Musica *faixa);
+        void addFaixa(Musica *faixa);
         Musica *delFaixa(Musica *faixa);
 
         std::vector<Musica *> getFaixas();
@@ -26,6 +27,7 @@ class Album {
         int getAnoLancamento();
         int getDuracao();
         std::string getNome();
+        int getCodigo();
 
         void setArtista(Artista *);
         void setQtdMusicas(int qtdMusicas);

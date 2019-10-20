@@ -31,7 +31,7 @@ class Assinante:protected Usuario {
         inline bool operator > (const Assinante &obj) const{
             return (this->codigo > obj.codigo);
         }
-        // inline bool operator == (Assinante *obj){
-        //     return (codigo == obj->codigo);
-        // }
+        inline bool operator == (const Assinante &obj) const{
+            return (this->codigo == obj.codigo);
+        }
 };

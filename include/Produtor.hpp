@@ -9,7 +9,7 @@ class Produtor: protected Usuario {
         std::vector<Midia *> produtos;
     public:
         Produtor();
-        Produtor(std::string _nome);
+        Produtor(std::string _nome, int codigo);
 
         //Printers
         // virtual void imprimeNoArquivo(std::ofstream &outfile);  
@@ -17,9 +17,18 @@ class Produtor: protected Usuario {
 
         //Getters
         std::string getNome();
+        int getId();
         std::vector<Midia *> getProdutosDesenvolvidos();
 
-        bool operator < (const Produtor obj) const{
+        inline bool operator < (const Produtor &obj) const{
             return (nome.compare(obj.nome) < 0);
+        }
+
+        inline bool operator > (const Produtor &obj) const{
+            return (nome.compare(obj.nome) > 0);
+        }
+
+        inline bool operator == (const Produtor &obj) const{
+            return (nome.compare(obj.nome) == 0);
         }
 };

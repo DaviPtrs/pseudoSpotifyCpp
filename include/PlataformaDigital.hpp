@@ -13,6 +13,7 @@ class PlataformaDigital {
         std::vector<Midia*> produtosCadastrados;
         std::vector<Midia::Genero*> listaGeneros;
         std::vector<Produtor*> listaProdutor;
+        std::vector<Album *> albunsCadastrados;
     public:
         PlataformaDigital();
         PlataformaDigital(std::string _nome);
@@ -22,10 +23,11 @@ class PlataformaDigital {
         void imprimeAssinantes();
         void imprimeNoArquivo(std::ofstream &outfile);
         void imprimeListaGenero();
+        void imprimeProdutores();
 
         //Insert/Remove
         void inserirAssinante(Assinante *);
-        Assinante *removerAssinante(std::string nome);
+        Assinante *removerAssinante(Assinante *);
         void inserirProdutor(Produtor* produtor);
         Produtor *removerProdutor(int id);
         int inserirProduto(Midia *novoProduto, std::vector<Produtor*> listaProdutor);
@@ -41,6 +43,7 @@ class PlataformaDigital {
         std::string getNome();
         std::vector<Midia *> getProdutosCadastrados();
         std::vector<Assinante *> getAssinantes();
+        Midia::Genero *searchGenero(std::string genero);
 
         //Output
         void exportarBiblioteca();

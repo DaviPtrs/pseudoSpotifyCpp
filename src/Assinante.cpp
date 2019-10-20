@@ -4,33 +4,15 @@
 
 using namespace std;
 
-Assinante::Assinante() {}
+Assinante::Assinante() {
+    cout << "Assinante generico criado!" << endl;
+}
 
 Assinante::Assinante(string _nome, int codigo){
     this->codigo = codigo;
     this->nome = _nome;
     cout << "Assinante " << codigo << "criado!" << endl;
 }
-
-// void Assinante::imprimeFavoritos(){
-
-// }
-
-// void Assinante::inserirFavorito(Midia* favorito){
-
-// }
-
-// void Assinante::removerFavorito(){
-
-// }
-
-// void Assinante::imprimeNoArquivo(std::ofstream &outfile){
-
-// }
-
-// void Assinante::carregaArquivo(std::ifstream &infline){
-
-// }
 
 string Assinante::getNome(){
     return this->nome;

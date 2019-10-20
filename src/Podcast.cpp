@@ -5,9 +5,14 @@ Podcast::Podcast() {
 
 }
 
-// Podcast::Podcast(std::string nome, bool explicito, std::string gen, int qtdTemp){
-
-// }
+Podcast::Podcast(std::string nome, int codigo, std::string gen, int qtdTemp){
+    this->nome = nome;
+    this->codigo = codigo;
+    this->qtdTemporadas = qtdTemp;
+    Midia::Genero temp;
+    temp.setSigla(gen);
+    this->setGenero(&temp);
+}
 // void Podcast::imprimeInfoProduto(){
 
 // }

@@ -1,29 +1,52 @@
 #include "Album.hpp"
+#include <string>
+#include <iostream>
+#include "../lib/utils.hpp"
+
+using namespace std;
 
 Album::Album() {
-    std::cout << "Objeto album criado!" << std::endl;
+    cout << "Album generico criado!" << endl;
 }
 
-Album::Album(std::string nome, int duracao, int ano, int qtd){
+Album::Album(string nome, int codigo, int duracao, int ano, int qtd){
     this->nome = nome;
+    this->codigo = codigo;
     this->duracao = duracao;
     this->anoLancamento = ano;
     this->qtdMusicas = qtd;
-    //Falta setar as musicas
+
+    cout << "Album (id.:" << codigo << ") criado!" << endl;
 }
+
 
 
 // void Album::imprimeNoArquivo(std::ofstream &outfile){
 
 // }
 
-// int Album::addFaixa(Musica *faixa){
+void Album::addFaixa(Musica *faixa){
+    insert_sort(this->faixas, faixa);
+    cout << faixa->getNome() << "inserida no album " << this->nome << endl;
+}
 
-// }
+Musica *Album::delFaixa(Musica *faixa){
+    int tam = this->faixas.size();
+    for(int i = 0; i<tam; i++){
+        Musica *obj = this->faixas[i];
+        if(*faixa == *obj){
+            this->faixas.erase(this->faixas.begin() + i);
+            cout << faixa->getNome() << "removida do album " << this->nome << endl;
+            return obj;
+        }
+    }
+    cerr << "Faixa " << faixa->getNome() << " nao encontrada neste album!" << endl;
+    return NULL;
+}
 
-// Musica *Album::delFaixa(Musica *faixa){
-
-// }
+int Album::getCodigo(){
+    return this->codigo;
+}
 
 std::vector<Musica *> Album::getFaixas(){
     return this->faixas;

@@ -21,7 +21,7 @@ class Midia {
                 void setSigla(std::string sigla);
         };
         Midia();
-        Midia(std::string nome, bool explicito, std::string genero);
+        Midia(std::string nome, int codigo, std::string genero);
 
         static int qtdProdutos;
 
@@ -34,6 +34,20 @@ class Midia {
         //Getters
         Genero* getGenero();
         std::string getNome();
+
+        //Setters
+        void setGenero(Midia::Genero*);
+
+        //Operators
+        inline bool operator < (const Midia &obj) const{
+            return (this->codigo < obj.codigo);
+        }
+        inline bool operator > (const Midia &obj) const{
+            return (this->codigo > obj.codigo);
+        }
+        inline bool operator == (const Midia &obj) const{
+            return (this->codigo == obj.codigo);
+        }
     protected:
         std::string nome;
         int codigo;

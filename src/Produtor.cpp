@@ -1,29 +1,23 @@
 #include "Produtor.hpp"
+#include <iostream>
+#include <string>
+
+using namespace std;
 
 Produtor::Produtor() {
-
+    cout << "Produtor criado generico criado!" << endl;
 }
 
-// Produtor::~Produtor() {
+Produtor::Produtor(string _nome, int codigo){
+    this->codigo = codigo;
+    this->nome = _nome;
+    cout << "Produtor " << codigo << "criado!" << endl;
+}
 
-// }
-
-// Produtor(std::string _nome){
-
-// }
-
-std::string Produtor::getNome(){
+string Produtor::getNome(){
     return this->nome;
 }
 
-// void Produtos::imprimeNoArquivo(std::ofstream &outfile){
-
-// }
-
-// void Produtos::imprimeProdutosDesenvolvidos(){
-
-// }
-
-// std::vector<Midia *> Produtor::getProdutosDesenvolvidos(){
-
-// }
+int Produtor::getId(){
+    return this->codigo;
+}

@@ -1,25 +1,16 @@
 #include "Artista.hpp"
+#include <string>
+#include <iostream>
+
+using namespace std;
 
 Artista::Artista() {
-
+    cout << "Artista generico criado!" << endl;
 }
 
-// Artista::~Artista() {
 
-// }
-
-// void Artista::imprimeNoArquivo(std::ofstream &outfile){
-
-// }
-
-// void Artista::addAlbum(Album * album){
-
-// }
-
-// Artista::Album *Artista::retiraAlbum(){
-
-// }
-
-// std::vector<Artista::Album *> Artista::getAlbums(){
-
-// }
+Artista::Artista(std::string _nome, int codigo){
+    this->codigo = codigo;
+    this->nome = _nome;
+    cout << "Artista " << codigo << "criado!" << endl;
+}

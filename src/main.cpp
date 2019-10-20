@@ -13,11 +13,11 @@ int main(){
     ifstream file;
     file.open("tests/generos.csv");
     soundcorno->carregaArquivoGenero(file);
-    // file.clear();
-    // soundcorno->imprimeListaGenero();
+    soundcorno->imprimeListaGenero();
 
     file.open("tests/usuarios.csv");
     soundcorno->carregaArquivoUsuario(file);
     soundcorno->imprimeAssinantes();
+    soundcorno->imprimeProdutores();
     return 0;
 }

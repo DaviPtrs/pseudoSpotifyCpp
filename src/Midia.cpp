@@ -41,6 +41,10 @@ void Midia::Genero::setSigla(std::string sigla)
     this->sigla = sigla;
 }
 
+void Midia::setGenero(Midia::Genero* gen){
+    this->genero = gen;
+}
+
 // static void Midia::imprimeQtdProdutos(){
 
 // }

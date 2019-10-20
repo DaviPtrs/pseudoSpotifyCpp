@@ -11,7 +11,7 @@ class Podcast:public Midia {
         Podcaster *podcaster;
     public:
         Podcast();
-        Podcast(std::string nome, bool explicito, std::string gen, int qtdTemp);
+        Podcast(std::string nome, int codigo, std::string gen, int qtdTemp);
 
         // Printers
         void imprimeInfoProduto();
