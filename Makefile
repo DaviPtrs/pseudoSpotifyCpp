@@ -10,7 +10,7 @@ LIBRARIES	:=
 EXECUTABLE	:= main
 
 
-all: $(BIN)/$(EXECUTABLE)
+all: clean $(BIN)/$(EXECUTABLE)
 
 run: clean all
 	clear
