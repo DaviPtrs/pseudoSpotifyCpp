@@ -24,19 +24,38 @@ void PlataformaDigital::imprimeAssinantes(){
     cout << "=-=-=-=ASSINANTES-=-=-=-=\n";
 }
 
+// void insert_sort(std::vector<Assinante *> *vec, Assinante *item){
+//     int fim = vec->size() -1;
+//     int pos = -1;
+//     if(fim == -1){
+//         pos = 0;
+//     }else{
+//         for (int i = fim; i<=0; i--){
+//             if(*item > (*(*vec)[i])){
+//                 pos = i+1;
+//                 break;
+//             }
+//         }
+//         if(fim == -1){
+//             pos = 0;
+//         }
+//     }
+//     vec->insert(vec->begin() + pos, item);
+// }
+
 void PlataformaDigital::inserirAssinante(Assinante * assinante){
     insert_sort(this->assinantes, assinante);
     cout << "Assinante \"" << assinante->getNome() << "\" inserido!\n";
 }
 
 Assinante * PlataformaDigital::removerAssinante(string nome){
-    vector<Assinante *> vet = this->assinantes;
-    int tam = vet.size();
+    vector<Assinante *> *vet = &this->assinantes;
+    int tam = vet->size();
 
     for(int i = 0; i<tam; i++){
-        Assinante *obj = vet[i]; //Nao sei se isso funciona
+        Assinante *obj = (*vet)[i]; //Nao sei se isso funciona
         if(!obj->getNome().compare(nome)){
-            vet.erase(vet.begin() + i);
+            vet->erase(vet->begin() + i);
             cout << "Assinante \"" << obj->getNome() << "\" removido!\n";
             return obj;
         }

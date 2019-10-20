@@ -24,13 +24,13 @@ class Assinante:protected Usuario {
         std::string getNome();
         
         //Operators
-        bool operator < (Assinante obj){
-            return ((int)codigo > (int)obj.codigo);
+        inline bool operator < (const Assinante &obj) const{
+            return (this->codigo < obj.codigo);
         }
-        bool operator > (Assinante obj){
-            return ((int)codigo < (int)obj.codigo);
+        inline bool operator > (const Assinante &obj) const{
+            return (this->codigo > obj.codigo);
         }
-        bool operator == (Assinante obj){
-            return (codigo == obj.codigo);
-        }
+        // inline bool operator == (Assinante *obj){
+        //     return (codigo == obj->codigo);
+        // }
 };

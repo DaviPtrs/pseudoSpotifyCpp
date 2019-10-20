@@ -3,11 +3,11 @@
 #include <bits/stdc++.h> 
 template< typename T >
 typename std::vector<T>::iterator 
-   insert_sort( std::vector<T> & vec, T &item )
+   insert_sort(std::vector<T> &vec, const T item )
 {
     return vec.insert
         ( 
-            lower_bound( vec.begin(), vec.end(), item ),
+            std::upper_bound( vec.begin(), vec.end(), item),
             item 
         );
 }
