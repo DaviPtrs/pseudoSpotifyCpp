@@ -63,6 +63,15 @@ Assinante * PlataformaDigital::removerAssinante(string nome){
     return NULL;
 }
 
+void PlataformaDigital::inserirProdutor(Produtor *produtor){
+    insert_sort(this->listaProdutor, produtor);
+    cout << "Produtor \"" << produtor->getNome() << "\" inserido!\n";
+}
+
+Produtor *PlataformaDigital::removerProdutor(int id){
+
+}
+
 void PlataformaDigital::carregaArquivoUsuario(std::ifstream &infile){
     if(!infile.is_open()){
         cerr << "Erro ao abrir arquivo de usuarios\n" ;
@@ -84,9 +93,12 @@ void PlataformaDigital::carregaArquivoUsuario(std::ifstream &infile){
         case 'U': //Usuario comum (Assinante)
             this->inserirAssinante(new Assinante(nome, stoi(codigo)));
             break;
-        case 'A': //Artista
-            break;
-        case 'P': //Podcaster
+        case 'A' || 'P': //Produtor
+            if(tipo[0] == 'A'){ //Artista
+
+            }else{ //Podcaster
+
+            }
             break;
         default:
             cerr << "Tipo de usuario \'" << tipo << "\' indefinido (id.:" << codigo << ")\n";

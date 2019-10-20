@@ -18,14 +18,16 @@ class PlataformaDigital {
         PlataformaDigital(std::string _nome);
 
         //Printers
-        void imprimeProdutos(std::string genero);//
-        void imprimeAssinantes();//
+        void imprimeProdutos(std::string genero);
+        void imprimeAssinantes();
         void imprimeNoArquivo(std::ofstream &outfile);
         void imprimeListaGenero();
 
         //Insert/Remove
-        void inserirAssinante(Assinante *);//
-        Assinante *removerAssinante(std::string nome);//
+        void inserirAssinante(Assinante *);
+        Assinante *removerAssinante(std::string nome);
+        void inserirProdutor(Produtor* produtor);
+        Produtor *removerProdutor(int id);
         int inserirProduto(Midia *novoProduto, std::vector<Produtor*> listaProdutor);
         void inserirAlbum(Album *album);
 

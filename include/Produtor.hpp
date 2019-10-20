@@ -16,6 +16,7 @@ class Produtor: protected Usuario {
         void imprimeProdutosDesenvolvidos();
 
         //Getters
+        std::string getNome();
         std::vector<Midia *> getProdutosDesenvolvidos();
 
         bool operator < (const Produtor obj) const{

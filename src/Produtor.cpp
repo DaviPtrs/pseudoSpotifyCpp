@@ -12,6 +12,10 @@
 
 // }
 
+std::string Produtor::getNome(){
+    return this->nome;
+}
+
 // void Produtos::imprimeNoArquivo(std::ofstream &outfile){
 
 // }
