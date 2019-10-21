@@ -252,7 +252,8 @@ void PlataformaDigital::carregaArquivoMidia(ifstream &infile){
             try{
                 codigoAlbum = stoi(data[8]);
             }catch(const std::exception& e){
-                std::cerr << e.what() << '\n';
+                cerr << "Inconsistências na entrada" << endl;
+                exit(1);
             }
             Album *b = searchAlbum(codigoAlbum);
             if(b == NULL){
