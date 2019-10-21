@@ -4,9 +4,16 @@ Musica::Musica() {
 
 }
 
-// Musica::Musica(std::string nome, std::string gen, float duracao, int ano){
-
-// }
+Musica::Musica(std::string nome, int codigo, std::string gen, float duracao, int ano){
+    this->setTipo(0);
+    this->nome = nome;
+    this->codigo = codigo;
+    this->duracao = duracao;
+    this->anoLancamento = ano;
+    Midia::Genero temp;
+    temp.setSigla(gen);
+    this->setGenero(&temp);
+}
 
 // Musica::~Musica() {
 

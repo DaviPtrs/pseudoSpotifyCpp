@@ -20,32 +20,30 @@ Album::Album(string nome, int codigo, float duracao, int ano, int qtd){
     cout << "Album (id.:" << codigo << ") criado!" << endl;
 }
 
-
-
 // void Album::imprimeNoArquivo(std::ofstream &outfile){
 
 // }
 
 void Album::addFaixa(Musica *faixa){
     insert_sort(this->faixas, faixa);
-    cout << faixa->getNome() << "inserida no album " << this->nome << endl;
+    cout << faixa->getNome() << " inserida no album " << this->nome << endl;
 }
 
-Musica *Album::delFaixa(Musica *faixa){
+void *Album::delFaixa(Musica *faixa){
     int tam = this->faixas.size();
     for(int i = 0; i<tam; i++){
         Musica *obj = this->faixas[i];
         if(*faixa == *obj){
             this->faixas.erase(this->faixas.begin() + i);
-            cout << faixa->getNome() << "removida do album " << this->nome << endl;
+            cout << faixa->getNome() << " removida do album " << this->nome << endl;
             return obj;
         }
     }
     cerr << "Inconsistências na entrada" << endl;
-    return NULL;
+    exit(1);
 }
 
-int Album::getCodigo(){
+int Album::getId(){
     return this->codigo;
 }
 

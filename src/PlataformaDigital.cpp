@@ -88,6 +88,11 @@ void PlataformaDigital::inserirProduto(Midia *novoProduto){
     cout << "Produto id.:" << novoProduto->getId() << " \"" << novoProduto->getNome() << "\" inserido!\n";
 }
 
+void PlataformaDigital::inserirAlbum(Album *album){
+    this->albunsCadastrados.push_back(album);
+    cout << "Album id.:" << album->getId() << " \"" << album->getNome() << "\" inserido!\n";
+}
+
 
 void PlataformaDigital::carregaArquivoUsuario(std::ifstream &infile){
     if(!infile.is_open()){
@@ -230,14 +235,82 @@ void PlataformaDigital::carregaArquivoMidia(ifstream &infile){
         if(data[2].compare("P") == 0){ //Tipo // Podcast
             Podcast *obj = fillPodcast(data);
             inserirProduto((Podcast *)obj);
-        }else if(data[2].compare("M") == 0){ //Musica //PAREI AQUI
+        }else if(data[2].compare("M") == 0){ //Musica 
+            Musica *obj = fillMusica(data);
+            vector <int>artistasIds = extractIntsFromString(data[3]);    
+            int codigoAlbum;
+            int flag = 0;
+
+            try{
+                codigoAlbum = stoi(data[8]);
+            }catch(const std::exception& e){
+                std::cerr << e.what() << '\n';
+            }
+            Album *b = searchAlbum(codigoAlbum);
+            if(b == NULL){
+                b = fillAlbum(data);
+                this->inserirAlbum(b);
+                flag = 1; // indica se o album acabou de ser criado
+            }
+            
+            //Adiciona o produtor
+            for(int aId : artistasIds){
+                Produtor *p = searchProdutor(aId);
+                //se o album for novo, adiciona ao artista principal
+                if((flag == 1) && (aId == artistasIds[0])){
+                    b->setArtista((Artista *)p);
+                }
+                p->addProduto(obj);
+            }
+
+            b->addFaixa((Musica *) obj);
+            inserirProduto((Musica *)obj);
+
 
         }else{
             cerr << "Inconsistências na entrada" << endl;
+            exit(1);
         }
     }
     
     infile.close();
+}
+
+Album *PlataformaDigital::fillAlbum(std::string data[]){
+    int codigo, ano;
+    float duracao;
+    try{
+        codigo = stoi(data[8]);
+        ano = stoi(data[9]);
+        duracao = convertDuracao(data[4]);
+    }catch(const std::exception& e){
+        cerr << "Inconsistências na entrada" << endl;
+        exit(1);
+    }
+    
+    Album *obj = new Album(data[7],codigo,duracao,ano,0);
+
+    return obj;
+}
+
+Musica *PlataformaDigital::fillMusica(std::string data[]){
+    float duracao;
+    int codigo, ano;
+    try{
+        codigo = stoi(data[0]);
+        ano = stoi(data[9]);
+        duracao = convertDuracao(data[4]);
+    }catch(const std::exception& e){
+        cerr << "Inconsistências na entrada" << endl;
+        exit(1);
+    } 
+    Musica *obj = new Musica(data[1],codigo,data[5],duracao,ano);
+
+    //Adiciona o genero
+    Midia::Genero *gen = this->searchGenero(data[5]);
+    obj->setGenero(gen);
+
+    return obj;
 }
 
 Podcast *PlataformaDigital::fillPodcast(std::string data[]){
@@ -286,6 +359,15 @@ Produtor *PlataformaDigital::searchProdutor(int id){
     }
     cerr << "Inconsistências na entrada" << endl;
     exit(1);
+    return NULL;
+}
+
+Album *PlataformaDigital::searchAlbum(int id){
+    for(Album *a : this->albunsCadastrados){
+        if(a->getId() == id){
+            return a;
+        }
+    }
     return NULL;
 }
 

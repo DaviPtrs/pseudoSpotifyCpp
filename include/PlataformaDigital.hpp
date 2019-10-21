@@ -40,6 +40,8 @@ class PlataformaDigital {
         void carregaArquivoFavoritos(std::ifstream &infile);
         void carregaArquivoGenero(std::ifstream &infile);
         Podcast *fillPodcast(std::string data[]);
+        Musica *fillMusica(std::string data[]);
+        Album *fillAlbum(std::string data[]);
 
         //Getters
         std::string getNome();
@@ -47,7 +49,7 @@ class PlataformaDigital {
         std::vector<Assinante *> getAssinantes();
         Midia::Genero *searchGenero(std::string genero);
         Produtor *searchProdutor(int id);
-        // Podcaster *searchPodcaster(int id);
+        Album *searchAlbum(int id);
 
         //delete functions
         void wipeAll();

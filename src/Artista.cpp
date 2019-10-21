@@ -12,5 +12,5 @@ Artista::Artista() {
 Artista::Artista(std::string _nome, int codigo){
     this->codigo = codigo;
     this->nome = _nome;
-    cout << "Artista " << codigo << "criado!" << endl;
+    cout << "Artista " << codigo << " criado!" << endl;
 }
