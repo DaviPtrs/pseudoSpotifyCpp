@@ -35,5 +35,5 @@ void Produtor::delProduto(Midia * item){
             cout << "Midia \"" << item->getNome() << "\" removida!\n";
         }
     }
-    cerr << "Midia (id.:" << item->getId() << ") nao encontrada!" << endl;
+    cerr << "Inconsistências na entrada" << endl;
 }

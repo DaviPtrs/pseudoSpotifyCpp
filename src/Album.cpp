@@ -41,7 +41,7 @@ Musica *Album::delFaixa(Musica *faixa){
             return obj;
         }
     }
-    cerr << "Faixa " << faixa->getNome() << " nao encontrada neste album!" << endl;
+    cerr << "Inconsistências na entrada" << endl;
     return NULL;
 }
 

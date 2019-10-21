@@ -59,7 +59,7 @@ void PlataformaDigital::removerAssinante(Assinante *obj){
             cout << "Assinante \"" << obj->getNome() << "\" removido!\n";
         }
     }
-    cerr << "Assinante (id.:" << obj->getId() << ") nao encontrado!" << endl;
+    cerr << "Inconsistências na entrada" << endl;
 }
 
 void PlataformaDigital::inserirProdutor(Produtor *produtor){
@@ -78,7 +78,7 @@ void PlataformaDigital::removerProdutor(Produtor* produtor){
             cout << "Produtor \"" << produtor->getNome() << "\" removido!\n";
         }
     }
-    cerr << "Produtor (id.:" << produtor->getId() << ") nao encontrado!" << endl;
+    cerr << "Inconsistências na entrada" << endl;
 }
 
 void PlataformaDigital::inserirProduto(Midia *novoProduto){
@@ -89,7 +89,7 @@ void PlataformaDigital::inserirProduto(Midia *novoProduto){
 
 void PlataformaDigital::carregaArquivoUsuario(std::ifstream &infile){
     if(!infile.is_open()){
-        cerr << "Erro ao abrir arquivo de usuarios\n" ;
+        cerr << "Erro de I/O\n";
         exit(1);
     }
 
@@ -117,7 +117,7 @@ void PlataformaDigital::carregaArquivoUsuario(std::ifstream &infile){
             this->inserirProdutor(new Artista(nome, stoi(codigo)));
             break;
         default:
-            cerr << "Tipo de usuario \'" << tipo << "\' indefinido (id.:" << codigo << ")\n";
+            cerr << "Inconsistências na entrada" << endl;
             break;
         }
     }
@@ -126,7 +126,7 @@ void PlataformaDigital::carregaArquivoUsuario(std::ifstream &infile){
 
 void PlataformaDigital::carregaArquivoGenero(ifstream &infile){
     if(!infile.is_open()){
-        cerr << "Erro ao abrir arquivo de generos\n" ;
+        cerr << "Erro de I/O\n" ;
         exit(1);
     }
 
@@ -190,14 +190,14 @@ int convertDuracao(string origin){ //Le o formato de texto e retorna segundos
     }else if(vec.size() == 2){
         return vec[1] + (vec[0] * 60);
     }else{
-        cerr << "Erro de formato na duracao de midia!" << endl;
+        cerr << "Inconsistências na entrada" << endl;
         exit(1);
     }
 }
 
 void PlataformaDigital::carregaArquivoMidia(ifstream &infile){
     if(!infile.is_open()){
-        cerr << "Erro ao abrir arquivo de generos\n" ;
+        cerr << "Erro de I/O\n" ;
         exit(1);
     }
 
@@ -220,7 +220,7 @@ void PlataformaDigital::carregaArquivoMidia(ifstream &infile){
         }else if(data[2].compare("M") == 0){ //Musica //PAREI AQUI
 
         }else{
-            cerr << "Tipo de midia " << data[2] << " invalido!" << endl;
+            cerr << "Inconsistências na entrada" << endl;
         }
     }
     
@@ -252,7 +252,7 @@ Midia::Genero *PlataformaDigital::searchGenero(string genero){
             return g;
         }
     }
-    cerr << "Genero nao localizado! Sigla: " << genero << endl;
+    cerr << "Inconsistências na entrada" << endl;
     exit(1);
     return NULL;
 }
@@ -263,7 +263,7 @@ Produtor *PlataformaDigital::searchProdutor(int id){
             return p;
         }
     }
-    cerr << "Produtor nao localizado! Id: " << id << endl;
+    cerr << "Inconsistências na entrada" << endl;
     exit(1);
     return NULL;
 }
