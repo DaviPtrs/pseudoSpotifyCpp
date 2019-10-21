@@ -135,6 +135,13 @@ int main(int argc, char **argv){
     // file.open(p.Tracks);
     columnChecker(file, 'm');
     soundcorno->carregaArquivoMidia(file);
+    // soundcorno->imprimeMusicas();
+    // soundcorno->imprimePodcasts();
+
+    file.open("tests/favoritos.csv");
+    // file.open(p.Tracks);
+    columnChecker(file, 'f');
+    soundcorno->carregaArquivoFavoritos(file);
 
     // Free na porra toda
     soundcorno->wipeAll();

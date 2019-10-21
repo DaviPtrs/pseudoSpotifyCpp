@@ -9,11 +9,8 @@ int Midia::qtdProdutos = 0;
 Midia::Midia() {
     this->tipo = -1;
     this->qtdProdutos++;
+    this->favQtd = 0;
 }
-
-// Midia::Midia(std::string nome, bool explicito, std::string genero) {
-//     this->qtdProdutos++;
-// }
 
 Midia::Genero::Genero() {}
 
@@ -80,4 +77,11 @@ string Midia::getNome(){
 
 int Midia::getId(){
     return this->codigo;
+}
+
+void Midia::fav(){
+    this->favQtd++;
+}
+void Midia::unfav(){
+    this->favQtd--;
 }

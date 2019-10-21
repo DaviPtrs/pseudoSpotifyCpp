@@ -1,6 +1,6 @@
 #include "Podcast.hpp"
 #include "Podcaster.hpp"
-#include "../lib/utils.hpp"
+#include "utils.hpp"
 
 Podcast::Podcast() {
 

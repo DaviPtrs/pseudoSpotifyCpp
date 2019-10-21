@@ -5,7 +5,7 @@
 #include <typeinfo>
 #include <cstdio>
 #include <cctype>
-#include "../lib/utils.hpp"
+#include "utils.hpp"
 #include "PlataformaDigital.hpp"
 #include "Podcaster.hpp"
 #include "Podcast.hpp"
@@ -21,6 +21,29 @@ PlataformaDigital::PlataformaDigital(string _nome) {
     this->nome = _nome;
     cout << "Objeto PlataformaDigital (" << _nome <<") criado!\n";
 }
+
+void PlataformaDigital::imprimePodcasts(){
+    cout << "=-=-=-=PODCASTS-=-=-=-=\n";
+    for(Midia *x : this->produtosCadastrados){
+        if(x->getTipo() == 1){
+            cout << x->getId()<< ", "<< x->getNome() << endl;
+        }
+    }
+    cout << "=-=-=-=PODCASTS-=-=-=-=\n";
+}
+
+
+void PlataformaDigital::imprimeMusicas(){
+    cout << "=-=-=-=MUSICAS-=-=-=-=\n";
+    for(Midia *x : this->produtosCadastrados){
+        if(x->getTipo() == 0){
+            cout << x->getId()<< ", "<< x->getNome() << endl;
+        }
+    }
+    cout << "=-=-=-=MUSICAS-=-=-=-=\n";
+}
+
+
 void PlataformaDigital::imprimeAssinantes(){
     cout << "=-=-=-=ASSINANTES-=-=-=-=\n";
     for(Assinante * x : this->assinantes){
@@ -37,13 +60,14 @@ void PlataformaDigital::imprimeProdutores(){
     cout << "=-=-=-=PRODUTORES-=-=-=-=\n";
 }
 
-void PlataformaDigital::imprimeListaGenero()
-{
+void PlataformaDigital::imprimeListaGenero(){
     for(Midia::Genero *g : this->listaGeneros){
         cout << g->getSigla() << ';';
         cout << g->getNome() << endl;
     }
 }
+
+
 
 void PlataformaDigital::inserirAssinante(Assinante * assinante){
     insert_sort(this->assinantes, assinante);
@@ -81,6 +105,7 @@ void PlataformaDigital::removerProdutor(Produtor* produtor){
         }
     }
     cerr << "Inconsistências na entrada" << endl;
+    exit(1);
 }
 
 void PlataformaDigital::inserirProduto(Midia *novoProduto){
@@ -161,56 +186,39 @@ void PlataformaDigital::carregaArquivoGenero(ifstream &infile){
     infile.close();
 }
 
-string convertSiglaGenero(string origin){
-    string str;
-    for(char c : origin){
-        if(c == ','){
+void PlataformaDigital::carregaArquivoFavoritos(std::ifstream &infile){
+    if(!infile.is_open()){
+        cerr << "Erro de I/O\n" ;
+        exit(1);
+    }
+
+    string codigo;
+    string favs;
+    int codigoNum;
+    vector<int> favsNum;
+    getline(infile, codigo); //ignora primeira linha
+    while(!infile.eof()){
+        getline(infile, codigo, ';');
+        getline(infile, favs);
+        if(codigo.compare("") == 0){
             break;
-        }else{
-            str.push_back(c);
+        }
+        try{
+            codigoNum = stoi(codigo);
+            favsNum = extractIntsFromString(favs);
+        }catch(const std::exception& e){
+            cerr << "Inconsistências na entrada" << endl;
+            exit(1);
+        }
+        if(favsNum.size() != 0){
+            Assinante *user = searchAssinante(codigoNum);
+            for(int favId: favsNum){
+                Midia *fav = searchMidia(favId);
+                user->inserirFavorito(fav);
+            }
         }
     }
-    return str;
-}
-
-vector <int> extractIntsFromString(string origin){
-    vector <int> result;
-    string temp;
-    for(char c : origin){
-        if(isdigit(c)){
-            temp.push_back(c);
-        }else if((c == ',') || (c == ' ')){
-            if(temp != "")
-                result.push_back(stoi(temp));
-            temp.clear();
-        }
-    }
-    try{
-        if(temp != ""){
-        result.push_back(stoi(temp));
-        }
-    }
-    catch(const std::exception& e){
-        cerr << "Inconsistências na entrada" << endl;
-        exit(1);
-    }
-    if((result.size() != 1) && (result.size() != 2)){
-        cerr << "Inconsistências na entrada" << endl;
-        exit(1);
-    }
-    return result;
-}
-
-float convertDuracao(string origin){ //Le o formato de texto e retorna segundos
-    vector <int> vec = extractIntsFromString(origin);
-    if(vec.size() == 1){
-        return (float)vec[0]/100;
-    }else if(vec.size() == 2){
-        return (float)vec[0] + (float)vec[1]/100;
-    }else{
-        cerr << "Inconsistências na entrada" << endl;
-        exit(1);
-    }
+    infile.close();
 }
 
 void PlataformaDigital::carregaArquivoMidia(ifstream &infile){
@@ -272,7 +280,6 @@ void PlataformaDigital::carregaArquivoMidia(ifstream &infile){
             exit(1);
         }
     }
-    
     infile.close();
 }
 
@@ -368,6 +375,28 @@ Album *PlataformaDigital::searchAlbum(int id){
             return a;
         }
     }
+    return NULL;
+}
+
+Midia* PlataformaDigital::searchMidia(int id){
+    for(Midia *x: this->produtosCadastrados){
+        if(x->getId() == id){
+            return x;
+        }
+    }
+    cerr << "Inconsistências na entrada" << endl;
+    exit(1);
+    return NULL;
+}
+
+Assinante *PlataformaDigital::searchAssinante(int id){
+    for(Assinante *x: this->assinantes){
+        if(x->getId() == id){
+            return x;
+        }
+    }
+    cerr << "Inconsistências na entrada" << endl;
+    exit(1);
     return NULL;
 }
 

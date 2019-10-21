@@ -13,7 +13,7 @@ class Assinante:protected Usuario {
 
         //Insert/Remove
         void inserirFavorito(Midia* favorito);
-        void removerFavorito();
+        void removerFavorito(Midia* favorito);
 
         //Printers
         void imprimeFavoritos();

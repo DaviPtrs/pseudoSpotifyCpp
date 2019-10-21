@@ -21,6 +21,8 @@ class PlataformaDigital {
 
         //Printers
         void imprimeProdutos(std::string genero);
+        void imprimePodcasts();
+        void imprimeMusicas();
         void imprimeAssinantes();
         void imprimeNoArquivo(std::ofstream &outfile);
         void imprimeListaGenero();
@@ -48,8 +50,10 @@ class PlataformaDigital {
         std::vector<Midia *> getProdutosCadastrados();
         std::vector<Assinante *> getAssinantes();
         Midia::Genero *searchGenero(std::string genero);
+        Assinante *searchAssinante(int id);
         Produtor *searchProdutor(int id);
         Album *searchAlbum(int id);
+        Midia* searchMidia(int id);
 
         //delete functions
         void wipeAll();

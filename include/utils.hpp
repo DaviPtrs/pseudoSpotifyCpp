@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <string>
 #include <bits/stdc++.h> 
 
 template <typename T> bool PComp(const T & a, const T & b)
@@ -16,3 +17,9 @@ typename std::vector<T>::iterator
             item 
         );
 }
+
+std::string convertSiglaGenero(std::string origin);
+
+std::vector <int> extractIntsFromString(std::string origin);
+
+float convertDuracao(std::string origin);

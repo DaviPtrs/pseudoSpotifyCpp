@@ -36,6 +36,8 @@ class Midia {
         std::string getNome();
         int getId();
         int getTipo();
+        void fav();
+        void unfav();
 
         //Setters
         void setGenero(Midia::Genero*);
@@ -59,6 +61,7 @@ class Midia {
         float duracao;
         int anoLancamento;
         Genero *genero;
+        int favQtd;
 
         void setTipo(int);
 };

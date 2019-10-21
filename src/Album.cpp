@@ -2,7 +2,7 @@
 #include "Midia.hpp"
 #include <string>
 #include <iostream>
-#include "../lib/utils.hpp"
+#include "utils.hpp"
 
 using namespace std;
 
