@@ -3,6 +3,8 @@
 #include <sstream>
 #include <bits/stdc++.h> 
 #include <typeinfo>
+#include <cstdio>
+#include <cctype>
 #include "../lib/utils.hpp"
 #include "PlataformaDigital.hpp"
 #include "Podcaster.hpp"
@@ -96,7 +98,8 @@ void PlataformaDigital::carregaArquivoUsuario(std::ifstream &infile){
     string codigo;
     string tipo;
     string nome;
-
+    int codigoNum;
+    
     getline(infile, nome); //Ignorando a primeira linha
     while(!infile.eof()){ 
         getline(infile, codigo, ';');
@@ -105,16 +108,23 @@ void PlataformaDigital::carregaArquivoUsuario(std::ifstream &infile){
         if(codigo.compare("") == 0){
             break;
         }
+        try{
+            codigoNum = stoi(codigo);
+        }
+        catch(const std::exception& e){
+            cerr << "Erro de formatação" << endl;
+            exit(1);
+        }
         switch (tipo[0])
         {
         case 'U': //Usuario comum (Assinante)
-            this->inserirAssinante(new Assinante(nome, stoi(codigo)));
+            this->inserirAssinante(new Assinante(nome, codigoNum));
             break;
         case 'P': //Podcaster
-            this->inserirProdutor(new Podcaster(nome, stoi(codigo)));
+            this->inserirProdutor(new Podcaster(nome, codigoNum));
             break;
         case 'A': //Podcaster
-            this->inserirProdutor(new Artista(nome, stoi(codigo)));
+            this->inserirProdutor(new Artista(nome, codigoNum));
             break;
         default:
             cerr << "Inconsistências na entrada" << endl;
@@ -159,36 +169,39 @@ string convertSiglaGenero(string origin){
 }
 
 vector <int> extractIntsFromString(string origin){
-    stringstream ss;     
     vector <int> result;
-  
-    /* Storing the whole string into string stream */
-    ss << origin; 
-  
-    /* Running loop till the end of the stream */
-    string temp; 
-    int found; 
-    while (!ss.eof()) { 
-  
-        /* extracting word by word from stream */
-        ss >> temp; 
-  
-        /* Checking the given word is integer or not */
-        if (stringstream(temp) >> found){
-            result.push_back(found);
-        }  
-        /* To save from space at the end of string */
-        temp = ""; 
-    } 
+    string temp;
+    for(char c : origin){
+        if(isdigit(c)){
+            temp.push_back(c);
+        }else if((c == ',') || (c == ' ')){
+            if(temp != "")
+                result.push_back(stoi(temp));
+            temp.clear();
+        }
+    }
+    try{
+        if(temp != ""){
+        result.push_back(stoi(temp));
+        }
+    }
+    catch(const std::exception& e){
+        cerr << "Inconsistências na entrada" << endl;
+        exit(1);
+    }
+    if((result.size() != 1) && (result.size() != 2)){
+        cerr << "Inconsistências na entrada" << endl;
+        exit(1);
+    }
     return result;
 }
 
-int convertDuracao(string origin){ //Le o formato de texto e retorna segundos
+float convertDuracao(string origin){ //Le o formato de texto e retorna segundos
     vector <int> vec = extractIntsFromString(origin);
     if(vec.size() == 1){
-        return vec[0];
+        return (float)vec[0]/100;
     }else if(vec.size() == 2){
-        return vec[1] + (vec[0] * 60);
+        return (float)vec[0] + (float)vec[1]/100;
     }else{
         cerr << "Inconsistências na entrada" << endl;
         exit(1);
@@ -230,11 +243,19 @@ void PlataformaDigital::carregaArquivoMidia(ifstream &infile){
 Podcast *PlataformaDigital::fillPodcast(std::string data[]){
     Podcast *obj = new Podcast(data[1], stoi(data[0]), data[5], stoi(data[6]));
     obj->setDuracao(convertDuracao(data[4])); //Seta a duracao em segundos
-    obj->setAnoLancamento(stoi(data[9]));
+
+    try{    
+        obj->setAnoLancamento(stoi(data[9]));
+    }
+    catch(const std::exception& e){
+        cerr << "Inconsistências na entrada" << endl;
+        exit(1);
+    }
+    
 
     Midia::Genero *gen = this->searchGenero(data[5]);
     obj->setGenero(gen);
-
+    
     vector <int>podcasterIds = extractIntsFromString(data[3]);
 
     for(int pId : podcasterIds){

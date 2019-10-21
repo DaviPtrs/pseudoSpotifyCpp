@@ -8,7 +8,7 @@
 class Album {
     private:
         std::string nome;
-        int duracao;
+        float duracao;
         int codigo;
         int anoLancamento;
         int qtdMusicas;
@@ -16,7 +16,7 @@ class Album {
         std::vector<Musica *> faixas;
     public:
         Album();
-        Album(std::string nome, int codigo, int duracao, int ano, int qtd);
+        Album(std::string nome, int codigo, float duracao, int ano, int qtd);
         void imprimeNoArquivo(std::ofstream &outfile);
         void addFaixa(Musica *faixa);
         Musica *delFaixa(Musica *faixa);
@@ -32,6 +32,6 @@ class Album {
         void setArtista(Artista *);
         void setQtdMusicas(int qtdMusicas);
         void setAnoLancamento(int anoLancamento);
-        void setDuracao(int duracao);
+        void setDuracao(float duracao);
         void setNome(std::string nome);
 };

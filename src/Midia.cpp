@@ -58,7 +58,7 @@ void Midia::setGenero(Midia::Genero* gen){
     this->genero = gen;
 }
 
-void Midia::setDuracao(int n){
+void Midia::setDuracao(float n){
     this->duracao = n;
 }
 

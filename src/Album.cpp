@@ -10,7 +10,7 @@ Album::Album() {
     cout << "Album generico criado!" << endl;
 }
 
-Album::Album(string nome, int codigo, int duracao, int ano, int qtd){
+Album::Album(string nome, int codigo, float duracao, int ano, int qtd){
     this->nome = nome;
     this->codigo = codigo;
     this->duracao = duracao;
@@ -85,7 +85,7 @@ void Album::setAnoLancamento(int anoLancamento) {
     this->anoLancamento = anoLancamento;
 }
 
-void Album::setDuracao(int duracao) {
+void Album::setDuracao(float duracao) {
     this->duracao = duracao;
 }
 

@@ -4,7 +4,7 @@ Musica::Musica() {
 
 }
 
-// Musica::Musica(std::string nome, std::string gen, int duracao, int ano){
+// Musica::Musica(std::string nome, std::string gen, float duracao, int ano){
 
 // }
 

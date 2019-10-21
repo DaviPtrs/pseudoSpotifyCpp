@@ -5,7 +5,7 @@
 class Musica:public Midia{
     public:
         Musica();
-        Musica(std::string nome, std::string gen, int duracao, int ano);
+        Musica(std::string nome, std::string gen, float duracao, int ano);
 
         //Printers
         void imprimeInfoProduto();
