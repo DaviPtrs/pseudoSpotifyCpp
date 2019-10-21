@@ -24,21 +24,6 @@ vector<Podcast::Podcaster *> Podcast::getPodcasters(){
     return this->podcasters;
 }
 
-void Podcast::wipePodcasters(){
-    for(unsigned int i = 0; i<this->podcasters.size(); i++){
-        try{
-            Podcaster *p = (Podcaster *)this->podcasters[i];
-            if(p != NULL){
-                delete p;
-                this->podcasters[i] = NULL;      
-            }
-        }
-        catch(const std::exception& e){
-            this->podcasters[i] = NULL;      
-        }
-    }
-}
-
 // void Podcast::imprimeInfoProduto(){
 
 // }

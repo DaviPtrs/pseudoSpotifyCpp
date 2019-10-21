@@ -24,7 +24,6 @@ class Podcast:public Midia {
         // Getters
         int getQtdTemportadas();
         vector<Podcaster *> getPodcasters();
-        void wipePodcasters();
         void setQtdTemportadas(int);
 
 };

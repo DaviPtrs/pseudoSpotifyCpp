@@ -20,28 +20,26 @@ PlataformaDigital::PlataformaDigital(string _nome) {
     cout << "Objeto PlataformaDigital (" << _nome <<") criado!\n";
 }
 void PlataformaDigital::imprimeAssinantes(){
-    int tam = this->assinantes.size();
     cout << "=-=-=-=ASSINANTES-=-=-=-=\n";
-    for(int i = 0; i<tam; i++){
-        cout << this->assinantes[i]->getId()<< ", "<< this->assinantes[i]->getNome() << endl;
+    for(Assinante * x : this->assinantes){
+        cout << x->getId()<< ", "<< x->getNome() << endl;
     }
     cout << "=-=-=-=ASSINANTES-=-=-=-=\n";
 }
 
 void PlataformaDigital::imprimeProdutores(){
-    int tam = this->listaProdutor.size();
     cout << "=-=-=-=PRODUTORES-=-=-=-=\n";
-    for(int i = 0; i<tam; i++){
-        cout << this->listaProdutor[i]->getId()<< ", "<< this->listaProdutor[i]->getNome() << endl;
+    for(Produtor * x : this->listaProdutor){
+        cout << x->getId()<< ", "<< x->getNome() << endl;
     }
     cout << "=-=-=-=PRODUTORES-=-=-=-=\n";
 }
 
 void PlataformaDigital::imprimeListaGenero()
 {
-    for(unsigned int i = 0; i < this->listaGeneros.size(); i++){
-        cout<<this->listaGeneros[i]->getSigla()<<';';
-        cout<<this->listaGeneros[i]->getNome()<<endl;
+    for(Midia::Genero *g : this->listaGeneros){
+        cout << g->getSigla() << ';';
+        cout << g->getNome() << endl;
     }
 }
 
@@ -150,11 +148,11 @@ void PlataformaDigital::carregaArquivoGenero(ifstream &infile){
 
 string convertSiglaGenero(string origin){
     string str;
-    for(unsigned int i = 0; i<origin.size(); i++){
-        if(origin[i] == ','){
+    for(char c : origin){
+        if(c == ','){
             break;
         }else{
-            str.push_back(origin[i]);
+            str.push_back(c);
         }
     }
     return str;
@@ -239,8 +237,8 @@ Podcast *PlataformaDigital::fillPodcast(std::string data[]){
 
     vector <int>podcasterIds = extractIntsFromString(data[3]);
 
-    for(unsigned int i = 0; i<podcasterIds.size(); i++){
-        Produtor *p = searchProdutor(podcasterIds[i]);
+    for(int pId : podcasterIds){
+        Produtor *p = searchProdutor(pId);
         p->addProduto(obj);
         obj->addPodcaster(p);
     }
@@ -249,9 +247,9 @@ Podcast *PlataformaDigital::fillPodcast(std::string data[]){
 }
 
 Midia::Genero *PlataformaDigital::searchGenero(string genero){
-    for(unsigned int i = 0; i < this->listaGeneros.size(); i++){
-        if(this->listaGeneros[i]->getSigla().compare(genero) == 0){
-            return this->listaGeneros[i];
+    for(Midia::Genero *g : this->listaGeneros){
+        if(g->getSigla().compare(genero) == 0){
+            return g;
         }
     }
     cerr << "Genero nao localizado! Sigla: " << genero << endl;
@@ -260,9 +258,9 @@ Midia::Genero *PlataformaDigital::searchGenero(string genero){
 }
 
 Produtor *PlataformaDigital::searchProdutor(int id){
-    for(unsigned int i = 0; i < this->listaProdutor.size(); i++){
-        if(this->listaProdutor[i]->getId() == id){
-            return this->listaProdutor[i];
+    for(Produtor *p : this->listaProdutor){
+        if(p->getId() == id){
+            return p;
         }
     }
     cerr << "Produtor nao localizado! Id: " << id << endl;
@@ -283,37 +281,36 @@ vector<Assinante *> PlataformaDigital::getAssinantes(){
 }
 
 void PlataformaDigital::wipeAll(){
-    for(unsigned int i = 0; i<this->assinantes.size(); i++){
-        delete this->assinantes[i];
-        this->assinantes[i] = NULL;
+    for(Assinante *x : this->assinantes){
+        delete x;
+        x = NULL;
     }
 
-    for(unsigned int i = 0; i<this->listaProdutor.size(); i++){
-        delete this->listaProdutor[i];
-        this->listaProdutor[i] = NULL;
+    for(Produtor *x : this->listaProdutor){
+        delete x;
+        x = NULL;
     }
 
-    for(unsigned int i = 0; i<this->listaGeneros.size(); i++){
-        delete this->listaGeneros[i];
-        this->listaGeneros[i] = NULL;
+    for(Midia::Genero *x : this->listaGeneros){
+        delete x;
+        x = NULL;
     }
 
-    for(unsigned int i = 0; i<this->produtosCadastrados.size(); i++){
-        if(this->produtosCadastrados[i]->getTipo() == 1){//se for podcast
-            Podcast *x = (Podcast *)this->produtosCadastrados[i];
+    for(Midia *y : this->produtosCadastrados){
+        if(y->getTipo() == 1){//se for podcast
+            Podcast *x = (Podcast *)y;
             delete x;
-        }else if((this->produtosCadastrados[i]->getTipo() == 0)){//se for musica
-            Musica *x = (Musica *)this->produtosCadastrados[i];
+        }else if((y->getTipo() == 0)){//se for musica
+            Musica *x = (Musica *)y;
             delete x;
         }else{
-            Midia *x = this->produtosCadastrados[i];
-            delete x;
+            delete y;
         }
-        this->produtosCadastrados[i] = NULL;
+        y = NULL;
     }
 
-    for(unsigned int i = 0; i<this->albunsCadastrados.size(); i++){
-        delete this->albunsCadastrados[i];
-        this->albunsCadastrados[i] = NULL;
+    for(Album *x : this->albunsCadastrados){
+        delete x;
+        x = NULL;
     }
 }
