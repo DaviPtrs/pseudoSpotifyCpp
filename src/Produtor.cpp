@@ -1,4 +1,5 @@
 #include "Produtor.hpp"
+#include "../lib/utils.hpp"
 #include <iostream>
 #include <string>
 
@@ -20,4 +21,19 @@ string Produtor::getNome(){
 
 int Produtor::getId(){
     return this->codigo;
+}
+
+void Produtor::addProduto(Midia * item){
+    insert_sort(this->produtos, item);
+}
+
+void Produtor::delProduto(Midia * item){
+    for(unsigned int i = 0; i<this->produtos.size(); i++){
+        Midia *temp = this->produtos[i];
+        if(*temp == *item){
+            this->produtos.erase(this->produtos.begin() + i);
+            cout << "Midia \"" << item->getNome() << "\" removida!\n";
+        }
+    }
+    cerr << "Midia (id.:" << item->getId() << ") nao encontrada!" << endl;
 }

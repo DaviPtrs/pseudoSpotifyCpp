@@ -15,6 +15,10 @@ class Produtor: protected Usuario {
         // virtual void imprimeNoArquivo(std::ofstream &outfile);  
         void imprimeProdutosDesenvolvidos();
 
+        //Insert/remove
+        void addProduto(Midia * item);
+        void delProduto(Midia * item);
+
         //Getters
         std::string getNome();
         int getId();

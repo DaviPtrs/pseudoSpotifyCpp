@@ -34,6 +34,7 @@ class Midia {
         //Getters
         Genero* getGenero();
         std::string getNome();
+        int getId();
 
         //Setters
         void setGenero(Midia::Genero*);

@@ -15,8 +15,8 @@ Podcast::Podcast(std::string nome, int codigo, std::string gen, int qtdTemp){
     this->setGenero(&temp);
 }
 
-void Podcast::addPodcaster(Podcaster *p){
-    this->podcasters.push_back(p);
+void Podcast::addPodcaster(Produtor *p){
+    this->podcasters.push_back((Podcaster *)p);
 }
 
 // void Podcast::imprimeInfoProduto(){

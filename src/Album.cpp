@@ -1,4 +1,5 @@
 #include "Album.hpp"
+#include "Midia.hpp"
 #include <string>
 #include <iostream>
 #include "../lib/utils.hpp"

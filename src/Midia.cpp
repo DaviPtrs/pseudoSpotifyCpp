@@ -1,4 +1,8 @@
 #include "Midia.hpp"
+#include <string>
+#include <iostream>
+
+using namespace std;
 
 int Midia::qtdProdutos = 0;
 
@@ -57,10 +61,14 @@ void Midia::setAnoLancamento(int n){
 
 // }
 
-// Midia::Genero* Midia::getGenero(){
-    
-// }
+Midia::Genero* Midia::getGenero(){
+    return this->genero;
+}
 
-// std::string Midia::getNome(){
-    
-// }
+string Midia::getNome(){
+    return this->nome;
+}
+
+int Midia::getId(){
+    return this->codigo;
+}

@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include "Midia.hpp"
+#include "Produtor.hpp"
 
 using namespace std;
 
@@ -18,7 +19,7 @@ class Podcast:public Midia {
         void imprimeInfoProduto();
         // virtual void imprimeNoArquivo(std::ofstream &outfile);
         
-        void addPodcaster(Podcaster *p);
+        void addPodcaster(Produtor *p);
 
         // Getters
         int getQtdTemportadas();

@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include "Assinante.hpp"
+#include "Podcast.hpp"
 #include "Midia.hpp"
 #include "Produtor.hpp"
 #include "Album.hpp"
@@ -27,10 +28,10 @@ class PlataformaDigital {
 
         //Insert/Remove
         void inserirAssinante(Assinante *);
-        Assinante *removerAssinante(Assinante *);
+        void removerAssinante(Assinante *);
         void inserirProdutor(Produtor* produtor);
-        Produtor *removerProdutor(int id);
-        int inserirProduto(Midia *novoProduto, std::vector<Produtor*> listaProdutor);
+        void removerProdutor(Produtor* produtor);
+        void inserirProduto(Midia *novoProduto);
         void inserirAlbum(Album *album);
 
         //Load data
@@ -38,6 +39,7 @@ class PlataformaDigital {
         void carregaArquivoMidia(std::ifstream &infile);
         void carregaArquivoFavoritos(std::ifstream &infile);
         void carregaArquivoGenero(std::ifstream &infile);
+        Podcast *fillPodcast(std::string data[]);
 
         //Getters
         std::string getNome();
@@ -45,7 +47,7 @@ class PlataformaDigital {
         std::vector<Assinante *> getAssinantes();
         Midia::Genero *searchGenero(std::string genero);
         Produtor *searchProdutor(int id);
-        Podcaster *searchPodcaster(int id);
+        // Podcaster *searchPodcaster(int id);
 
         //Output
         void exportarBiblioteca();
