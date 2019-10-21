@@ -6,6 +6,7 @@
 #include <vector>
 #include <fstream>
 #include <iostream>
+#include <cstdio>
 // #include<stdio.h>
 // #include<ctype.h>
 // #include<stdlib.h>
@@ -58,24 +59,81 @@ Paths getPaths(int argc, char **argv){
     return x;
 }
 
+
+void columnChecker(std::ifstream &infile, char tipo){
+    string line;
+    while(!infile.eof()){
+        int n = 0;
+        getline(infile, line);
+        if(!line.compare("")){
+            break;
+        }
+        for(char c : line){
+            if(c == ';'){
+                n++;
+            }
+        }
+        switch (tipo){
+            case 'g':
+                if(n != 1){
+                    cout << "Erro de formatação" << endl;
+                    cout << "Arquivo de generos" << endl;
+                    cout << ">> " << line << endl;
+                    exit(1);
+                }
+                break;
+            case 'f':
+                if(n != 1){
+                    cout << "Erro de formatação" << endl;
+                    cout << "Arquivo de favoritos" << endl;
+                    cout << ">> " << line << endl;
+                    exit(1);
+                }
+                break;
+            case 'm':
+                if(n != 9){
+                    cout << "Erro de formatação" << endl;
+                    cout << "Arquivo de midias" << endl;
+                    cout << ">> " << line << endl;
+                    exit(1);
+                }
+                break;
+            case 'u':
+                if(n != 2){
+                    cout << "Erro de formatação" << endl;
+                    cout << "Arquivo de usuários" << endl;
+                    cout << ">> " << line << endl;
+                    exit(1);
+                }
+                break;
+        }
+    }
+    infile.clear();
+    infile.seekg(0);
+}
+
 int main(int argc, char **argv){
     // Paths p = getPaths(argc, argv);
 
     PlataformaDigital *soundcorno = new PlataformaDigital();
     ifstream file;
+    // // file.open(p.Gens);
     file.open("tests/generos.csv");
-    // file.open(p.Gens);
+    columnChecker(file, 'g');
     soundcorno->carregaArquivoGenero(file);
     // soundcorno->imprimeListaGenero();
 
+
     file.open("tests/usuarios.csv");
     // file.open(p.Users);
+    columnChecker(file, 'u');
     soundcorno->carregaArquivoUsuario(file);
     // soundcorno->imprimeAssinantes();
     // soundcorno->imprimeProdutores();
 
     file.open("tests/midias.csv");
     // file.open(p.Tracks);
+    columnChecker(file, 'm');
     soundcorno->carregaArquivoMidia(file);
 
     // Free na porra toda
