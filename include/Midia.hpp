@@ -35,6 +35,7 @@ class Midia {
         Genero* getGenero();
         std::string getNome();
         int getId();
+        int getTipo();
 
         //Setters
         void setGenero(Midia::Genero*);
@@ -53,8 +54,11 @@ class Midia {
         }
     protected:
         std::string nome;
+        int tipo;
         int codigo;
         float duracao;
         int anoLancamento;
         Genero *genero;
+
+        void setTipo(int);
 };

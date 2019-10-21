@@ -22,5 +22,7 @@ int main(){
 
     file.open("tests/midias_corrigidas.csv");
     soundcorno->carregaArquivoMidia(file);
+    soundcorno->wipeAll();
+    delete soundcorno;
     return 0;
 }

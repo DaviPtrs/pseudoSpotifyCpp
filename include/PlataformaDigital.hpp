@@ -49,6 +49,9 @@ class PlataformaDigital {
         Produtor *searchProdutor(int id);
         // Podcaster *searchPodcaster(int id);
 
+        //delete functions
+        void wipeAll();
+
         //Output
         void exportarBiblioteca();
         void gerarRelatorios();

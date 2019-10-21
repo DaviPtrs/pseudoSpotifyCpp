@@ -12,6 +12,8 @@ EXECUTABLE	:= main
 
 all: clean $(BIN)/$(EXECUTABLE)
 
+dbg: $(BIN)/$(EXECUTABLE)
+
 run: clean all
 	clear
 	./$(BIN)/$(EXECUTABLE)

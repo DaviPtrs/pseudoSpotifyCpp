@@ -7,6 +7,7 @@ using namespace std;
 int Midia::qtdProdutos = 0;
 
 Midia::Midia() {
+    this->tipo = -1;
     this->qtdProdutos++;
 }
 
@@ -31,6 +32,14 @@ std::string Midia::Genero::getNome()
 std::string Midia::Genero::getSigla()
 {
     return this-> sigla;
+}
+
+int Midia::getTipo(){
+    return this->tipo;
+}
+
+void Midia::setTipo(int n){
+    this->tipo = n;
 }
 
 

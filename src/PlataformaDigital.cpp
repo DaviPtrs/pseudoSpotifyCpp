@@ -2,9 +2,11 @@
 #include <fstream>
 #include <sstream>
 #include <bits/stdc++.h> 
+#include <typeinfo>
 #include "../lib/utils.hpp"
 #include "PlataformaDigital.hpp"
 #include "Podcaster.hpp"
+#include "Podcast.hpp"
 #include "Artista.hpp"
 
 using namespace std;
@@ -216,7 +218,7 @@ void PlataformaDigital::carregaArquivoMidia(ifstream &infile){
 
         if(data[2].compare("P") == 0){ //Tipo // Podcast
             Podcast *obj = fillPodcast(data);
-            inserirProduto(obj);
+            inserirProduto((Podcast *)obj);
         }else if(data[2].compare("M") == 0){ //Musica //PAREI AQUI
 
         }else{
@@ -278,4 +280,40 @@ vector<Midia *> PlataformaDigital::getProdutosCadastrados(){
 
 vector<Assinante *> PlataformaDigital::getAssinantes(){
     return this->assinantes;
+}
+
+void PlataformaDigital::wipeAll(){
+    for(unsigned int i = 0; i<this->assinantes.size(); i++){
+        delete this->assinantes[i];
+        this->assinantes[i] = NULL;
+    }
+
+    for(unsigned int i = 0; i<this->listaProdutor.size(); i++){
+        delete this->listaProdutor[i];
+        this->listaProdutor[i] = NULL;
+    }
+
+    for(unsigned int i = 0; i<this->listaGeneros.size(); i++){
+        delete this->listaGeneros[i];
+        this->listaGeneros[i] = NULL;
+    }
+
+    for(unsigned int i = 0; i<this->produtosCadastrados.size(); i++){
+        if(this->produtosCadastrados[i]->getTipo() == 1){//se for podcast
+            Podcast *x = (Podcast *)this->produtosCadastrados[i];
+            delete x;
+        }else if((this->produtosCadastrados[i]->getTipo() == 0)){//se for musica
+            Musica *x = (Musica *)this->produtosCadastrados[i];
+            delete x;
+        }else{
+            Midia *x = this->produtosCadastrados[i];
+            delete x;
+        }
+        this->produtosCadastrados[i] = NULL;
+    }
+
+    for(unsigned int i = 0; i<this->albunsCadastrados.size(); i++){
+        delete this->albunsCadastrados[i];
+        this->albunsCadastrados[i] = NULL;
+    }
 }
