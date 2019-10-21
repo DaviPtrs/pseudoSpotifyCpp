@@ -83,7 +83,7 @@ void PlataformaDigital::removerProdutor(Produtor* produtor){
 
 void PlataformaDigital::inserirProduto(Midia *novoProduto){
     insert_sort(this->produtosCadastrados, novoProduto);
-    cout << "Produto \"" << novoProduto->getNome() << "\" inserido!\n";
+    cout << "Produto id.:" << novoProduto->getId() << " \"" << novoProduto->getNome() << "\" inserido!\n";
 }
 
 
@@ -217,7 +217,7 @@ void PlataformaDigital::carregaArquivoMidia(ifstream &infile){
         if(data[2].compare("P") == 0){ //Tipo // Podcast
             Podcast *obj = fillPodcast(data);
             inserirProduto(obj);
-        }else if(data[2].compare("M") == 0){ //Musica
+        }else if(data[2].compare("M") == 0){ //Musica //PAREI AQUI
 
         }else{
             cerr << "Tipo de midia " << data[2] << " invalido!" << endl;
