@@ -46,7 +46,7 @@ float convertDuracao(std::string origin){ //Le o formato de texto e retorna segu
         exit(1);
     }
     if(vec.size() == 1){
-        return (float)vec[0]/100;
+        return (float)vec[0];
     }else if(vec.size() == 2){
         return (float)vec[0] + (float)vec[1]/100;
     }else{

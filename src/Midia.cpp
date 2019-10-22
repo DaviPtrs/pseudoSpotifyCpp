@@ -23,15 +23,18 @@ Midia::Genero::Genero(string sigla, string nome)
 //nao testei ainda
 string Midia::formataDuracao(){
     string result;
-    int min = 0, segs = 0;
+    int mins = 0, segs = 0;
     float swap = this->duracao;
-    if(this->duracao >= 1){
-        min = (int) swap;
-        swap = (float)min - swap;
+    if(swap < 1){
+        mins = 0;
+    }else{
+        mins = (int)swap;
+        swap = swap - (float)mins;
     }
-    segs = (int)((float)swap*100);
-    if(min != 0){
-        result.append(to_string(min));
+    segs = (int)((float)swap*60);
+
+    if(mins != 0){
+        result.append(to_string(mins));
         result.append(" Mins e ");
     }
     result.append(to_string(segs));
