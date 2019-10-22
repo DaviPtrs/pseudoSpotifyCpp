@@ -113,35 +113,32 @@ void columnChecker(std::ifstream &infile, char tipo){
 }
 
 int main(int argc, char **argv){
-    // Paths p = getPaths(argc, argv);
+    Paths p = getPaths(argc, argv);
 
     PlataformaDigital *soundcorno = new PlataformaDigital();
     ifstream file;
-    // // file.open(p.Gens);
-    file.open("tests/set2/generos.csv");
+    file.open(p.Gens);
     columnChecker(file, 'g');
     soundcorno->carregaArquivoGenero(file);
     // soundcorno->imprimeListaGenero();
 
-
-    file.open("tests/set2/usuarios.csv");
-    // file.open(p.Users);
+    file.open(p.Users);
     columnChecker(file, 'u');
     soundcorno->carregaArquivoUsuario(file);
     // soundcorno->imprimeAssinantes();
     // soundcorno->imprimeProdutores();
 
-    file.open("tests/set2/midias.csv");
-    // file.open(p.Tracks);
+    file.open(p.Tracks);
     columnChecker(file, 'm');
     soundcorno->carregaArquivoMidia(file);
     // soundcorno->imprimeMusicas();
     // soundcorno->imprimePodcasts();
 
-    file.open("tests/set2/favoritos.csv");
-    // file.open(p.Tracks);
+    file.open(p.Favs);
     columnChecker(file, 'f');
     soundcorno->carregaArquivoFavoritos(file);
+
+    //Relatorios e saidas
     soundcorno->estatisticas();
 
     // Free na porra toda
