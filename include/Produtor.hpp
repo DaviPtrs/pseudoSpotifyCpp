@@ -8,6 +8,8 @@ class Produtor: protected Usuario {
     protected:
         std::vector<Midia *> produtos;
     public:
+        int qtdFav;
+        
         Produtor();
         Produtor(std::string _nome, int codigo);
 

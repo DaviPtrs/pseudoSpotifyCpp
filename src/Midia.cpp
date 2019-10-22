@@ -14,39 +14,72 @@ Midia::Midia() {
 
 Midia::Genero::Genero() {}
 
-
-Midia::Genero::Genero(std::string sigla, std::string nome)
+Midia::Genero::Genero(string sigla, string nome)
 {
     this->sigla = sigla;
     this->nome = nome;
 }
 
-std::string Midia::Genero::getNome()
+//nao testei ainda
+string Midia::formataDuracao(){
+    string result;
+    int min = 0, segs = 0;
+    float swap = this->duracao;
+    if(this->duracao >= 1){
+        min = (int) swap;
+        swap = (float)min - swap;
+    }
+    segs = (int)((float)swap*100);
+    if(min != 0){
+        result.append(to_string(min));
+        result.append(" Mins e ");
+    }
+    result.append(to_string(segs));
+    result.append(" segs\n");
+    
+    return result;
+}
+
+void Midia::Genero::addMidia(Midia *m){
+    this->midias.push_back(m);
+}
+
+int Midia::Genero::getQtdMidia(){
+    return this->midias.size();
+}
+
+int Midia::Genero::getMinsGen(){
+    float soma = 0;
+    for(Midia *x: this->midias){
+        soma += x->getDuracao();
+    }
+    return soma;
+}
+
+string Midia::Genero::getNome()
 {
     return this->nome;
 }
 
-std::string Midia::Genero::getSigla()
+string Midia::Genero::getSigla()
 {
     return this-> sigla;
 }
 
-int Midia::getTipo(){
+char Midia::getTipo(){
     return this->tipo;
 }
 
-void Midia::setTipo(int n){
-    this->tipo = n;
+void Midia::setTipo(char t){
+    this->tipo = t;
 }
 
-
-void Midia::Genero::setNome(std::string nome)
+void Midia::Genero::setNome(string nome)
 {
     this->nome = nome;
 }
 
-
-void Midia::Genero::setSigla(std::string sigla)
+void Midia::Genero::setSigla(string sigla)
 {
     this->sigla = sigla;
 }
@@ -63,9 +96,9 @@ void Midia::setAnoLancamento(int n){
     this->anoLancamento = n;
 }
 
-// static void Midia::imprimeQtdProdutos(){
-
-// }
+void Midia::imprimeQtdProdutos(){
+    cout << "Quantidade de midias criadas: " << qtdProdutos << endl;
+}
 
 Midia::Genero* Midia::getGenero(){
     return this->genero;
@@ -79,8 +112,13 @@ int Midia::getId(){
     return this->codigo;
 }
 
+float Midia::getDuracao(){
+    return this->duracao;
+}
+
 void Midia::fav(){
     this->favQtd++;
+    
 }
 void Midia::unfav(){
     this->favQtd--;

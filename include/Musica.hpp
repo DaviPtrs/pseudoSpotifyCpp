@@ -11,7 +11,4 @@ class Musica:public Midia{
         void imprimeInfoProduto();
         // virtual void imprimeNoArquivo(std::ofstream &outfile);
 
-        //Getters
-        int getAnoLancamento();    
-        int getDuracao();
 };

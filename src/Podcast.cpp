@@ -7,7 +7,7 @@ Podcast::Podcast() {
 }
 
 Podcast::Podcast(std::string nome, int codigo, std::string gen, int qtdTemp){
-    this->setTipo(1);
+    this->setTipo('P');
     this->nome = nome;
     this->codigo = codigo;
     this->qtdTemporadas = qtdTemp;

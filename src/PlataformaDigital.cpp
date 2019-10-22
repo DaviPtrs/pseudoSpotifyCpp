@@ -25,7 +25,7 @@ PlataformaDigital::PlataformaDigital(string _nome) {
 void PlataformaDigital::imprimePodcasts(){
     cout << "=-=-=-=PODCASTS-=-=-=-=\n";
     for(Midia *x : this->produtosCadastrados){
-        if(x->getTipo() == 1){
+        if(x->getTipo() == 'P'){
             cout << x->getId()<< ", "<< x->getNome() << endl;
         }
     }
@@ -36,7 +36,7 @@ void PlataformaDigital::imprimePodcasts(){
 void PlataformaDigital::imprimeMusicas(){
     cout << "=-=-=-=MUSICAS-=-=-=-=\n";
     for(Midia *x : this->produtosCadastrados){
-        if(x->getTipo() == 0){
+        if(x->getTipo() == 'M'){
             cout << x->getId()<< ", "<< x->getNome() << endl;
         }
     }
@@ -430,10 +430,10 @@ void PlataformaDigital::wipeAll(){
     }
 
     for(Midia *y : this->produtosCadastrados){
-        if(y->getTipo() == 1){//se for podcast
+        if(y->getTipo() == 'P'){//se for podcast
             Podcast *x = (Podcast *)y;
             delete x;
-        }else if((y->getTipo() == 0)){//se for musica
+        }else if((y->getTipo() == 'M')){//se for musica
             Musica *x = (Musica *)y;
             delete x;
         }else{
@@ -446,4 +446,15 @@ void PlataformaDigital::wipeAll(){
         delete x;
         x = NULL;
     }
+}
+
+void PlataformaDigital::estatisticas(){
+    //<HC>
+    float hc = 0;
+    for(Assinante *user : this->assinantes){
+        for(Midia * midia: user->getFavoritos()){
+            hc += midia->getDuracao();
+        }
+    }
+    cout << hc << endl;
 }

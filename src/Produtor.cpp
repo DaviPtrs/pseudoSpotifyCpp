@@ -6,12 +6,14 @@
 using namespace std;
 
 Produtor::Produtor() {
+    this->qtdFav = 0;
     cout << "Produtor criado generico criado!" << endl;
 }
 
 Produtor::Produtor(string _nome, int codigo){
     this->codigo = codigo;
     this->nome = _nome;
+    this->qtdFav = 0;
     cout << "Produtor " << codigo << "criado!" << endl;
 }
 

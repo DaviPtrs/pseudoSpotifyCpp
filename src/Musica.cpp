@@ -5,7 +5,7 @@ Musica::Musica() {
 }
 
 Musica::Musica(std::string nome, int codigo, std::string gen, float duracao, int ano){
-    this->setTipo(0);
+    this->setTipo('M');
     this->nome = nome;
     this->codigo = codigo;
     this->duracao = duracao;
@@ -19,9 +19,6 @@ Musica::Musica(std::string nome, int codigo, std::string gen, float duracao, int
 
 // }
 
-// void Musica::formataDuracao(){
-
-// }
 
 // void Musica::imprimeInfoProduto(){
 
@@ -31,10 +28,3 @@ Musica::Musica(std::string nome, int codigo, std::string gen, float duracao, int
 
 // }
 
-// int Musica::getAnoLancamento(){
-
-// }    
-
-// int Musica::getDuracao(){
-
-// }

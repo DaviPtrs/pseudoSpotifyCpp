@@ -60,6 +60,7 @@ class PlataformaDigital {
 
         //Output
         void exportarBiblioteca();
+        void estatisticas();
         void gerarRelatorios();
 
 };

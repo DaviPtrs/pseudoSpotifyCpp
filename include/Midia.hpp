@@ -1,20 +1,26 @@
 #pragma once
 #include <string>
 #include <iostream>
-
+#include <vector>
 class Midia {
     public:
         class Genero{
             private:
                 std::string nome;
                 std::string sigla;
+                std::vector<Midia*> midias;
             public:
                 Genero();
                 Genero(std::string nome, std::string sigla);
 
+                //Insert/remove
+                void addMidia(Midia * m);
+
                 //Getters
                 std::string getNome();
                 std::string getSigla();
+                int getQtdMidia();
+                int getMinsGen();
 
                 //Setters
                 void setNome(std::string nome);
@@ -28,14 +34,15 @@ class Midia {
         //Printers
         // virtual void imprimeInfoMidia() = 0; 
         // virtual void imprimeNoArquivo(std::ofstream &outfile) = 0;
-        static void imprimeQtdProdutos(); 
+        static void imprimeQtdProdutos();
         std::string formataDuracao();
 
         //Getters
         Genero* getGenero();
         std::string getNome();
         int getId();
-        int getTipo();
+        char getTipo();
+        float getDuracao();
         void fav();
         void unfav();
 
@@ -63,5 +70,5 @@ class Midia {
         Genero *genero;
         int favQtd;
 
-        void setTipo(int);
+        void setTipo(char);
 };
