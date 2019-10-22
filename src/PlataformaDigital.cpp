@@ -245,21 +245,24 @@ void PlataformaDigital::carregaArquivoMidia(ifstream &infile){
             inserirProduto((Podcast *)obj);
         }else if(data[2].compare("M") == 0){ //Musica 
             Musica *obj = fillMusica(data);
-            vector <int>artistasIds = extractIntsFromString(data[3]);    
-            int codigoAlbum;
+            vector <int>artistasIds = extractIntsFromString(data[3]);  
+            Album *b = NULL;            
+            int codigoAlbum = -1;
             int flag = 0;
 
-            try{
-                codigoAlbum = stoi(data[8]);
-            }catch(const std::exception& e){
-                cerr << "Inconsistências na entrada" << endl;
-                exit(1);
-            }
-            Album *b = searchAlbum(codigoAlbum);
-            if(b == NULL){
-                b = fillAlbum(data);
-                this->inserirAlbum(b);
-                flag = 1; // indica se o album acabou de ser criado
+            if(!data[8].empty()){ //se nao for vazia, entao tem album
+                try{
+                    codigoAlbum = stoi(data[8]);
+                }catch(const std::exception& e){
+                    cerr << "Inconsistências na entrada" << endl;
+                    exit(1);
+                }
+                b = searchAlbum(codigoAlbum);
+                if(b == NULL){
+                    b = fillAlbum(data);
+                    this->inserirAlbum(b);
+                    flag = 1; // indica se o album acabou de ser criado
+                }
             }
             
             //Adiciona o produtor
@@ -271,8 +274,9 @@ void PlataformaDigital::carregaArquivoMidia(ifstream &infile){
                 }
                 p->addProduto(obj);
             }
-
-            b->addFaixa((Musica *) obj);
+            if(b != NULL){
+                b->addFaixa((Musica *) obj);
+            }
             inserirProduto((Musica *)obj);
 
 
