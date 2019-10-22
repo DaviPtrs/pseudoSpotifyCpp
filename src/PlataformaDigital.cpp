@@ -452,7 +452,8 @@ void PlataformaDigital::wipeAll(){
     }
 }
 
-void PlataformaDigital::estatisticas(){
+void PlataformaDigital::estatisticas()
+{
     //<HC>
     float hc = 0;
     for(Assinante *user : this->assinantes){
@@ -461,4 +462,21 @@ void PlataformaDigital::estatisticas(){
         }
     }
     cout << hc << endl;
+
+    Midia::Genero *max = NULL;
+    int qtdMidias = 0;
+    Midia::Genero *genero_teste = NULL;
+    for(Assinante *user : this->assinantes)
+    {
+        for(Midia * midia: user->getFavoritos())
+        {
+            genero_teste = midia->getGenero();
+            if(genero_teste->getQtdMidia() >= qtdMidias)
+            {
+                max = genero_teste;
+                qtdMidias = genero_teste->getQtdMidia();
+            }
+        }
+    }
+    cout << max->getNome() << max->getMinsGen() << endl;
 }
