@@ -23,7 +23,7 @@ template<int index> struct TupleLess
     template<typename Tuple>
     bool operator() (const Tuple & left, const Tuple& right) const
     {
-        return std::get<index>(left) < std::get<index>(right);
+        return std::get<index>(left) > std::get<index>(right);
     }
 };
 

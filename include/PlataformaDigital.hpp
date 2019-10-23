@@ -46,9 +46,6 @@ class PlataformaDigital {
         Album *fillAlbum(std::string data[]);
 
         //Getters
-        std::string getNome();
-        std::vector<Midia *> getProdutosCadastrados();
-        std::vector<Assinante *> getAssinantes();
         Midia::Genero *searchGenero(std::string genero);
         Assinante *searchAssinante(int id);
         Produtor *searchProdutor(int id);
@@ -65,8 +62,11 @@ class PlataformaDigital {
         void backupUsers();
         void backupMidias();
         void estatisticas();
+        void horasConsumidas();
         void midiasPorGenero();
-        void midiasPorArtista();
+        void midiasPorProdutores();
+        void favList();
+        void topGenero();
         void gerarRelatorios();
         void top10Artistas();
 

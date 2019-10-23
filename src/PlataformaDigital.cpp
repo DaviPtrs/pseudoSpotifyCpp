@@ -142,7 +142,6 @@ void PlataformaDigital::inserirAlbum(Album *album){
     cout << "Album id.:" << album->getId() << " \"" << album->getNome() << "\" inserido!\n";
 }
 
-
 void PlataformaDigital::carregaArquivoUsuario(std::ifstream &infile){
     if(!infile.is_open()){
         cerr << "Erro de I/O\n";
@@ -432,18 +431,6 @@ Assinante *PlataformaDigital::searchAssinante(int id){
     return NULL;
 }
 
-string PlataformaDigital::getNome(){
-    return this->nome;
-}
-
-vector<Midia *> PlataformaDigital::getProdutosCadastrados(){
-    return this->produtosCadastrados;
-}
-
-vector<Assinante *> PlataformaDigital::getAssinantes(){
-    return this->assinantes;
-}
-
 void PlataformaDigital::wipeAll(){
     for(Assinante *x : this->assinantes){
         delete x;
@@ -532,8 +519,7 @@ void PlataformaDigital::backup(){
 
 // void horasConsumidas(){}
 
-void PlataformaDigital::estatisticas()
-{
+void PlataformaDigital::horasConsumidas(){
     //<HC>
     float hc = 0;
     for(Assinante *user : this->assinantes){
@@ -542,8 +528,10 @@ void PlataformaDigital::estatisticas()
         }
     }
     hc = hc/60;
-    cout << hc << endl;
+    cout << hc << " horas" << endl;
+}
 
+void PlataformaDigital::topGenero(){
     Midia::Genero *max = NULL;
     int qtdMidias = 0;
     Midia::Genero *genero_teste = NULL;
@@ -559,24 +547,53 @@ void PlataformaDigital::estatisticas()
             }
         }
     }
-    cout << max->getNome() << endl;
-    cout << max->getMinsGen() << endl;
+    cout << max->getNome() << " - " << max->getMinsGen() << " minutos" << endl;
 }
 
 void PlataformaDigital::midiasPorGenero()
 {
     for(Midia::Genero *genero : this->listaGeneros)
     {
-        cout << genero->getNome() << "tem " << genero->getQtdMidia() << "midias " << endl;
+        cout << genero->getNome() << ";" << genero->getQtdMidia() << endl;
     }
 }
 
-void PlataformaDigital::midiasPorArtista()
+void PlataformaDigital::midiasPorProdutores()
 {
     for(Produtor *produtor : this->listaProdutor)
     {
-        cout << produtor->getNome() << endl;
-        produtor->imprimeProdutosDesenvolvidos();
+        cout << produtor->getNome();
+        cout << ";";
+        vector <Midia *> midias = produtor->getProdutosDesenvolvidos();
+        //ordenar o vetor midias aqui (pelo nome)
+        for(Midia *midia: midias){
+            cout << midia->getNome();
+            if(midia != midias[midias.size()-1]){
+                cout << ", ";
+            }else{
+                cout << endl;
+            }
+        }
+    }
+}
+
+void PlataformaDigital::favList(){
+    for(Assinante * user: this->assinantes){
+        for(int i = 0; i<2; i++){
+            for(Midia * midia: user->getFavoritos()){
+                if((i == 0) && (midia->getTipo() == 'P')){
+                    cout << user->getId() << ";";
+                    cout << "Podcast;" << midia->getId() << ";";
+                    cout << midia->getGenero()->getNome() << ";";
+                    cout << midia->getDuracao() << endl;
+                }else if((i == 1) && (midia->getTipo() == 'M')){
+                    cout << user->getId() << ";";
+                    cout << "Musica;" << midia->getId() << ";";
+                    cout << midia->getGenero()->getNome() << ";";
+                    cout << midia->getDuracao() << endl;
+                }
+            }
+        }
     }
 }
 
@@ -587,7 +604,6 @@ void PlataformaDigital::top10Artistas()
    vector<tuple<Produtor *, int>> produtorNFavoritos;
    tuple <Produtor*, int> aux;
    int favsProdutor = 0;
-   int favsProdutorAnt = 0;
    for(Produtor *artista: this->listaProdutor)
    {
        midias = artista->getProdutosDesenvolvidos();
@@ -599,6 +615,16 @@ void PlataformaDigital::top10Artistas()
         produtorNFavoritos.push_back(aux);
    }
 
-   sort(produtorNFavoritos.begin(), produtorNFavoritos.end(), TupleLess<1>());
+    sort(produtorNFavoritos.begin(), produtorNFavoritos.end(), TupleLess<1>());
+
+    int tam = produtorNFavoritos.size();
+    if(tam >= 10){
+        tam = 10;
+    }
+    for(int i = 0; i<tam; i++){
+        Produtor *p = get<0>(produtorNFavoritos[i]);
+        int nFav = get<1>(produtorNFavoritos[i]);
+        cout << p->getNome() << ";" << nFav << endl;
+    }
 }
 

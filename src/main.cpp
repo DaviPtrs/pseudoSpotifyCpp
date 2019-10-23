@@ -143,16 +143,21 @@ int main(int argc, char **argv){
     soundcorno->carregaArquivoFavoritos(file);
 
     //Relatorios e saidas
-    soundcorno->estatisticas();
+    // soundcorno->estatisticas();
 
-    soundcorno->midiasPorGenero();
+    // soundcorno->topGenero();
 
-    soundcorno->backup();
+    // soundcorno->midiasPorGenero();
+
+    // soundcorno->midiasPorProdutores();
+
+    // soundcorno->favList();
+
+    soundcorno->top10Artistas();
+
+    // soundcorno->backup();
     // Free na porra toda
     soundcorno->wipeAll();
     delete soundcorno;
-
     return 0;
-
-
 }
