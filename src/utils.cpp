@@ -1,6 +1,5 @@
 #include "utils.hpp"
 #include <iostream>
-#include <tuple>
 #include <vector>
 #include <string>
 #include <bits/stdc++.h> 
@@ -60,8 +59,19 @@ float convertDuracao(std::string origin){ //Le o formato de texto e retorna segu
     }
 }
 
+// template<int index> struct TupleLess
+// {
+//     template<typename Tuple>
+//     bool operator() (const Tuple & left, const Tuple& rigt) const
+//     {
+//         return std::get<index>(left) < std::get<index>(right);
+//     }
+// }
 
-bool sortProdutor(const tuple<Produtor *, int> & a,const tuple<Produtor *, int> & b)
-{
-    return get<1>(a) < get<1>(b);
-}
+
+
+// bool compareT_Produtor(const tuple<Produtor *, int> & a,const tuple<Produtor *, int> & b)
+// {
+//     return get<1>(a) < get<1>(b);
+// }   
+

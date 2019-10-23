@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include <bits/stdc++.h> 
+#include <tuple>
 
 template <typename T> bool PComp(const T & a, const T & b)
 {
@@ -17,9 +18,22 @@ typename std::vector<T>::iterator
             item 
         );
 }
+template<int index> struct TupleLess
+{
+    template<typename Tuple>
+    bool operator() (const Tuple & left, const Tuple& right) const
+    {
+        return std::get<index>(left) < std::get<index>(right);
+    }
+};
 
 std::string convertSiglaGenero(std::string origin);
 
 std::vector <int> extractIntsFromString(std::string origin);
 
 float convertDuracao(std::string origin);
+
+class Produtor;
+
+bool compareT_Produtor(const std::tuple<Produtor *, int> & a,const std::tuple<Produtor *, int> & b);
+

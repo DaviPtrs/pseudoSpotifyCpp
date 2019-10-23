@@ -44,6 +44,7 @@ class Midia {
         char getTipo();
         float getDuracao();
         int getAnoLancamento();
+        int getQtdFav();
         void fav();
         void unfav();
 

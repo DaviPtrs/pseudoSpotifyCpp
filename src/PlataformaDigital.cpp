@@ -6,11 +6,14 @@
 #include <cstdio>
 #include <cctype>
 #include <tuple>
+#include <vector>
+#include <algorithm>
 #include "utils.hpp"
 #include "PlataformaDigital.hpp"
 #include "Podcaster.hpp"
 #include "Podcast.hpp"
 #include "Artista.hpp"
+#include "Midia.hpp"
 
 using namespace std;
 
@@ -72,7 +75,9 @@ void PlataformaDigital::imprimeListaGenero(){
 
 void PlataformaDigital::inserirAssinante(Assinante * assinante){
     insert_sort(this->assinantes, assinante);
-    cout << "Assinante \"" << assinante->getNome() << "\" inserido!\n";
+    cout << "Assinante \"";
+    cout << assinante->getNome(); 
+    cout << "\" inserido!\n";
 }
 
 void PlataformaDigital::removerAssinante(Assinante *obj){
@@ -91,7 +96,9 @@ void PlataformaDigital::removerAssinante(Assinante *obj){
 
 void PlataformaDigital::inserirProdutor(Produtor *produtor){
     insert_sort(this->listaProdutor, produtor);
-    cout << "Produtor \"" << produtor->getNome() << "\" inserido!\n";
+    cout << "Produtor \"";
+    cout << produtor->getNome(); 
+    cout << "\" inserido!\n";
 }
 
 void PlataformaDigital::removerProdutor(Produtor* produtor){
@@ -475,8 +482,10 @@ void PlataformaDigital::backupUsers(){
     }
 }
 
+//talvez esteja printando bugado
 void PlataformaDigital::backupMidias(){
     cout << "Midias:" << endl;
+    // cout << "";
     for(Produtor *prod: this->listaProdutor){
         for(Midia *midia: prod->getProdutosDesenvolvidos()){
             cout << midia->getNome() << ";";
@@ -504,6 +513,8 @@ void PlataformaDigital::backup(){
     this->backupUsers();
     this->backupMidias();
 }
+
+// void horasConsumidas(){}
 
 void PlataformaDigital::estatisticas()
 {
@@ -555,23 +566,25 @@ void PlataformaDigital::midiasPorArtista()
     }
 }
 
-// void PlataformaDigital::top10Artistas()
-// {
-//    vector<Produtor *> produtor;
-//    vector<Midia *> midias;
-//    vector<tuple<Produtor *, int>> produtorNFavoritos;
-//    tuple <Produtor*, int> aux;
-//    int favsProdutor = 0;
-//    int favsProdutorAnt = 0;
-//    for(Produtor *artista: this->listaProdutor)
-//    {
-//        midias = artista->getProdutosDesenvolvidos;
-//        for(Midia *midia: midias)
-//        {
-//            favsProdutor += midia->qtdProdutos;  // numero de midias favoritadas do produtor
-//        }
-//         aux = make_tuple(artista, favsProdutor);
-//         produtorNFavoritos.push_back(aux);
-//    }
-// }
+void PlataformaDigital::top10Artistas()
+{
+   vector<Produtor *> produtor;
+   vector<Midia *> midias;
+   vector<tuple<Produtor *, int>> produtorNFavoritos;
+   tuple <Produtor*, int> aux;
+   int favsProdutor = 0;
+   int favsProdutorAnt = 0;
+   for(Produtor *artista: this->listaProdutor)
+   {
+       midias = artista->getProdutosDesenvolvidos();
+       for(Midia *midia: midias)
+       {
+           favsProdutor += midia->getQtdFav();  // numero de midias favoritadas do produtor
+       }
+        aux = make_tuple(artista, favsProdutor);
+        produtorNFavoritos.push_back(aux);
+   }
+
+   sort(produtorNFavoritos.begin(), produtorNFavoritos.end(), TupleLess<1>());
+}
 

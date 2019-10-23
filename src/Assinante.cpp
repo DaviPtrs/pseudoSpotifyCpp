@@ -5,14 +5,12 @@
 
 using namespace std;
 
-Assinante::Assinante() {
-    cout << "Assinante generico criado!" << endl;
-}
+Assinante::Assinante() {}
 
 Assinante::Assinante(string _nome, int codigo){
     this->codigo = codigo;
     this->nome = _nome;
-    cout << "Assinante " << codigo << "criado!" << endl;
+    cout << "Assinante " << codigo << " criado!" << endl;
 }
 
 string Assinante::getNome(){
