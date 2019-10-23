@@ -545,8 +545,6 @@ void PlataformaDigital::estatisticas()
     }
     cout << max->getNome() << endl;
     cout << max->getMinsGen() << endl;
-
-
 }
 
 void PlataformaDigital::midiasPorGenero()
@@ -579,7 +577,7 @@ void PlataformaDigital::top10Artistas()
        midias = artista->getProdutosDesenvolvidos();
        for(Midia *midia: midias)
        {
-           favsProdutor += midia->getQtdFav();  // numero de midias favoritadas do produtor
+           favsProdutor += midia->getFavs();  // numero de midias favoritadas do produtor
        }
         aux = make_tuple(artista, favsProdutor);
         produtorNFavoritos.push_back(aux);
