@@ -15,6 +15,19 @@
 #include "Artista.hpp"
 #include "Midia.hpp"
 
+enum Indx{
+    CODIGO=0,
+    NOME=1,
+    TIPO=2,
+    PRODUTORES=3,
+    DURACAO=4,
+    GENERO=5,
+    TEMPORADA=6,
+    ALBUM=7,
+    CODALBUM=8,
+    ANOPUB=9
+};
+
 using namespace std;
 
 PlataformaDigital::PlataformaDigital() {
@@ -74,10 +87,13 @@ void PlataformaDigital::imprimeListaGenero(){
 
 
 void PlataformaDigital::inserirAssinante(Assinante * assinante){
+    string s;
     insert_sort(this->assinantes, assinante);
-    cout << "Assinante \"";
-    cout << assinante->getNome(); 
-    cout << "\" inserido!\n";
+    s.append("Assinante \"");
+    s.append(assinante->getNome());
+    s.append("\" inserido!\n");
+
+    cout << s;
 }
 
 void PlataformaDigital::removerAssinante(Assinante *obj){
@@ -241,26 +257,26 @@ void PlataformaDigital::carregaArquivoMidia(ifstream &infile){
         for(int i = 0; i<9; i++){
             getline(infile, data[i], ';');
         }
-        getline(infile, data[9]);
-        data[5] = convertSiglaGenero(data[5]);
+        getline(infile, data[ANOPUB]);
+        data[GENERO] = convertSiglaGenero(data[GENERO]);
 
-        if(data[0].compare("") == 0){
+        if(data[CODIGO].compare("") == 0){
             break;
         }
 
-        if(data[2].compare("P") == 0){ //Tipo // Podcast
+        if(data[TIPO].compare("P") == 0){ //Tipo // Podcast
             Podcast *obj = fillPodcast(data);
             inserirProduto((Podcast *)obj);
-        }else if(data[2].compare("M") == 0){ //Musica 
+        }else if(data[TIPO].compare("M") == 0){ //Musica 
             Musica *obj = fillMusica(data);
-            vector <int>artistasIds = extractIntsFromString(data[3]);  
+            vector <int>artistasIds = extractIntsFromString(data[PRODUTORES]);  
             Album *b = NULL;            
             int codigoAlbum = -1;
             int flag = 0;
 
-            if(!data[8].empty()){ //se nao for vazia, entao tem album
+            if(!data[CODALBUM].empty()){ //se nao for vazia, entao tem album
                 try{
-                    codigoAlbum = stoi(data[8]);
+                    codigoAlbum = stoi(data[CODALBUM]);
                 }catch(const std::exception& e){
                     cerr << "Inconsistências na entrada" << endl;
                     exit(1);
@@ -301,15 +317,15 @@ Album *PlataformaDigital::fillAlbum(std::string data[]){
     int codigo, ano;
     float duracao;
     try{
-        codigo = stoi(data[8]);
-        ano = stoi(data[9]);
-        duracao = convertDuracao(data[4]);
+        codigo = stoi(data[CODALBUM]);
+        ano = stoi(data[ANOPUB]);
+        duracao = convertDuracao(data[DURACAO]);
     }catch(const std::exception& e){
         cerr << "Inconsistências na entrada" << endl;
         exit(1);
     }
     
-    Album *obj = new Album(data[7],codigo,duracao,ano,0);
+    Album *obj = new Album(data[ALBUM],codigo,duracao,ano,0);
 
     return obj;
 }
@@ -318,17 +334,17 @@ Musica *PlataformaDigital::fillMusica(std::string data[]){
     float duracao;
     int codigo, ano;
     try{
-        codigo = stoi(data[0]);
-        ano = stoi(data[9]);
-        duracao = convertDuracao(data[4]);
+        codigo = stoi(data[CODIGO]);
+        ano = stoi(data[ANOPUB]);
+        duracao = convertDuracao(data[DURACAO]);
     }catch(const std::exception& e){
         cerr << "Inconsistências na entrada" << endl;
         exit(1);
     } 
-    Musica *obj = new Musica(data[1],codigo,data[5],duracao,ano);
+    Musica *obj = new Musica(data[NOME],codigo,data[GENERO],duracao,ano);
 
     //Adiciona o genero
-    Midia::Genero *gen = this->searchGenero(data[5]);
+    Midia::Genero *gen = this->searchGenero(data[GENERO]);
     obj->setGenero(gen);
     gen->addMidia(obj);
 
@@ -336,11 +352,11 @@ Musica *PlataformaDigital::fillMusica(std::string data[]){
 }
 
 Podcast *PlataformaDigital::fillPodcast(std::string data[]){
-    Podcast *obj = new Podcast(data[1], stoi(data[0]), data[5], stoi(data[6]));
-    obj->setDuracao(convertDuracao(data[4])); //Seta a duracao em segundos
+    Podcast *obj = new Podcast(data[NOME], stoi(data[CODIGO]), data[GENERO], stoi(data[TEMPORADA]));
+    obj->setDuracao(convertDuracao(data[DURACAO])); //Seta a duracao em segundos
 
     try{    
-        obj->setAnoLancamento(stoi(data[9]));
+        obj->setAnoLancamento(stoi(data[ANOPUB]));
     }
     catch(const std::exception& e){
         cerr << "Inconsistências na entrada" << endl;
@@ -348,11 +364,11 @@ Podcast *PlataformaDigital::fillPodcast(std::string data[]){
     }
     
 
-    Midia::Genero *gen = this->searchGenero(data[5]);
+    Midia::Genero *gen = this->searchGenero(data[GENERO]);
     obj->setGenero(gen);
     gen->addMidia(obj);
     
-    vector <int>podcasterIds = extractIntsFromString(data[3]);
+    vector <int>podcasterIds = extractIntsFromString(data[PRODUTORES]);
 
     for(int pId : podcasterIds){
         Produtor *p = searchProdutor(pId);
@@ -434,7 +450,12 @@ void PlataformaDigital::wipeAll(){
         x = NULL;
     }
 
-    for(Produtor *x : this->listaProdutor){
+    for(Album *x : this->albunsCadastrados){
+        delete x;
+        x = NULL;
+    }
+
+    for(Produtor *x : this->listaProdutor){    
         delete x;
         x = NULL;
     }
@@ -455,11 +476,6 @@ void PlataformaDigital::wipeAll(){
             delete y;
         }
         y = NULL;
-    }
-
-    for(Album *x : this->albunsCadastrados){
-        delete x;
-        x = NULL;
     }
 }
 

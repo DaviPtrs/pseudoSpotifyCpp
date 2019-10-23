@@ -118,23 +118,27 @@ int main(int argc, char **argv){
     PlataformaDigital *soundcorno = new PlataformaDigital();
     ifstream file;
     file.open(p.Gens);
+    // file.open("tests/generos.csv");
     columnChecker(file, 'g');
     soundcorno->carregaArquivoGenero(file);
     // soundcorno->imprimeListaGenero();
 
     file.open(p.Users);
+    // file.open("tests/usuarios.csv");
     columnChecker(file, 'u');
     soundcorno->carregaArquivoUsuario(file);
     // soundcorno->imprimeAssinantes();
     // soundcorno->imprimeProdutores();
 
     file.open(p.Tracks);
+    // file.open("tests/midias.csv");
     columnChecker(file, 'm');
     soundcorno->carregaArquivoMidia(file);
     // soundcorno->imprimeMusicas();
     // soundcorno->imprimePodcasts();
 
     file.open(p.Favs);
+    // file.open("tests/favoritos.csv");
     columnChecker(file, 'f');
     soundcorno->carregaArquivoFavoritos(file);
 
