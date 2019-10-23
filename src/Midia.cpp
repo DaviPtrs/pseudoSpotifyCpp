@@ -119,6 +119,10 @@ float Midia::getDuracao(){
     return this->duracao;
 }
 
+int Midia::getAnoLancamento(){
+    return this->anoLancamento;
+}
+
 void Midia::fav(){
     this->favQtd++;
     

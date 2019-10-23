@@ -1,8 +1,8 @@
 #pragma once
 #include "Produtor.hpp"
 
+class Album;
 class Artista: public Produtor {
-    class Album;
     private:
         std::vector<Album *> albums;
     public:
@@ -14,7 +14,6 @@ class Artista: public Produtor {
 
         //Add/remove
         void addAlbum(Album * album);
-        Album *retiraAlbum();
 
         //Getters
         std::vector<Album *> getAlbums();

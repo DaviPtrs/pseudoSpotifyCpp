@@ -43,6 +43,7 @@ class Midia {
         int getId();
         char getTipo();
         float getDuracao();
+        int getAnoLancamento();
         void fav();
         void unfav();
 
@@ -50,6 +51,7 @@ class Midia {
         void setGenero(Midia::Genero*);
         void setDuracao(float n);
         void setAnoLancamento(int n);
+        void setTipo(char);
 
         //Operators
         inline bool operator < (const Midia &obj) const{
@@ -69,6 +71,4 @@ class Midia {
         int anoLancamento;
         Genero *genero;
         int favQtd;
-
-        void setTipo(char);
 };

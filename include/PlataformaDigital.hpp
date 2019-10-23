@@ -53,14 +53,21 @@ class PlataformaDigital {
         Assinante *searchAssinante(int id);
         Produtor *searchProdutor(int id);
         Album *searchAlbum(int id);
-        Midia* searchMidia(int id);
+        Midia *searchMidia(int id);
+        Album *searchMusicAlbum(Artista *, Musica *);
 
         //delete functions
         void wipeAll();
 
         //Output
         void exportarBiblioteca();
+        void backup();
+        void backupUsers();
+        void backupMidias();
         void estatisticas();
+        void midiasPorGenero();
+        void midiasPorArtista();
         void gerarRelatorios();
+        void top10Artistas();
 
 };

@@ -28,6 +28,7 @@ class Album {
         int getDuracao();
         std::string getNome();
         int getId();
+        bool isMusicIn(Musica *);
 
         void setArtista(Artista *);
         void setQtdMusicas(int qtdMusicas);

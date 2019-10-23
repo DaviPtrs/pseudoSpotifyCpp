@@ -32,9 +32,9 @@ vector<Podcast::Podcaster *> Podcast::getPodcasters(){
 
 // }
 
-// int Podcast::getQtdTemportadas(){
-
-// }
+int Podcast::getQtdTemporadas(){
+    return this->qtdTemporadas;
+}
 
 // Podcast::Podcaster *Podcast::getPodcaster(){
 

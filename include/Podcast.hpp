@@ -22,8 +22,8 @@ class Podcast:public Midia {
         void addPodcaster(Produtor *p);
 
         // Getters
-        int getQtdTemportadas();
+        int getQtdTemporadas();
         vector<Podcaster *> getPodcasters();
-        void setQtdTemportadas(int);
+        void setQtdTemporadas(int);
 
 };

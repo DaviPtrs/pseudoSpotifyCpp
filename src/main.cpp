@@ -141,9 +141,14 @@ int main(int argc, char **argv){
     //Relatorios e saidas
     soundcorno->estatisticas();
 
+    soundcorno->midiasPorGenero();
+
+    soundcorno->backup();
     // Free na porra toda
     soundcorno->wipeAll();
     delete soundcorno;
 
     return 0;
+
+
 }

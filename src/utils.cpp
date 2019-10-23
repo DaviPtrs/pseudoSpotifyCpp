@@ -1,7 +1,12 @@
 #include "utils.hpp"
 #include <iostream>
+#include <tuple>
 #include <vector>
 #include <string>
+#include <bits/stdc++.h> 
+#include "Produtor.hpp"
+
+using namespace std;
 
 std::string convertSiglaGenero(std::string origin){
     std::string str;
@@ -53,4 +58,10 @@ float convertDuracao(std::string origin){ //Le o formato de texto e retorna segu
         std::cerr << "Inconsistências na entrada" << std::endl;
         exit(1);
     }
+}
+
+
+bool sortProdutor(const tuple<Produtor *, int> & a,const tuple<Produtor *, int> & b)
+{
+    return get<1>(a) < get<1>(b);
 }

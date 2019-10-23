@@ -71,6 +71,15 @@ std::string Album::getNome() {
     return this->nome;
 }
 
+bool Album::isMusicIn(Musica * obj){
+    for(Musica *m: this->faixas){
+        if(m->getId() == obj->getId()){
+            return true;
+        }
+    }
+    return false;
+}
+
 void Album::setArtista(Artista* artista) {
     this->artista = artista;
 }

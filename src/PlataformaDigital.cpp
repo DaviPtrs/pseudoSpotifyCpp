@@ -5,6 +5,7 @@
 #include <typeinfo>
 #include <cstdio>
 #include <cctype>
+#include <tuple>
 #include "utils.hpp"
 #include "PlataformaDigital.hpp"
 #include "Podcaster.hpp"
@@ -271,6 +272,7 @@ void PlataformaDigital::carregaArquivoMidia(ifstream &infile){
                 //se o album for novo, adiciona ao artista principal
                 if((flag == 1) && (aId == artistasIds[0])){
                     b->setArtista((Artista *)p);
+                    ((Artista *)p)->addAlbum(b);
                 }
                 p->addProduto(obj);
             }
@@ -321,6 +323,7 @@ Musica *PlataformaDigital::fillMusica(std::string data[]){
     //Adiciona o genero
     Midia::Genero *gen = this->searchGenero(data[5]);
     obj->setGenero(gen);
+    gen->addMidia(obj);
 
     return obj;
 }
@@ -340,6 +343,7 @@ Podcast *PlataformaDigital::fillPodcast(std::string data[]){
 
     Midia::Genero *gen = this->searchGenero(data[5]);
     obj->setGenero(gen);
+    gen->addMidia(obj);
     
     vector <int>podcasterIds = extractIntsFromString(data[3]);
 
@@ -452,6 +456,55 @@ void PlataformaDigital::wipeAll(){
     }
 }
 
+Album *PlataformaDigital::searchMusicAlbum(Artista * prod, Musica *obj){
+    for(Album *a: prod->getAlbums()){
+        if(a->isMusicIn(obj)){
+            return a;
+        }
+    }
+    return NULL;
+}
+
+void PlataformaDigital::backupUsers(){
+    cout << "Usuários:" << endl;
+    for(Produtor *user: this->listaProdutor){
+        cout << user->getId() << ";" << user->getNome() << endl;
+    }
+    for(Assinante *user: this->assinantes){
+        cout << user->getId() << ";" << user->getNome() << endl;
+    }
+}
+
+void PlataformaDigital::backupMidias(){
+    cout << "Midias:" << endl;
+    for(Produtor *prod: this->listaProdutor){
+        for(Midia *midia: prod->getProdutosDesenvolvidos()){
+            cout << midia->getNome() << ";";
+            cout << midia->getTipo() << ";";
+            cout << prod->getNome() << ";";
+            cout << midia->getGenero()->getNome() << ";";
+            if(midia->getTipo() == 'P'){
+                cout << ((Podcast *)midia)->getQtdTemporadas() << ";";
+                cout << ";";
+            }else{
+                cout << ";";
+                Album *album = this->searchMusicAlbum((Artista *)prod, (Musica *)midia);
+                if(album != NULL){
+                    cout << album->getId() << ";";
+                }else{
+                    cout << ";";
+                }
+            }
+            cout << midia->getAnoLancamento() << endl;;
+        }
+    }
+}
+
+void PlataformaDigital::backup(){
+    this->backupUsers();
+    this->backupMidias();
+}
+
 void PlataformaDigital::estatisticas()
 {
     //<HC>
@@ -461,6 +514,7 @@ void PlataformaDigital::estatisticas()
             hc += midia->getDuracao();
         }
     }
+    hc = hc/60;
     cout << hc << endl;
 
     Midia::Genero *max = NULL;
@@ -478,5 +532,46 @@ void PlataformaDigital::estatisticas()
             }
         }
     }
-    cout << max->getNome() << max->getMinsGen() << endl;
+    cout << max->getNome() << endl;
+    cout << max->getMinsGen() << endl;
+
+
 }
+
+void PlataformaDigital::midiasPorGenero()
+{
+    for(Midia::Genero *genero : this->listaGeneros)
+    {
+        cout << genero->getNome() << "tem " << genero->getQtdMidia() << "midias " << endl;
+    }
+}
+
+void PlataformaDigital::midiasPorArtista()
+{
+    for(Produtor *produtor : this->listaProdutor)
+    {
+        cout << produtor->getNome() << endl;
+        produtor->imprimeProdutosDesenvolvidos();
+    }
+}
+
+// void PlataformaDigital::top10Artistas()
+// {
+//    vector<Produtor *> produtor;
+//    vector<Midia *> midias;
+//    vector<tuple<Produtor *, int>> produtorNFavoritos;
+//    tuple <Produtor*, int> aux;
+//    int favsProdutor = 0;
+//    int favsProdutorAnt = 0;
+//    for(Produtor *artista: this->listaProdutor)
+//    {
+//        midias = artista->getProdutosDesenvolvidos;
+//        for(Midia *midia: midias)
+//        {
+//            favsProdutor += midia->qtdProdutos;  // numero de midias favoritadas do produtor
+//        }
+//         aux = make_tuple(artista, favsProdutor);
+//         produtorNFavoritos.push_back(aux);
+//    }
+// }
+

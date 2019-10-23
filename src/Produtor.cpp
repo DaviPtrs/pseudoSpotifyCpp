@@ -7,7 +7,6 @@ using namespace std;
 
 Produtor::Produtor() {
     this->qtdFav = 0;
-    cout << "Produtor criado generico criado!" << endl;
 }
 
 Produtor::Produtor(string _nome, int codigo){
@@ -38,4 +37,22 @@ void Produtor::delProduto(Midia * item){
         }
     }
     cerr << "Inconsistências na entrada" << endl;
+}
+
+void Produtor::imprimeProdutosDesenvolvidos(){
+    for(Midia *midia: this->produtos){
+        if(midia->getTipo() == 'P'){
+            cout << "Podcast ";
+        }else{
+            cout << "Musica ";
+        }
+        cout << "\"" << midia->getNome() << "\"" << endl;
+    }
+
+
+}
+
+std::vector<Midia *> Produtor::getProdutosDesenvolvidos()
+{
+    return this->produtos;
 }
