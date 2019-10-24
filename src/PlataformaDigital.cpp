@@ -15,7 +15,9 @@
 #include "Artista.hpp"
 #include "Midia.hpp"
 
-enum Indx{
+enum Indx
+{
+
     CODIGO=0,
     NOME=1,
     TIPO=2,
@@ -566,6 +568,7 @@ void PlataformaDigital::midiasPorProdutores()
         cout << ";";
         vector <Midia *> midias = produtor->getProdutosDesenvolvidos();
         //ordenar o vetor midias aqui (pelo nome)
+        sort(midias.begin(), midias.end(), &MidiaSortNome);
         for(Midia *midia: midias){
             cout << midia->getNome();
             if(midia != midias[midias.size()-1]){
@@ -621,10 +624,37 @@ void PlataformaDigital::top10Artistas()
     if(tam >= 10){
         tam = 10;
     }
-    for(int i = 0; i<tam; i++){
+    for(int i = 0; i<tam; i++)
+    {
         Produtor *p = get<0>(produtorNFavoritos[i]);
         int nFav = get<1>(produtorNFavoritos[i]);
         cout << p->getNome() << ";" << nFav << endl;
     }
 }
 
+
+void PlataformaDigital::top10Midias()
+{
+    vector<tuple<Midia*, int>> top10Midia;
+    tuple <Midia*, int> aux;
+    for(Midia* midia : this->produtosCadastrados)
+    {
+        if(midia->getTipo() == 'M')
+        {
+            aux = make_tuple(midia, midia->getFavs());
+            top10Midia.push_back(aux);
+        }
+
+    }
+    sort(top10Midia.begin(), top10Midia.end(), TupleLess<1>());
+    int tam = top10Midia.size();
+    if(tam >= 10)
+        tam = 10;
+
+    for(int i = 0; i<tam; i++)
+    {
+        Midia *m = get<0>(top10Midia[i]);
+        int nFav = get<1>(top10Midia[i]);
+        cout << m->getNome() << ";" << m->getGenero() << ";" << nFav << endl;
+    }
+}

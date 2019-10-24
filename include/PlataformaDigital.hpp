@@ -69,5 +69,6 @@ class PlataformaDigital {
         void topGenero();
         void gerarRelatorios();
         void top10Artistas();
+        void top10Midias();
 
 };

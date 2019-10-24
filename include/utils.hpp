@@ -3,6 +3,7 @@
 #include <string>
 #include <bits/stdc++.h> 
 #include <tuple>
+#include "Midia.hpp"
 
 template <typename T> bool PComp(const T & a, const T & b)
 {
@@ -26,6 +27,11 @@ template<int index> struct TupleLess
         return std::get<index>(left) > std::get<index>(right);
     }
 };
+
+
+bool stringCompare(std::string s1, std::string s2);
+bool MidiaSortNome(Midia*, Midia*);
+
 
 std::string convertSiglaGenero(std::string origin);
 

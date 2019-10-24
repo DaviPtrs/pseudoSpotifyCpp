@@ -4,6 +4,8 @@
 #include <string>
 #include <bits/stdc++.h> 
 #include "Produtor.hpp"
+#include "Midia.hpp"
+#include <algorithm>
 
 using namespace std;
 
@@ -57,6 +59,25 @@ float convertDuracao(std::string origin){ //Le o formato de texto e retorna segu
         std::cerr << "Inconsistências na entrada" << std::endl;
         exit(1);
     }
+}
+
+
+bool stringCompare(std::string s1, std::string s2)
+{
+    const collate<char>& col = use_facet<collate<char>>(locale());
+    std::transform(s1.begin(), s1.end(), s1.begin(), ::tolower);
+    std::transform(s2.begin(), s2.end(), s2.begin(), ::tolower);
+    const char* pb1 = s1.data();
+    const char* pb2 = s2.data();
+    return(col.compare(pb1, pb1 +s1.size(), pb2, pb2 + s2.size()) < 0);
+
+
+}
+
+bool MidiaSortNome(Midia *midia1, Midia *midia2)
+{
+    return stringCompare(midia1->getNome(), midia2->getNome());
+   
 }
 
 // template<int index> struct TupleLess

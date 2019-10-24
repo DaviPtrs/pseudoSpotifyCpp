@@ -157,6 +157,9 @@ int main(int argc, char **argv){
 
     // soundcorno->backup();
     // Free na porra toda
+
+    soundcorno->top10Midias();
+    soundcorno->midiasPorProdutores();
     soundcorno->wipeAll();
     delete soundcorno;
     return 0;
