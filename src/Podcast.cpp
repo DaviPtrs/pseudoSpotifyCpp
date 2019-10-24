@@ -2,9 +2,7 @@
 #include "Podcaster.hpp"
 #include "utils.hpp"
 
-Podcast::Podcast() {
-
-}
+Podcast::Podcast(){}
 
 Podcast::Podcast(std::string nome, int codigo, std::string gen, int qtdTemp){
     this->setTipo('P');
@@ -24,22 +22,6 @@ vector<Podcast::Podcaster *> Podcast::getPodcasters(){
     return this->podcasters;
 }
 
-// void Podcast::imprimeInfoProduto(){
-
-// }
-
-// void Podcast::imprimeNoArquivo(std::ofstream &outfile){
-
-// }
-
 int Podcast::getQtdTemporadas(){
     return this->qtdTemporadas;
 }
-
-// Podcast::Podcaster *Podcast::getPodcaster(){
-
-// }
-
-// void Podcast::setQtdTemportadas(int){
-
-// }

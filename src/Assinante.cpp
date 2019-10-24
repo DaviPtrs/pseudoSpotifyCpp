@@ -38,8 +38,7 @@ void Assinante::removerFavorito(Midia* favorito){
     if(it != this->favoritos.end()){
         this->favoritos.erase(it);
     }else{
-        cerr << "Inconsistências na entrada" << endl;
-        exit(1);
+        inputError();
     }
     favorito->unfav();
 }

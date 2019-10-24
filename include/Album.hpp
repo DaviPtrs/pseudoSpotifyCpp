@@ -17,10 +17,12 @@ class Album {
     public:
         Album();
         Album(std::string nome, int codigo, float duracao, int ano, int qtd);
-        void imprimeNoArquivo(std::ofstream &outfile);
-        void addFaixa(Musica *faixa);
-        void *delFaixa(Musica *faixa);
 
+        //Insert/remove
+        void addFaixa(Musica *faixa);
+        void delFaixa(Musica *faixa);
+
+        //Getters
         std::vector<Musica *> getFaixas();
         Artista *getArtista();
         int getQtdMusicas();
@@ -30,6 +32,7 @@ class Album {
         int getId();
         bool isMusicIn(Musica *);
 
+        //Setters
         void setArtista(Artista *);
         void setQtdMusicas(int qtdMusicas);
         void setAnoLancamento(int anoLancamento);

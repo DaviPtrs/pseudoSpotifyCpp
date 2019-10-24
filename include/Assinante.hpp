@@ -17,7 +17,6 @@ class Assinante:protected Usuario {
 
         //Printers
         void imprimeFavoritos();
-        // virtual void imprimeNoArquivo(std::ofstream &outfile);
 
         //Getters
         std::vector <Midia*> getFavoritos();

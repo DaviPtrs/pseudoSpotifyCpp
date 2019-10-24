@@ -6,6 +6,7 @@
 #include "Produtor.hpp"
 #include "Midia.hpp"
 #include <algorithm>
+#include "colors.hpp"
 
 using namespace std;
 
@@ -39,8 +40,7 @@ std::vector<int>extractIntsFromString(std::string origin){
         }
     }
     catch(const std::exception& e){
-        std::cerr << "Inconsistências na entrada" << std::endl;
-        exit(1);
+        inputError();
     }
     return result;
 }
@@ -48,17 +48,16 @@ std::vector<int>extractIntsFromString(std::string origin){
 float convertDuracao(std::string origin){ //Le o formato de texto e retorna segundos
     std::vector <int> vec = extractIntsFromString(origin);
     if((vec.size() != 1) && (vec.size() != 2)){
-        std::cerr << "Inconsistências na entrada" << std::endl;
-        exit(1);
+        inputError();
     }
     if(vec.size() == 1){
         return (float)vec[0];
     }else if(vec.size() == 2){
         return (float)vec[0] + (float)vec[1]/100;
     }else{
-        std::cerr << "Inconsistências na entrada" << std::endl;
-        exit(1);
+        inputError();
     }
+    return -1;
 }
 
 
@@ -76,4 +75,9 @@ bool MidiaSortNome(Midia *midia1, Midia *midia2)
 {
     return stringCompare(midia1->getNome(), midia2->getNome());
    
+}
+
+void inputError(){
+    cerr << RED("Inconsistências na entrada") << endl;
+    exit(1);
 }

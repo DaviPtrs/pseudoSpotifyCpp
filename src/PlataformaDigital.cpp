@@ -33,10 +33,11 @@ enum Indx{
 
 void checkFile(fstream &file){
     if(!file.is_open()){
-        cerr << "Erro de I/O" << endl;
+        cerr << RED("Erro de I/O") << endl;
         exit(1);
     }
 }
+
 PlataformaDigital::PlataformaDigital() {
     cout << GRN("Plataforma Digital generica criada!\n");
 }
@@ -114,7 +115,7 @@ void PlataformaDigital::removerAssinante(Assinante *obj){
             cout << "Assinante \"" << obj->getNome() << "\" removido!\n";
         }
     }
-    cerr << "Inconsistências na entrada" << endl;
+    inputError();
 }
 
 void PlataformaDigital::inserirProdutor(Produtor *produtor){
@@ -135,8 +136,7 @@ void PlataformaDigital::removerProdutor(Produtor* produtor){
             cout << "Produtor \"" << produtor->getNome() << "\" removido!\n";
         }
     }
-    cerr << "Inconsistências na entrada" << endl;
-    exit(1);
+    inputError();
 }
 
 void PlataformaDigital::inserirProduto(Midia *novoProduto){
@@ -184,8 +184,7 @@ void PlataformaDigital::carregaArquivoUsuario(std::ifstream &infile){
             this->inserirProdutor(new Artista(nome, codigoNum));
             break;
         default:
-            cerr << "Inconsistências na entrada" << endl;
-            break;
+            inputError();
         }
     }
     infile.close();
@@ -228,8 +227,7 @@ void PlataformaDigital::carregaArquivoFavoritos(std::ifstream &infile){
             codigoNum = stoi(codigo);
             favsNum = extractIntsFromString(favs);
         }catch(const std::exception& e){
-            cerr << "Inconsistências na entrada" << endl;
-            exit(1);
+            inputError();
         }
         if(favsNum.size() != 0){
             Assinante *user = searchAssinante(codigoNum);
@@ -272,8 +270,7 @@ void PlataformaDigital::carregaArquivoMidia(ifstream &infile){
                 try{
                     codigoAlbum = stoi(data[CODALBUM]);
                 }catch(const std::exception& e){
-                    cerr << "Inconsistências na entrada" << endl;
-                    exit(1);
+                    inputError();
                 }
                 b = searchAlbum(codigoAlbum);
                 if(b == NULL){
@@ -300,8 +297,7 @@ void PlataformaDigital::carregaArquivoMidia(ifstream &infile){
 
 
         }else{
-            cerr << "Inconsistências na entrada" << endl;
-            exit(1);
+            inputError();
         }
     }
     infile.close();
@@ -315,8 +311,7 @@ Album *PlataformaDigital::fillAlbum(std::string data[]){
         ano = stoi(data[ANOPUB]);
         duracao = convertDuracao(data[DURACAO]);
     }catch(const std::exception& e){
-        cerr << "Inconsistências na entrada" << endl;
-        exit(1);
+        inputError();
     }
     
     Album *obj = new Album(data[ALBUM],codigo,duracao,ano,0);
@@ -332,8 +327,7 @@ Musica *PlataformaDigital::fillMusica(std::string data[]){
         ano = stoi(data[ANOPUB]);
         duracao = convertDuracao(data[DURACAO]);
     }catch(const std::exception& e){
-        cerr << "Inconsistências na entrada" << endl;
-        exit(1);
+        inputError();
     } 
     Musica *obj = new Musica(data[NOME],codigo,data[GENERO],duracao,ano);
 
@@ -353,8 +347,7 @@ Podcast *PlataformaDigital::fillPodcast(std::string data[]){
         obj->setAnoLancamento(stoi(data[ANOPUB]));
     }
     catch(const std::exception& e){
-        cerr << "Inconsistências na entrada" << endl;
-        exit(1);
+        inputError();
     }
     
 
@@ -379,8 +372,7 @@ Midia::Genero *PlataformaDigital::searchGenero(string genero){
             return g;
         }
     }
-    cerr << "Inconsistências na entrada" << endl;
-    exit(1);
+    inputError();
     return NULL;
 }
 
@@ -390,8 +382,7 @@ Produtor *PlataformaDigital::searchProdutor(int id){
             return p;
         }
     }
-    cerr << "Inconsistências na entrada" << endl;
-    exit(1);
+    inputError();
     return NULL;
 }
 
@@ -410,8 +401,7 @@ Midia* PlataformaDigital::searchMidia(int id){
             return x;
         }
     }
-    cerr << "Inconsistências na entrada" << endl;
-    exit(1);
+    inputError();
     return NULL;
 }
 
@@ -421,8 +411,7 @@ Assinante *PlataformaDigital::searchAssinante(int id){
             return x;
         }
     }
-    cerr << "Inconsistências na entrada" << endl;
-    exit(1);
+    inputError();
     return NULL;
 }
 

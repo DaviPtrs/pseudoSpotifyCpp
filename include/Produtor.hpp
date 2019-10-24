@@ -16,7 +16,6 @@ class Produtor: protected Usuario {
         Produtor(std::string _nome, int codigo);
 
         //Printers
-        // virtual void imprimeNoArquivo(std::ofstream &outfile);  
         void imprimeProdutosDesenvolvidos();
 
         //Insert/remove
@@ -29,6 +28,7 @@ class Produtor: protected Usuario {
         std::vector<Midia *> getProdutosDesenvolvidos();
         char getTipo();
 
+        //Operators
         inline bool operator < (const Produtor &obj) const{
             return (nome.compare(obj.nome) < 0);
         }

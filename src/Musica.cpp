@@ -14,17 +14,3 @@ Musica::Musica(std::string nome, int codigo, std::string gen, float duracao, int
     temp.setSigla(gen);
     this->setGenero(&temp);
 }
-
-// Musica::~Musica() {
-
-// }
-
-
-// void Musica::imprimeInfoProduto(){
-
-// }
-
-// void Musica::imprimeNoArquivo(std::ofstream &outfile){
-
-// }
-

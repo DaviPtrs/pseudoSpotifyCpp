@@ -17,13 +17,11 @@ class Podcast:public Midia {
 
         // Printers
         void imprimeInfoProduto();
-        // virtual void imprimeNoArquivo(std::ofstream &outfile);
-        
+
+        //Insert/remove        
         void addPodcaster(Produtor *p);
 
         // Getters
         int getQtdTemporadas();
         vector<Podcaster *> getPodcasters();
-        void setQtdTemporadas(int);
-
 };

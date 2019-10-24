@@ -36,7 +36,7 @@ void Produtor::delProduto(Midia * item){
             cout << "Midia \"" << item->getNome() << "\" removida!\n";
         }
     }
-    cerr << "Inconsistências na entrada" << endl;
+    inputError();
 }
 
 void Produtor::imprimeProdutosDesenvolvidos(){

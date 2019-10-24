@@ -20,7 +20,6 @@ Midia::Genero::Genero(string sigla, string nome)
     this->nome = nome;
 }
 
-//nao testei ainda
 string Midia::formataDuracao(){
     string result;
     int mins = 0, segs = 0;

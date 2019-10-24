@@ -20,11 +20,9 @@ class PlataformaDigital {
         PlataformaDigital(std::string _nome);
 
         //Printers
-        void imprimeProdutos(std::string genero);
         void imprimePodcasts();
         void imprimeMusicas();
         void imprimeAssinantes();
-        void imprimeNoArquivo(std::ofstream &outfile);
         void imprimeListaGenero();
         void imprimeProdutores();
 
@@ -53,7 +51,7 @@ class PlataformaDigital {
         Midia *searchMidia(int id);
         Album *searchMusicAlbum(Artista *, Musica *);
 
-        //delete functions
+        //Delete functions
         void wipeAll();
 
         //Output
