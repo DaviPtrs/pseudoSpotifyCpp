@@ -169,8 +169,7 @@ void PlataformaDigital::carregaArquivoUsuario(std::ifstream &infile){
             codigoNum = stoi(codigo);
         }
         catch(const std::exception& e){
-            cerr << "Erro de formatação" << endl;
-            exit(1);
+            inputError();
         }
         switch (tipo[0])
         {
@@ -180,7 +179,7 @@ void PlataformaDigital::carregaArquivoUsuario(std::ifstream &infile){
         case 'P': //Podcaster
             this->inserirProdutor(new Podcaster(nome, codigoNum));
             break;
-        case 'A': //Podcaster
+        case 'A': //Artista
             this->inserirProdutor(new Artista(nome, codigoNum));
             break;
         default:
@@ -278,8 +277,7 @@ void PlataformaDigital::carregaArquivoMidia(ifstream &infile){
                     this->inserirAlbum(b);
                     flag = 1; // indica se o album acabou de ser criado
                 }
-            }
-            
+            }    
             //Adiciona o produtor
             for(int aId : artistasIds){
                 Produtor *p = searchProdutor(aId);
@@ -294,8 +292,6 @@ void PlataformaDigital::carregaArquivoMidia(ifstream &infile){
                 b->addFaixa((Musica *) obj);
             }
             inserirProduto((Musica *)obj);
-
-
         }else{
             inputError();
         }
@@ -315,7 +311,6 @@ Album *PlataformaDigital::fillAlbum(std::string data[]){
     }
     
     Album *obj = new Album(data[ALBUM],codigo,duracao,ano,0);
-
     return obj;
 }
 
@@ -330,7 +325,6 @@ Musica *PlataformaDigital::fillMusica(std::string data[]){
         inputError();
     } 
     Musica *obj = new Musica(data[NOME],codigo,data[GENERO],duracao,ano);
-
     //Adiciona o genero
     Midia::Genero *gen = this->searchGenero(data[GENERO]);
     obj->setGenero(gen);
@@ -349,7 +343,6 @@ Podcast *PlataformaDigital::fillPodcast(std::string data[]){
     catch(const std::exception& e){
         inputError();
     }
-    
 
     Midia::Genero *gen = this->searchGenero(data[GENERO]);
     obj->setGenero(gen);
@@ -362,7 +355,6 @@ Podcast *PlataformaDigital::fillPodcast(std::string data[]){
         p->addProduto(obj);
         obj->addPodcaster(p);
     }
-
     return obj;
 }
 
@@ -512,7 +504,6 @@ string PlataformaDigital::backupUsers(){
 string PlataformaDigital::backupMidias(){
     string out;
     out.append("Midias:\n");
-    // cout << "";
     for(Produtor *prod: this->listaProdutor){
         for(Midia *midia: prod->getProdutosDesenvolvidos()){
             out.append(midia->getNome());
@@ -567,7 +558,6 @@ string PlataformaDigital::estatisticas(){
     out.push_back('\n');
     out.append("Top 10 Produtores:\n");
     out.append(top10Produtores());;
-
     return out;
 }
 

@@ -7,9 +7,7 @@
 #include <fstream>
 #include <iostream>
 #include <cstdio>
-// #include<stdio.h>
-// #include<ctype.h>
-// #include<stdlib.h>
+#include "colors.hpp"
 #include <unistd.h>
 
 using namespace std;
@@ -24,9 +22,9 @@ class Paths{
 
 Paths getPaths(int argc, char **argv){
     if(argc != 9){
-        cout << "CERTIFIQUE-SE DE QUE TODAS AS FLAGS ESTÃO SENDO PASSADAS!\n";
+        cout << RED("CERTIFIQUE-SE DE QUE TODAS AS FLAGS ESTÃO SENDO PASSADAS!\n");
         if(argc == 1){
-            cout << "INSTRUÇÕES DE USO: \n -g : Path do arquivo de gêneros \n -u : Path do arquivo de usuários b \n -m: Path do arquivo de mídias \n -f: Path do arquivo de favoritos \n";
+            cout << GRN("INSTRUÇÕES DE USO: \n -g : Path do arquivo de gêneros \n -u : Path do arquivo de usuários \n -m: Path do arquivo de mídias \n -f: Path do arquivo de favoritos \n");
         }
         exit(1);
     }
@@ -48,7 +46,7 @@ Paths getPaths(int argc, char **argv){
                 x.Favs = (string)optarg;
                 break;
             case '?': 
-                cout << "INSTRUÇÕES DE USO: \n -g : Path do arquivo de gêneros \n -u : Path do arquivo de usuários b \n -m: Path do arquivo de mídias \n -f: Path do arquivo de favoritos \n";
+                cout << GRN("INSTRUÇÕES DE USO: \n -g : Path do arquivo de gêneros \n -u : Path do arquivo de usuários \n -m: Path do arquivo de mídias \n -f: Path do arquivo de favoritos \n");
                 exit(1);
             default: 
                 cout<<endl; 
@@ -58,7 +56,7 @@ Paths getPaths(int argc, char **argv){
     return x;
 }
 
-
+//Checa se todos os arquivos estão com a quantidade correta de colunas 
 void columnChecker(std::ifstream &infile, char tipo){
     string line;
     while(!infile.eof()){
@@ -75,33 +73,33 @@ void columnChecker(std::ifstream &infile, char tipo){
         switch (tipo){
             case 'g':
                 if(n != 1){
-                    cout << "Erro de formatação" << endl;
-                    cout << "Arquivo de generos" << endl;
-                    cout << ">> " << line << endl;
+                    cout << RED("Erro de formatação") << endl;
+                    cout << GRN("Arquivo de generos") << endl;
+                    cout << BLU(">> ") << line << endl;
                     exit(1);
                 }
                 break;
             case 'f':
                 if(n != 1){
-                    cout << "Erro de formatação" << endl;
-                    cout << "Arquivo de favoritos" << endl;
-                    cout << ">> " << line << endl;
+                    cout << RED("Erro de formatação") << endl;
+                    cout << GRN("Arquivo de favoritos") << endl;
+                    cout << BLU(">> ") << line << endl;
                     exit(1);
                 }
                 break;
             case 'm':
                 if(n != 9){
-                    cout << "Erro de formatação" << endl;
-                    cout << "Arquivo de midias" << endl;
-                    cout << ">> " << line << endl;
+                    cout << RED("Erro de formatação") << endl;
+                    cout << GRN("Arquivo de midias") << endl;
+                    cout << BLU(">> ") << line << endl;
                     exit(1);
                 }
                 break;
             case 'u':
                 if(n != 2){
-                    cout << "Erro de formatação" << endl;
-                    cout << "Arquivo de usuários" << endl;
-                    cout << ">> " << line << endl;
+                    cout << RED("Erro de formatação") << endl;
+                    cout << GRN("Arquivo de usuários") << endl;
+                    cout << BLU(">> ") << line << endl;
                     exit(1);
                 }
                 break;

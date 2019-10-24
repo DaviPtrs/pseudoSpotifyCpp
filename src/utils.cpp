@@ -10,6 +10,7 @@
 
 using namespace std;
 
+//Dado um string com mais de uma sigla, retorna somente a primeira sigla
 std::string convertSiglaGenero(std::string origin){
     std::string str;
     for(char c : origin){
@@ -45,7 +46,7 @@ std::vector<int>extractIntsFromString(std::string origin){
     return result;
 }
 
-float convertDuracao(std::string origin){ //Le o formato de texto e retorna segundos
+float convertDuracao(std::string origin){ //Le o valor formatado em string e retorna minutos
     std::vector <int> vec = extractIntsFromString(origin);
     if((vec.size() != 1) && (vec.size() != 2)){
         inputError();
@@ -60,7 +61,7 @@ float convertDuracao(std::string origin){ //Le o formato de texto e retorna segu
     return -1;
 }
 
-
+//compara uma string com a outra ignorando diferenças de case
 bool stringCompare(std::string s1, std::string s2)
 {
     const collate<char>& col = use_facet<collate<char>>(locale());

@@ -9,7 +9,7 @@ Podcast::Podcast(std::string nome, int codigo, std::string gen, int qtdTemp){
     this->nome = nome;
     this->codigo = codigo;
     this->qtdTemporadas = qtdTemp;
-    Midia::Genero temp;
+    Midia::Genero temp; //cria um objeto genero temporario
     temp.setSigla(gen);
     this->setGenero(&temp);
 }

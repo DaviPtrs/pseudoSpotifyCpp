@@ -1,8 +1,6 @@
 #include "Musica.hpp"
 
-Musica::Musica() {
-
-}
+Musica::Musica() {}
 
 Musica::Musica(std::string nome, int codigo, std::string gen, float duracao, int ano){
     this->setTipo('M');
@@ -10,7 +8,7 @@ Musica::Musica(std::string nome, int codigo, std::string gen, float duracao, int
     this->codigo = codigo;
     this->duracao = duracao;
     this->anoLancamento = ano;
-    Midia::Genero temp;
+    Midia::Genero temp; //cria um objeto genero temporário
     temp.setSigla(gen);
     this->setGenero(&temp);
 }
