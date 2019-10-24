@@ -48,8 +48,10 @@ void Produtor::imprimeProdutosDesenvolvidos(){
         }
         cout << "\"" << midia->getNome() << "\"" << endl;
     }
+}
 
-
+char Produtor::getTipo(){
+    return this->tipo;
 }
 
 std::vector<Midia *> Produtor::getProdutosDesenvolvidos()

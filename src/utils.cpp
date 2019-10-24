@@ -70,8 +70,6 @@ bool stringCompare(std::string s1, std::string s2)
     const char* pb1 = s1.data();
     const char* pb2 = s2.data();
     return(col.compare(pb1, pb1 +s1.size(), pb2, pb2 + s2.size()) < 0);
-
-
 }
 
 bool MidiaSortNome(Midia *midia1, Midia *midia2)

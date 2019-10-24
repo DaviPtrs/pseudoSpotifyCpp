@@ -15,9 +15,7 @@
 #include "Artista.hpp"
 #include "Midia.hpp"
 
-enum Indx
-{
-
+enum Indx{
     CODIGO=0,
     NOME=1,
     TIPO=2,
@@ -439,12 +437,17 @@ void PlataformaDigital::wipeAll(){
         x = NULL;
     }
 
-    for(Album *x : this->albunsCadastrados){
-        delete x;
+    for(Produtor *x : this->listaProdutor){            
+        if(x->getTipo() == 'A'){
+            Artista *y = (Artista *)x;
+            delete y;
+        }else{
+            Podcaster *y = (Podcaster *)x;
+            delete y;
+        }
         x = NULL;
     }
-
-    for(Produtor *x : this->listaProdutor){    
+    for(Album *x : this->albunsCadastrados){
         delete x;
         x = NULL;
     }
@@ -461,8 +464,6 @@ void PlataformaDigital::wipeAll(){
         }else if((y->getTipo() == 'M')){//se for musica
             Musica *x = (Musica *)y;
             delete x;
-        }else{
-            delete y;
         }
         y = NULL;
     }
@@ -487,7 +488,6 @@ void PlataformaDigital::backupUsers(){
     }
 }
 
-//talvez esteja printando bugado
 void PlataformaDigital::backupMidias(){
     cout << "Midias:" << endl;
     // cout << "";
@@ -567,16 +567,14 @@ void PlataformaDigital::midiasPorProdutores()
         cout << produtor->getNome();
         cout << ";";
         vector <Midia *> midias = produtor->getProdutosDesenvolvidos();
-        //ordenar o vetor midias aqui (pelo nome)
         sort(midias.begin(), midias.end(), &MidiaSortNome);
         for(Midia *midia: midias){
             cout << midia->getNome();
             if(midia != midias[midias.size()-1]){
                 cout << ", ";
-            }else{
-                cout << endl;
             }
         }
+        cout << endl;
     }
 }
 
@@ -655,6 +653,6 @@ void PlataformaDigital::top10Midias()
     {
         Midia *m = get<0>(top10Midia[i]);
         int nFav = get<1>(top10Midia[i]);
-        cout << m->getNome() << ";" << m->getGenero() << ";" << nFav << endl;
+        cout << m->getNome() << ";" << m->getGenero()->getNome() << ";" << nFav << endl;
     }
 }

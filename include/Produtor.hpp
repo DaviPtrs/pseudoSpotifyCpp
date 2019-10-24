@@ -5,7 +5,9 @@
 #include <string>
 
 class Produtor: protected Usuario {
+    private:
     protected:
+        char tipo;
         std::vector<Midia *> produtos;
     public:
         int qtdFav;
@@ -25,6 +27,7 @@ class Produtor: protected Usuario {
         std::string getNome();
         int getId();
         std::vector<Midia *> getProdutosDesenvolvidos();
+        char getTipo();
 
         inline bool operator < (const Produtor &obj) const{
             return (nome.compare(obj.nome) < 0);
