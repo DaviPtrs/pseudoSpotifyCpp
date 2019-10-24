@@ -14,6 +14,7 @@
 #include "Podcast.hpp"
 #include "Artista.hpp"
 #include "Midia.hpp"
+#include "colors.hpp"
 
 using namespace std;
 
@@ -37,12 +38,12 @@ void checkFile(fstream &file){
     }
 }
 PlataformaDigital::PlataformaDigital() {
-    cout << "Plataforma Digital generica criada!\n";
+    cout << GRN("Plataforma Digital generica criada!\n");
 }
 
 PlataformaDigital::PlataformaDigital(string _nome) {
     this->nome = _nome;
-    cout << "Objeto PlataformaDigital (" << _nome <<") criado!\n";
+    cout << GRN("Objeto PlataformaDigital (") << _nome << GRN(") criado!\n");
 }
 
 void PlataformaDigital::imprimePodcasts(){
@@ -95,9 +96,9 @@ void PlataformaDigital::imprimeListaGenero(){
 void PlataformaDigital::inserirAssinante(Assinante * assinante){
     string s;
     insert_sort(this->assinantes, assinante);
-    s.append("Assinante \"");
+    s.append(CYN("Assinante \""));
     s.append(assinante->getNome());
-    s.append("\" inserido!\n");
+    s.append(CYN("\" inserido!\n"));
 
     cout << s;
 }
@@ -118,9 +119,9 @@ void PlataformaDigital::removerAssinante(Assinante *obj){
 
 void PlataformaDigital::inserirProdutor(Produtor *produtor){
     insert_sort(this->listaProdutor, produtor);
-    cout << "Produtor \"";
+    cout << YEL("Produtor \"");
     cout << produtor->getNome(); 
-    cout << "\" inserido!\n";
+    cout << YEL("\" inserido!\n");
 }
 
 void PlataformaDigital::removerProdutor(Produtor* produtor){
@@ -140,12 +141,12 @@ void PlataformaDigital::removerProdutor(Produtor* produtor){
 
 void PlataformaDigital::inserirProduto(Midia *novoProduto){
     insert_sort(this->produtosCadastrados, novoProduto);
-    cout << "Produto id.:" << novoProduto->getId() << " \"" << novoProduto->getNome() << "\" inserido!\n";
+    cout << YEL("Produto id.:") << novoProduto->getId() << YEL(" \"") << novoProduto->getNome() << YEL("\" inserido!\n");
 }
 
 void PlataformaDigital::inserirAlbum(Album *album){
     this->albunsCadastrados.push_back(album);
-    cout << "Album id.:" << album->getId() << " \"" << album->getNome() << "\" inserido!\n";
+    cout << GRN("Album id.:") << album->getId() << GRN(" \"") << album->getNome() << GRN("\" inserido!\n");
 }
 
 void PlataformaDigital::carregaArquivoUsuario(std::ifstream &infile){

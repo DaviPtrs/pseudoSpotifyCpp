@@ -2,6 +2,7 @@
 #include "Assinante.hpp"
 #include "Usuario.hpp"
 #include "utils.hpp"
+#include "colors.hpp"
 
 using namespace std;
 
@@ -10,7 +11,7 @@ Assinante::Assinante() {}
 Assinante::Assinante(string _nome, int codigo){
     this->codigo = codigo;
     this->nome = _nome;
-    cout << "Assinante " << codigo << " criado!" << endl;
+    cout << YEL("Assinante ") << codigo << YEL(" criado!") << endl;
 }
 
 string Assinante::getNome(){
@@ -28,7 +29,7 @@ int Assinante::getId(){
 void Assinante::inserirFavorito(Midia* favorito){
     insert_sort(this->favoritos, favorito);
     favorito->fav();
-    cout << "Midia id:" << favorito->getId() << " adicionada aos favoritos de usuario id:" << this->getId() << endl;
+    cout << GRN("Midia id:") << favorito->getId() << GRN(" adicionada aos favoritos de usuario id:") << this->getId() << endl;
 }
 
 void Assinante::removerFavorito(Midia* favorito){

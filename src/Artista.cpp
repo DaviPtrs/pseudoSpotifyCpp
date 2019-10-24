@@ -1,5 +1,6 @@
 #include "Album.hpp"
 #include "Artista.hpp"
+#include "colors.hpp"
 #include <string>
 #include <iostream>
 
@@ -14,7 +15,7 @@ Artista::Artista(std::string _nome, int codigo){
     this->codigo = codigo;
     this->nome = _nome;
     this->tipo = 'A';
-    cout << "Artista " << codigo << " criado!" << endl;
+    cout << MAG("Artista ") << codigo << MAG(" criado!") << endl;
 }
 
 std::vector<Album *> Artista::getAlbums(){

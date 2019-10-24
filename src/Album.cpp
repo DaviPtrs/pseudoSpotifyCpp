@@ -3,6 +3,7 @@
 #include <string>
 #include <iostream>
 #include "utils.hpp"
+#include "colors.hpp"
 
 using namespace std;
 
@@ -17,7 +18,7 @@ Album::Album(string nome, int codigo, float duracao, int ano, int qtd){
     this->anoLancamento = ano;
     this->qtdMusicas = qtd;
 
-    cout << "Album (id.:" << codigo << ") criado!" << endl;
+    cout << CYN("Album (id.:") << codigo << CYN(") criado!") << endl;
 }
 
 // void Album::imprimeNoArquivo(std::ofstream &outfile){
@@ -26,7 +27,7 @@ Album::Album(string nome, int codigo, float duracao, int ano, int qtd){
 
 void Album::addFaixa(Musica *faixa){
     insert_sort(this->faixas, faixa);
-    cout << faixa->getNome() << " inserida no album " << this->nome << endl;
+    cout << faixa->getNome() << MAG(" inserida no album ") << this->nome << endl;
 }
 
 void *Album::delFaixa(Musica *faixa){
