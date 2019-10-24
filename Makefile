@@ -30,4 +30,6 @@ $(BIN)/$(EXECUTABLE): $(SRC)/*.cpp
 	$(CXX) $(CXX_FLAGS) -I$(INCLUDE) -L$(LIB) $^ -o $@ $(LIBRARIES)
 
 clean:
+	-mkdir output
 	-rm $(BIN)/*
+	-rm output/*

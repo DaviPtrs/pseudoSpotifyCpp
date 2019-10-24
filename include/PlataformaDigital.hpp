@@ -57,18 +57,23 @@ class PlataformaDigital {
         void wipeAll();
 
         //Output
-        void exportarBiblioteca();
-        void backup();
-        void backupUsers();
-        void backupMidias();
-        void estatisticas();
-        void horasConsumidas();
-        void midiasPorGenero();
-        void midiasPorProdutores();
-        void favList();
-        void topGenero();
+        //principais
         void gerarRelatorios();
-        void top10Artistas();
-        void top10Midias();
+        void exportarBiblioteca();
+        //auxiliares
+        //estatisticas
+        std::string estatisticas();
+        std::string horasConsumidas();
+        std::string topGenero();
+        std::string midiasPorGenero();
+        std::string top10Midias();
+        std::string top10Produtores();
+        //avulsos
+        std::string midiasPorProdutores();
+        std::string favList();
+        //backup (exportar biblioteca)
+        std::string backup();
+        std::string backupUsers();
+        std::string backupMidias();
 
 };

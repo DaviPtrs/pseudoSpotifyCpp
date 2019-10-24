@@ -113,52 +113,35 @@ void columnChecker(std::ifstream &infile, char tipo){
 }
 
 int main(int argc, char **argv){
-    // Paths p = getPaths(argc, argv);
+    Paths p = getPaths(argc, argv);
 
     PlataformaDigital *soundcorno = new PlataformaDigital();
     ifstream file;
-    // file.open(p.Gens);
-    file.open("tests/generos.csv");
+    file.open(p.Gens);
+    // file.open("tests/generos.csv");
     columnChecker(file, 'g');
     soundcorno->carregaArquivoGenero(file);
-    // soundcorno->imprimeListaGenero();
 
-    // file.open(p.Users);
-    file.open("tests/usuarios.csv");
+    file.open(p.Users);
+    // file.open("tests/usuarios.csv");
     columnChecker(file, 'u');
     soundcorno->carregaArquivoUsuario(file);
-    // soundcorno->imprimeAssinantes();
-    // soundcorno->imprimeProdutores();
 
-    // file.open(p.Tracks);
-    file.open("tests/midias.csv");
+    file.open(p.Tracks);
+    // file.open("tests/midias.csv");
     columnChecker(file, 'm');
     soundcorno->carregaArquivoMidia(file);
-    // soundcorno->imprimeMusicas();
-    // soundcorno->imprimePodcasts();
 
-    // file.open(p.Favs);
-    file.open("tests/favoritos.csv");
+    file.open(p.Favs);
+    // file.open("tests/favoritos.csv");
     columnChecker(file, 'f');
     soundcorno->carregaArquivoFavoritos(file);
 
-    //Relatorios e saidas
-    // soundcorno->estatisticas();
-
-    // soundcorno->topGenero();
-
-    // soundcorno->midiasPorGenero();
-
-    // soundcorno->midiasPorProdutores();
-
-    // soundcorno->favList();
-
-    // soundcorno->top10Artistas();
-
-    // soundcorno->backup();
-    // Free na porra toda
-
-    // soundcorno->top10Midias();
+    //Relatorios e saidas    
+    soundcorno->exportarBiblioteca();
+    soundcorno->gerarRelatorios();
+    
+    // Free na p**** toda
     soundcorno->wipeAll();
     delete soundcorno;
     return 0;

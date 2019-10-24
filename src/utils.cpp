@@ -77,20 +77,3 @@ bool MidiaSortNome(Midia *midia1, Midia *midia2)
     return stringCompare(midia1->getNome(), midia2->getNome());
    
 }
-
-// template<int index> struct TupleLess
-// {
-//     template<typename Tuple>
-//     bool operator() (const Tuple & left, const Tuple& rigt) const
-//     {
-//         return std::get<index>(left) < std::get<index>(right);
-//     }
-// }
-
-
-
-// bool compareT_Produtor(const tuple<Produtor *, int> & a,const tuple<Produtor *, int> & b)
-// {
-//     return get<1>(a) < get<1>(b);
-// }   
-

@@ -1,0 +1,53 @@
+Usuários:
+7;Blind Guardian
+5;Eluveitie
+3;Epica
+4;Kamelot
+6;Linkin Park
+2;Metallica
+1;Nightwish
+8;Uriah Hall
+9;Israel Adesanya
+10;Dana White
+11;Robert Whittaker
+12;George Saint-Pierre
+13;Paulo Costa
+14;Buakaw Benchamek
+15;Saenchai Kingstar
+16;Sylvie von Duuglas
+17;Kongtoranee Payakaroon
+18;Yodkhunpon Sittraiphum
+19;Namsaknoi Yudthagarngamtorn
+20;Chamuakpet Hapalang
+21;Dieselnoi Chor
+22;Sagat Petchyindee
+23;Kru Cha
+24;Dan Hooker
+25;Dan Inosanto
+26;Luke Holloway
+27;Kru Maul
+28;Doug Marcaida
+29;Lawrence Kenshin
+30;Miyamoto Musashi
+
+Midias:
+The Bard's Song;M;Blind Guardian;Progressive-Metal;;8;1992
+Theatre of Pain;M;Blind Guardian;Progressive-Metal;;8;1992
+Alesia;M;Eluveitie;Folk-Metal;;6;2012
+A Rose for Epona;M;Eluveitie;Folk-Metal;;6;2012
+The Phantom Agony;M;Epica;Folk-Metal;;4;2003
+Façade Of Reality;M;Epica;Folk-Metal;;4;2003
+Cry For The Moon;M;Epica;Folk-Metal;;4;2003
+The Haunting;M;Kamelot;Black-Metal;;5;2005
+March of Mephisto;M;Kamelot;Black-Metal;;5;2005
+Papercut;M;Linkin Park;POP-Metal;;7;2000
+In the End;M;Linkin Park;POP-Metal;;7;2000
+Nothing Else Matters;M;Metallica;POP-Metal;;3;1991
+Enter Sandman;M;Metallica;POP-Metal;;3;1991
+Sad but True;M;Metallica;POP-Metal;;3;1991
+The God That Failed;M;Metallica;POP-Metal;;3;1991
+Meadows of Heaven;M;Nightwish;Symphonic-Metal;;1;2007
+Master Passion Greed;M;Nightwish;Symphonic-Metal;;1;2007
+Dead Boy's Poem;M;Nightwish;Symphonic-Metal;;2;2000
+Wanderlust;M;Nightwish;Symphonic-Metal;;2;2000
+She Is My Sin;M;Nightwish;Symphonic-Metal;;2;2000

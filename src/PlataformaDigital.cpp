@@ -15,6 +15,8 @@
 #include "Artista.hpp"
 #include "Midia.hpp"
 
+using namespace std;
+
 enum Indx{
     CODIGO=0,
     NOME=1,
@@ -28,8 +30,12 @@ enum Indx{
     ANOPUB=9
 };
 
-using namespace std;
-
+void checkFile(fstream &file){
+    if(!file.is_open()){
+        cerr << "Erro de I/O" << endl;
+        exit(1);
+    }
+}
 PlataformaDigital::PlataformaDigital() {
     cout << "Plataforma Digital generica criada!\n";
 }
@@ -143,10 +149,7 @@ void PlataformaDigital::inserirAlbum(Album *album){
 }
 
 void PlataformaDigital::carregaArquivoUsuario(std::ifstream &infile){
-    if(!infile.is_open()){
-        cerr << "Erro de I/O\n";
-        exit(1);
-    }
+    checkFile((fstream &)infile);
 
     string codigo;
     string tipo;
@@ -188,10 +191,7 @@ void PlataformaDigital::carregaArquivoUsuario(std::ifstream &infile){
 }
 
 void PlataformaDigital::carregaArquivoGenero(ifstream &infile){
-    if(!infile.is_open()){
-        cerr << "Erro de I/O\n" ;
-        exit(1);
-    }
+    checkFile((fstream &)infile);
 
     string sigla;
     string nome;
@@ -210,10 +210,7 @@ void PlataformaDigital::carregaArquivoGenero(ifstream &infile){
 }
 
 void PlataformaDigital::carregaArquivoFavoritos(std::ifstream &infile){
-    if(!infile.is_open()){
-        cerr << "Erro de I/O\n" ;
-        exit(1);
-    }
+    checkFile((fstream &)infile);
 
     string codigo;
     string favs;
@@ -245,10 +242,7 @@ void PlataformaDigital::carregaArquivoFavoritos(std::ifstream &infile){
 }
 
 void PlataformaDigital::carregaArquivoMidia(ifstream &infile){
-    if(!infile.is_open()){
-        cerr << "Erro de I/O\n" ;
-        exit(1);
-    }
+    checkFile((fstream &)infile);
 
     string data[10];
     getline(infile, data[0]); //Ignorando a primeira linha
@@ -478,51 +472,116 @@ Album *PlataformaDigital::searchMusicAlbum(Artista * prod, Musica *obj){
     return NULL;
 }
 
-void PlataformaDigital::backupUsers(){
-    cout << "Usuários:" << endl;
-    for(Produtor *user: this->listaProdutor){
-        cout << user->getId() << ";" << user->getNome() << endl;
-    }
-    for(Assinante *user: this->assinantes){
-        cout << user->getId() << ";" << user->getNome() << endl;
-    }
+void PlataformaDigital::gerarRelatorios(){
+    ofstream file;
+    file.open("output/estatisticas.txt", ios::out);
+    checkFile((fstream &)file);
+    file << estatisticas();
+    file.close();
+
+    file.open("output/produtores.csv", ios::out);
+    checkFile((fstream &)file);
+    file << "<nome do produtor>;<nomes das mídias>" << endl;
+    file << midiasPorProdutores();
+    file.close();
+
+    file.open("output/favoritos.csv", ios::out);
+    checkFile((fstream &)file);
+    file << "<código do assinante>;<tipo>;<código da mídia>;<gênero>;<duração>" << endl;
+    file << favList();
+    file.close();
 }
 
-void PlataformaDigital::backupMidias(){
-    cout << "Midias:" << endl;
+
+void PlataformaDigital::exportarBiblioteca(){
+    ofstream file;
+    file.open("output/backup.txt", ios::out);
+    checkFile((fstream &)file);
+    file << backup();
+    file.close();
+}
+
+string PlataformaDigital::backupUsers(){
+    string out;
+    out.append("Usuários:\n");
+    for(Produtor *user: this->listaProdutor){
+        out.append(to_string(user->getId()));
+        out.append(";");
+        out.append(user->getNome());
+        out.append("\n");
+    }
+    for(Assinante *user: this->assinantes){
+        out.append(to_string(user->getId()));
+        out.append(";");
+        out.append(user->getNome());
+        out.append("\n");
+    }
+    return out;
+}
+
+string PlataformaDigital::backupMidias(){
+    string out;
+    out.append("Midias:\n");
     // cout << "";
     for(Produtor *prod: this->listaProdutor){
         for(Midia *midia: prod->getProdutosDesenvolvidos()){
-            cout << midia->getNome() << ";";
-            cout << midia->getTipo() << ";";
-            cout << prod->getNome() << ";";
-            cout << midia->getGenero()->getNome() << ";";
+            out.append(midia->getNome());
+            out.append(";");
+            out.push_back(midia->getTipo());
+            out.append(";");
+            out.append(prod->getNome());
+            out.append(";");
+            out.append(midia->getGenero()->getNome());
+            out.append(";");
             if(midia->getTipo() == 'P'){
-                cout << ((Podcast *)midia)->getQtdTemporadas() << ";";
-                cout << ";";
+                out.append(to_string(((Podcast *)midia)->getQtdTemporadas()));
+                out.append(";;");
             }else{
-                cout << ";";
+                out.append(";");
                 Album *album = this->searchMusicAlbum((Artista *)prod, (Musica *)midia);
                 if(album != NULL){
-                    cout << album->getId() << ";";
+                    out.append(to_string(album->getId()));
+                    out.append(";");
                 }else{
-                    cout << ";";
+                    out.append(";");
                 }
             }
-            cout << midia->getAnoLancamento() << endl;;
+            out.append(to_string(midia->getAnoLancamento()));
+            out.append("\n");
         }
     }
+    return out;
 }
 
-void PlataformaDigital::backup(){
-    this->backupUsers();
-    this->backupMidias();
+string PlataformaDigital::backup(){
+    string out;
+    out.append(this->backupUsers());
+    out.append("\n");
+    out.append(this->backupMidias());
+    return out;
 }
 
-// void horasConsumidas(){}
+string PlataformaDigital::estatisticas(){
+    string out;
+    out.append("Horas Consumidas: ");
+    out.append(horasConsumidas());
+    out.push_back('\n');
+    out.append("Genero mais ouvido: ");
+    out.append(topGenero());
+    out.push_back('\n');
+    out.append("Midias por Genero:\n");
+    out.append(midiasPorGenero());
+    out.push_back('\n');
+    out.append("Top 10 Midias:\n");
+    out.append(top10Midias());
+    out.push_back('\n');
+    out.append("Top 10 Produtores:\n");
+    out.append(top10Produtores());;
 
-void PlataformaDigital::horasConsumidas(){
-    //<HC>
+    return out;
+}
+
+string PlataformaDigital::horasConsumidas(){
     float hc = 0;
     for(Assinante *user : this->assinantes){
         for(Midia * midia: user->getFavoritos()){
@@ -530,10 +589,13 @@ void PlataformaDigital::horasConsumidas(){
         }
     }
     hc = hc/60;
-    cout << hc << " horas" << endl;
+    string out;
+    out.append(to_string((int)hc));
+    out.append(" horas\n");
+    return out;
 }
 
-void PlataformaDigital::topGenero(){
+string PlataformaDigital::topGenero(){
     Midia::Genero *max = NULL;
     int qtdMidias = 0;
     Midia::Genero *genero_teste = NULL;
@@ -549,56 +611,85 @@ void PlataformaDigital::topGenero(){
             }
         }
     }
-    cout << max->getNome() << " - " << max->getMinsGen() << " minutos" << endl;
+    string out;
+    out.append(max->getNome());
+    out.append(" - ");
+    out.append(to_string(max->getMinsGen()));
+    out.append(" minutos\n");
+    return out;
 }
 
-void PlataformaDigital::midiasPorGenero()
+string PlataformaDigital::midiasPorGenero()
 {
+    string out;
     for(Midia::Genero *genero : this->listaGeneros)
     {
-        cout << genero->getNome() << ";" << genero->getQtdMidia() << endl;
+        out.append(genero->getNome());
+        out.append(";");
+        out.append(to_string(genero->getQtdMidia()));
+        out.append("\n");
     }
+    return out;
 }
 
-void PlataformaDigital::midiasPorProdutores()
+string PlataformaDigital::midiasPorProdutores()
 {
+    string out;
     for(Produtor *produtor : this->listaProdutor)
     {
-        cout << produtor->getNome();
-        cout << ";";
+        out.append(produtor->getNome());
+        out.append(";");
         vector <Midia *> midias = produtor->getProdutosDesenvolvidos();
         sort(midias.begin(), midias.end(), &MidiaSortNome);
         for(Midia *midia: midias){
-            cout << midia->getNome();
+            out.append(midia->getNome());
             if(midia != midias[midias.size()-1]){
-                cout << ", ";
+                out.append(", ");
             }
         }
-        cout << endl;
+        out.append("\n");
     }
+    return out;
 }
 
-void PlataformaDigital::favList(){
+string PlataformaDigital::favList(){
+    string out;
+    
     for(Assinante * user: this->assinantes){
         for(int i = 0; i<2; i++){
             for(Midia * midia: user->getFavoritos()){
                 if((i == 0) && (midia->getTipo() == 'P')){
-                    cout << user->getId() << ";";
-                    cout << "Podcast;" << midia->getId() << ";";
-                    cout << midia->getGenero()->getNome() << ";";
-                    cout << midia->getDuracao() << endl;
+                    out.append(to_string(user->getId()));
+                    out.append(";");
+                    out.append("Podcast;");
+                    out.append(to_string(midia->getId()));
+                    out.append(";");
+                    out.append(midia->getGenero()->getNome());
+                    out.append(";");
+                    stringstream s1;
+                    s1 << fixed << setprecision(2) << midia->getDuracao();
+                    out.append(s1.str());
+                    out.append("\n");
                 }else if((i == 1) && (midia->getTipo() == 'M')){
-                    cout << user->getId() << ";";
-                    cout << "Musica;" << midia->getId() << ";";
-                    cout << midia->getGenero()->getNome() << ";";
-                    cout << midia->getDuracao() << endl;
+                    out.append(to_string(user->getId()));
+                    out.append(";");
+                    out.append("Musica;");
+                    out.append(to_string(midia->getId()));
+                    out.append(";");
+                    out.append(midia->getGenero()->getNome());
+                    out.append(";");
+                    stringstream s1;
+                    s1 << fixed << setprecision(2) << midia->getDuracao();
+                    out.append(s1.str());
+                    out.append("\n");
                 }
             }
         }
     }
+    return out;
 }
 
-void PlataformaDigital::top10Artistas()
+string PlataformaDigital::top10Produtores()
 {
    vector<Produtor *> produtor;
    vector<Midia *> midias;
@@ -622,16 +713,21 @@ void PlataformaDigital::top10Artistas()
     if(tam >= 10){
         tam = 10;
     }
+    string out;
     for(int i = 0; i<tam; i++)
     {
         Produtor *p = get<0>(produtorNFavoritos[i]);
         int nFav = get<1>(produtorNFavoritos[i]);
-        cout << p->getNome() << ";" << nFav << endl;
+        out.append(p->getNome());
+        out.append(";");
+        out.append(to_string(nFav));
+        out.append("\n");
     }
+    return out;
 }
 
 
-void PlataformaDigital::top10Midias()
+string PlataformaDigital::top10Midias()
 {
     vector<tuple<Midia*, int>> top10Midia;
     tuple <Midia*, int> aux;
@@ -649,10 +745,17 @@ void PlataformaDigital::top10Midias()
     if(tam >= 10)
         tam = 10;
 
+    string out;
     for(int i = 0; i<tam; i++)
     {
         Midia *m = get<0>(top10Midia[i]);
         int nFav = get<1>(top10Midia[i]);
-        cout << m->getNome() << ";" << m->getGenero()->getNome() << ";" << nFav << endl;
+        out.append(m->getNome());
+        out.append(";");
+        out.append(m->getGenero()->getNome());
+        out.append(";");
+        out.append(to_string(nFav));
+        out.append("\n");
     }
+    return out;
 }
