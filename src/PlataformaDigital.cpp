@@ -705,6 +705,7 @@ string PlataformaDigital::top10Produtores()
        }
         aux = make_tuple(artista, favsProdutor);
         produtorNFavoritos.push_back(aux);
+        favsProdutor = 0;
    }
 
     sort(produtorNFavoritos.begin(), produtorNFavoritos.end(), TupleLess<1>());

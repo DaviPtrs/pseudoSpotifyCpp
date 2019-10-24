@@ -1,31 +1,42 @@
-Horas Consumidas: 14 horas
+Horas Consumidas: 112 horas
 
-Genero mais ouvido: POP-Metal - 28 minutos
+Genero mais ouvido: Sertanejo - 46 minutos
 
 Midias por Genero:
-Folk-Metal;5
-Symphonic-Metal;5
-Black-Metal;2
-Progressive-Metal;2
-POP-Metal;6
+Rock;13
+Indie;9
+Blues;0
+Rap;0
+Pop;7
+Hip-Hop;10
+K-Pop;3
+Funk;13
+Sertanejo;17
+Eletrônica;8
+Geek;8
+Atualidades;7
+Noticias;5
 
 Top 10 Midias:
-She Is My Sin;Symphonic-Metal;15
-Wanderlust;Symphonic-Metal;13
-The Bard's Song;Progressive-Metal;11
-In the End;POP-Metal;11
-Alesia;Folk-Metal;11
-Enter Sandman;POP-Metal;10
-Meadows of Heaven;Symphonic-Metal;10
-Façade Of Reality;Folk-Metal;9
-Theatre of Pain;Progressive-Metal;9
-Papercut;POP-Metal;9
+Credo que delicia;Funk;7
+Changing;Rock;6
+Shades Of Cool;Indie;6
+Ressaca de Saudade;Sertanejo;6
+Primeira Semana;Sertanejo;6
+Queen of California;Rock;6
+Hear Me Now;Eletrônica;5
+Agora é tudo meu;Funk;5
+Reboladinha;Funk;5
+Rodeo;Hip-Hop;5
 
 Top 10 Produtores:
-Nightwish;185
-Metallica;129
-Linkin Park;94
-Kamelot;74
-Epica;59
-Eluveitie;36
-Blind Guardian;20
+John Mayer;39
+Alexandre Ottoni;30
+Deive Pazos;30
+MC Kevinho;29
+Caue Moura;28
+Lana Del Rey;25
+Wesley Safadão;24
+Lil Nas X;20
+Phelipe Cruz;18
+Renata Lo Prete;16

@@ -26,6 +26,9 @@ set2: clean all
 	clear
 	./$(BIN)/$(EXECUTABLE) -u tests/set2/usuarios.csv -f tests/set2/favoritos.csv -g tests/set2/generos.csv -m tests/set2/midias.csv
 
+val:
+	-valgrind --leak-check=full ./$(BIN)/$(EXECUTABLE) -u tests/usuarios.csv -f tests/favoritos.csv -g tests/generos.csv -m tests/midias.csv
+
 $(BIN)/$(EXECUTABLE): $(SRC)/*.cpp
 	$(CXX) $(CXX_FLAGS) -I$(INCLUDE) -L$(LIB) $^ -o $@ $(LIBRARIES)
 
