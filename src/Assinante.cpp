@@ -32,6 +32,16 @@ void Assinante::inserirFavorito(Midia* favorito){
     cout << GRN("Midia id:") << favorito->getId() << GRN(" adicionada aos favoritos de usuario id:") << this->getId() << endl;
 }
 
+bool Assinante::favExists(Midia* favorito){
+    vector<Midia *>::iterator it;
+    it = find(this->favoritos.begin(), this->favoritos.end(), favorito);
+    if(it != this->favoritos.end()){
+        return true;
+    }else{
+        return false;
+    }
+}
+
 void Assinante::removerFavorito(Midia* favorito){
     vector<Midia *>::iterator it;
     it = find(this->favoritos.begin(), this->favoritos.end(), favorito);

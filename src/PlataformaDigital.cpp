@@ -232,7 +232,9 @@ void PlataformaDigital::carregaArquivoFavoritos(std::ifstream &infile){
             Assinante *user = searchAssinante(codigoNum);
             for(int favId: favsNum){
                 Midia *fav = searchMidia(favId);
-                user->inserirFavorito(fav);
+                if(!user->favExists(fav)){
+                    user->inserirFavorito(fav);
+                }
             }
         }
     }
