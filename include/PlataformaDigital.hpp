@@ -50,6 +50,7 @@ class PlataformaDigital {
         Album *searchAlbum(int id);
         Midia *searchMidia(int id);
         Album *searchMusicAlbum(Artista *, Musica *);
+        int searchIndexGenero(Midia::Genero *);
 
         //Delete functions
         void wipeAll();

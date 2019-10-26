@@ -20,7 +20,7 @@ class Midia {
                 std::string getNome();
                 std::string getSigla();
                 int getQtdMidia();
-                int getMinsGen();
+                float getMinsGen();
 
                 //Setters
                 void setNome(std::string nome);

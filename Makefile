@@ -29,7 +29,7 @@ py: clean all
 
 val:
 	-rm output/*
-	-valgrind --leak-check=full ./$(BIN)/$(EXECUTABLE) -u tests/usuarios.csv -f tests/favoritos.csv -g tests/generos.csv -m tests/midias.csv
+	-valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(BIN)/$(EXECUTABLE) -u tests/usuarios.csv -f tests/favoritos.csv -g tests/generos.csv -m tests/midias.csv
 
 $(BIN)/$(EXECUTABLE): $(SRC)/*.cpp
 	$(CXX) $(CXX_FLAGS) -I$(INCLUDE) -L$(LIB) $^ -o $@ $(LIBRARIES)

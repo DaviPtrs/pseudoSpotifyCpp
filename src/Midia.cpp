@@ -50,7 +50,7 @@ int Midia::Genero::getQtdMidia(){
     return this->midias.size();
 }
 
-int Midia::Genero::getMinsGen(){
+float Midia::Genero::getMinsGen(){
     float soma = 0;
     for(Midia *x: this->midias){
         soma += x->getDuracao();
@@ -121,10 +121,11 @@ float Midia::getDuracao(){
 int Midia::getAnoLancamento(){
     return this->anoLancamento;
 }
+
 void Midia::fav(){
-    this->favQtd++;
-    
+    this->favQtd++;    
 }
+
 void Midia::unfav(){
     this->favQtd--;
 }

@@ -38,6 +38,16 @@ void checkFile(fstream &file){
     }
 }
 
+string formatFloat(float n){
+    stringstream ss;
+    ss << fixed << setprecision(2) << n;
+    string out = ss.str();
+    string::iterator it = find(out.begin(), out.end(),'.');
+    out.replace(it, it+1, ",");
+
+    return out;
+}
+
 PlataformaDigital::PlataformaDigital() {
     cout << GRN("Plataforma Digital generica criada!\n");
 }
@@ -564,42 +574,58 @@ string PlataformaDigital::estatisticas(){
 }
 
 string PlataformaDigital::horasConsumidas(){
-    float hc = 0;
+    float hc = (float)0;
     for(Assinante *user : this->assinantes){
         for(Midia * midia: user->getFavoritos()){
             hc += midia->getDuracao();
         }
     }
-    stringstream s1;
-    s1 << fixed << setprecision(2) << hc;
     string out;
-    out.append(s1.str());
+    out.append(formatFloat((float)hc));
     out.append(" minutos\n");
     return out;
 }
 
 string PlataformaDigital::topGenero(){
     Midia::Genero *max = NULL;
-    int qtdMidias = 0;
     Midia::Genero *genero_teste = NULL;
-    for(Assinante *user : this->assinantes)
-    {
-        for(Midia * midia: user->getFavoritos())
-        {
-            genero_teste = midia->getGenero();
-            if(genero_teste->getQtdMidia() >= qtdMidias)
-            {
-                max = genero_teste;
-                qtdMidias = genero_teste->getQtdMidia();
-            }
+    int qtdFavs = 0;
+    vector<tuple<Midia::Genero *, int>> generoFavs;
+    int i;
+
+    for(Midia::Genero *obj: this->listaGeneros){
+        generoFavs.push_back(make_tuple(obj, 0));
+    }
+
+    for(Midia* midia: this->produtosCadastrados){
+        i = searchIndexGenero(midia->getGenero());
+        get<1>(generoFavs[i]) += midia->getFavs();
+    }
+
+    for(auto obj: generoFavs){
+        genero_teste = get<0>(obj);
+        if(get<1>(obj) > qtdFavs){
+            max = genero_teste;
+            qtdFavs = get<1>(obj);
         }
     }
+
     string out;
     out.append(max->getNome());
     out.append(" - ");
-    out.append(to_string(max->getMinsGen()));
+    out.append(formatFloat(max->getMinsGen()));
     out.append(" minutos\n");
     return out;
+}
+
+int PlataformaDigital::searchIndexGenero(Midia::Genero *obj){
+    int tam = this->listaGeneros.size();
+    for(int i = 0; i<tam; i++){
+        if(this->listaGeneros[i]->getSigla().compare(obj->getSigla()) == 0){
+            return i;
+        }
+    }
+    return -1;
 }
 
 string PlataformaDigital::midiasPorGenero()
@@ -649,9 +675,7 @@ string PlataformaDigital::favList(){
                     out.append(";");
                     out.append(midia->getGenero()->getNome());
                     out.append(";");
-                    stringstream s1;
-                    s1 << fixed << setprecision(2) << midia->getDuracao();
-                    out.append(s1.str());
+                    out.append(formatFloat(midia->getDuracao()));
                     out.append("\n");
                 }else if((i == 1) && (midia->getTipo() == 'M')){
                     out.append(to_string(user->getId()));
@@ -661,9 +685,7 @@ string PlataformaDigital::favList(){
                     out.append(";");
                     out.append(midia->getGenero()->getNome());
                     out.append(";");
-                    stringstream s1;
-                    s1 << fixed << setprecision(2) << midia->getDuracao();
-                    out.append(s1.str());
+                    out.append(formatFloat(midia->getDuracao()));
                     out.append("\n");
                 }
             }
