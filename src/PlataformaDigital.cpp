@@ -570,10 +570,11 @@ string PlataformaDigital::horasConsumidas(){
             hc += midia->getDuracao();
         }
     }
-    hc = hc/60;
+    stringstream s1;
+    s1 << fixed << setprecision(2) << hc;
     string out;
-    out.append(to_string((int)hc));
-    out.append(" horas\n");
+    out.append(s1.str());
+    out.append(" minutos\n");
     return out;
 }
 
