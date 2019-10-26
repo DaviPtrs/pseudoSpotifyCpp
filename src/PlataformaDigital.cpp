@@ -165,7 +165,7 @@ void PlataformaDigital::carregaArquivoUsuario(std::ifstream &infile){
     string codigo;
     string tipo;
     string nome;
-    int codigoNum;
+    int codigoNum = -1;
     
     getline(infile, nome); //Ignorando a primeira linha
     while(!infile.eof()){ 
@@ -223,7 +223,7 @@ void PlataformaDigital::carregaArquivoFavoritos(std::ifstream &infile){
 
     string codigo;
     string favs;
-    int codigoNum;
+    int codigoNum = -1;
     vector<int> favsNum;
     getline(infile, codigo); //ignora primeira linha
     while(!infile.eof()){
@@ -312,8 +312,8 @@ void PlataformaDigital::carregaArquivoMidia(ifstream &infile){
 }
 
 Album *PlataformaDigital::fillAlbum(std::string data[]){
-    int codigo, ano;
-    float duracao;
+    int codigo = -1, ano = -1;
+    float duracao = -1;
     try{
         codigo = stoi(data[CODALBUM]);
         ano = stoi(data[ANOPUB]);
@@ -327,8 +327,8 @@ Album *PlataformaDigital::fillAlbum(std::string data[]){
 }
 
 Musica *PlataformaDigital::fillMusica(std::string data[]){
-    float duracao;
-    int codigo, ano;
+    int codigo = -1, ano = -1;
+    float duracao = -1;
     try{
         codigo = stoi(data[CODIGO]);
         ano = stoi(data[ANOPUB]);
