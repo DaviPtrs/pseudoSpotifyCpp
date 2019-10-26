@@ -259,7 +259,7 @@ void PlataformaDigital::carregaArquivoMidia(ifstream &infile){
 
         if(data[TIPO].compare("P") == 0){ //Tipo // Podcast
             Podcast *obj = fillPodcast(data);
-            inserirProduto((Podcast *)obj);
+            inserirProduto((Midia *)obj);
         }else if(data[TIPO].compare("M") == 0){ //Musica 
             Musica *obj = fillMusica(data);
             vector <int>artistasIds = extractIntsFromString(data[PRODUTORES]);  
@@ -293,7 +293,7 @@ void PlataformaDigital::carregaArquivoMidia(ifstream &infile){
             if(b != NULL){
                 b->addFaixa((Musica *) obj);
             }
-            inserirProduto((Musica *)obj);
+            inserirProduto((Midia *)obj);
         }else{
             inputError();
         }
@@ -717,12 +717,8 @@ string PlataformaDigital::top10Midias()
     tuple <Midia*, int> aux;
     for(Midia* midia : this->produtosCadastrados)
     {
-        if(midia->getTipo() == 'M')
-        {
-            aux = make_tuple(midia, midia->getFavs());
-            top10Midia.push_back(aux);
-        }
-
+        aux = make_tuple(midia, midia->getFavs());
+        top10Midia.push_back(aux);
     }
     sort(top10Midia.begin(), top10Midia.end(), TupleLess<1>());
     int tam = top10Midia.size();
