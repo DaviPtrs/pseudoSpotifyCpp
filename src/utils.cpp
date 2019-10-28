@@ -54,7 +54,11 @@ float convertDuracao(std::string origin){ //Le o valor formatado em string e ret
     if(vec.size() == 1){
         return (float)vec[0];
     }else if(vec.size() == 2){
-        return (float)vec[0] + (float)vec[1]/100;
+        if((float)vec[1] >= 10){
+            return (float)vec[0] + (float)vec[1]/100;
+        }else{
+            return (float)vec[0] + (float)vec[1]/10;
+        }
     }else{
         inputError();
     }
